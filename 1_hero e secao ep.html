@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>o disco antes do disco</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tipografia Nourd + Fallback Plus Jakarta Sans -->
+    <link href="https://fonts.cdnfonts.com/css/nourd" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#0D1927',
+                        brandDark: '#070E17',
+                        brandLight: '#16283E',
+                        epLuas: '#DECBA4',
+                        epJunhos: '#A5A881',
+                        epRodas: '#A6B8B7'
+                    },
+                    fontFamily: {
+                        nourd: ['Nourd', 'Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0D1927;
+            font-family: 'Nourd', 'Plus Jakarta Sans', sans-serif;
+            color: #F8FAFC;
+            overflow-x: hidden;
+            text-transform: lowercase;
+        }
+
+        /* desativar conversão automática em elementos que exigem link exato */
+        a, iframe, input {
+            text-transform: none;
+        }
+
+        /* textura sutil e iluminação atmosférica sobre o fundo #0D1927 */
+        .bg-stylized {
+            background-color: #0D1927;
+            background-image: 
+                radial-gradient(circle at 18% 20%, rgba(45, 85, 135, 0.22) 0%, transparent 45%),
+                radial-gradient(circle at 85% 80%, rgba(217, 119, 6, 0.08) 0%, transparent 50%),
+                linear-gradient(180deg, #09121D 0%, #0D1927 50%, #09121D 100%);
+        }
+
+        /* animação suave no botão de play */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            70% { transform: scale(1.25); opacity: 0; }
+            100% { transform: scale(1.25); opacity: 0; }
+        }
+        .play-ring {
+            animation: pulse-ring 2.4s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+        }
+
+        /* animação da faixa contínua (marquee) - rolagem infinita contínua e suave */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: 200%;
+            animation: marquee 28s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-stylized min-h-screen antialiased selection:bg-amber-500/30 selection:text-amber-200">
+
+    <!-- HERO SECTION -->
+    <main class="relative min-h-screen flex items-center justify-center px-5 py-10 sm:py-16 lg:py-20">
+        
+        <!-- detalhe de luz ambiente ao fundo -->
+        <div class="pointer-events-none fixed inset-0 overflow-hidden z-0">
+            <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-sky-500/5 blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-amber-500/5 blur-3xl"></div>
+        </div>
+
+        <!-- container principal: mobile (vídeo 1º, texto 2º) | desktop (lado a lado) -->
+        <div class="relative z-10 w-full max-w-6xl mx-auto">
+            <div class="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16 xl:gap-20">
+                
+                <!-- coluna 1: vídeo vertical 9:16 -->
+                <div class="w-full lg:w-5/12 flex justify-center">
+                    
+                    <div class="relative w-full max-w-[300px] sm:max-w-[330px] aspect-[9/16] rounded-3xl p-1.5 bg-gradient-to-b from-white/15 via-white/5 to-transparent shadow-[0_25px_60px_-15px_rgba(0,0,0,0.75)]">
+                        
+                        <div id="video-wrapper" class="relative w-full h-full rounded-[20px] overflow-hidden bg-[#070E17] border border-white/10">
+                            
+                            <!-- 1. foto de capa clicável -->
+                            <div 
+                                id="video-cover"
+                                onclick="openYoutubeFrame()"
+                                role="button"
+                                tabindex="0"
+                                onkeydown="if(event.key === 'Enter' || event.key === ' ') openYoutubeFrame()"
+                                aria-label="reproduzir vídeo o disco antes do disco"
+                                class="w-full h-full relative cursor-pointer group select-none">
+                                
+                                <img 
+                                    id="cover-image"
+                                    src="https://i.ytimg.com/vi/D6-IeSTLBbo/maxresdefault.jpg" 
+                                    onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/D6-IeSTLBbo/hqdefault.jpg';"
+                                    alt="capa do vídeo - o disco antes do disco" 
+                                    class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
+                                />
+                                
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#0D1927] via-[#0D1927]/30 to-black/30 opacity-85 group-hover:opacity-65 transition-opacity duration-300"></div>
+
+                                <div class="absolute top-4 left-4 flex items-center gap-2 bg-[#0D1927]/85 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                                    <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                                    <span class="text-[11px] tracking-widest text-white/90 font-medium">vídeo</span>
+                                </div>
+
+                                <div class="absolute inset-0 flex flex-col items-center justify-center p-4">
+                                    <div class="relative flex items-center justify-center">
+                                        <div class="w-20 h-20 rounded-full bg-amber-400/25 play-ring absolute"></div>
+                                        <div class="w-16 h-16 rounded-full bg-[#0D1927]/85 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-2xl group-hover:bg-amber-500 group-hover:border-amber-300 group-hover:text-[#0D1927] text-white group-hover:scale-110 transition-all duration-300">
+                                            <svg class="w-7 h-7 translate-x-0.5 fill-current" viewBox="0 0 24 24">
+                                                <path d="M8 5v14l11-7z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="mt-4 text-xs tracking-widest text-white/95 font-medium bg-[#0D1927]/85 px-4 py-1.5 rounded-full backdrop-blur-sm border border-white/15 group-hover:border-amber-400/50 transition-colors">
+                                        tocar agora
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div id="video-frame-container" class="hidden w-full h-full relative bg-black"></div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- coluna 2: texto -->
+                <div class="w-full lg:w-7/12 text-left max-w-xl lg:max-w-none mx-auto">
+                    
+                    <div class="inline-flex items-center gap-3 mb-4">
+                        <span class="h-[1px] w-8 bg-amber-400/60"></span>
+                        <span class="text-xs tracking-[0.25em] text-amber-300/80 font-medium">lançamento solo</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 leading-tight lowercase">
+                        <strong>o disco antes do disco</strong>
+                    </h1>
+
+                    <blockquote class="text-lg sm:text-xl lg:text-2xl text-amber-200/95 font-medium italic mb-6 pl-4 border-l-2 border-amber-400/60 leading-relaxed">
+                        "você sabia que, no coma, a audição fica intacta?"
+                    </blockquote>
+
+                    <div class="space-y-4 text-base sm:text-lg text-slate-200/90 font-normal leading-relaxed">
+                        <p>
+                            não. eu não sabia. e foi com essa descoberta (que eu preferia não saber, ao menos não como descobri) que resolvi tirar ideias, melodias e demos dos arquivos e dar alguma vida a canções.
+                        </p>
+                        <p class="text-white font-medium">
+                            justamente quando o cheiro que tudo exalava era o contrário disso.
+                        </p>
+                        <p>
+                            de tudo feito, vi ressurgir a velha vontade de ter uma banda.
+                        </p>
+                        <p>
+                            e enquanto a semente germina - no seu tempo e do seu jeito - eu e minha pressa de tudo - pôs no mundo <strong>o disco solo antes do disco de banda</strong>.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- faixa contínua rodando (marquee) -->
+    <section class="relative w-full bg-white text-[#0D1927] py-4 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.3)] rotate-[-0.5deg] scale-[1.02] z-20">
+        <div class="flex overflow-hidden whitespace-nowrap select-none">
+            <div class="animate-marquee flex items-center gap-12 sm:gap-16">
+                <!-- bloco 1 -->
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                    <span class="text-sky-400 text-lg">🌙</span>
+                    <span>luas</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-slate-400">
+                    <span>•</span>
+                    <span>junhos</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                    <span class="text-sky-400 text-lg">📅</span>
+                    <span>junhos</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-slate-400">
+                    <span>•</span>
+                    <span>rodas-gigantes</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                    <span class="text-sky-400 text-lg">🎡</span>
+                    <span>rodas-gigantes</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-slate-400">
+                    <span>•</span>
+                    <span>wendell soares</span>
+                </div>
+
+                <!-- bloco 2 (duplicado para loop contínuo infinito perfeito) -->
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                    <span class="text-sky-400 text-lg">🌙</span>
+                    <span>luas</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-slate-400">
+                    <span>•</span>
+                    <span>junhos</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                    <span class="text-sky-400 text-lg">📅</span>
+                    <span>junhos</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-slate-400">
+                    <span>•</span>
+                    <span>rodas-gigantes</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                    <span class="text-sky-400 text-lg">🎡</span>
+                    <span>rodas-gigantes</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-slate-400">
+                    <span>•</span>
+                    <span>wendell soares</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- seção 2: luas, junhos e rodas-gigantes -->
+    <section class="relative bg-[#2B3D48] py-16 sm:py-24 px-5 border-t border-white/10 overflow-hidden">
+        
+        <div class="pointer-events-none absolute inset-0 overflow-hidden z-0">
+            <div class="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-amber-400/5 blur-3xl"></div>
+            <div class="absolute bottom-0 left-10 w-80 h-80 rounded-full bg-[#0D1927]/40 blur-3xl"></div>
+        </div>
+
+        <div class="relative z-10 w-full max-w-6xl mx-auto">
+            
+            <div class="max-w-3xl mb-12 sm:mb-16">
+                <div class="inline-flex items-center gap-3 mb-4">
+                    <span class="h-[1px] w-8 bg-amber-400/60"></span>
+                    <span class="text-xs tracking-[0.25em] text-amber-300/90 font-medium">o ep em três atos</span>
+                </div>
+
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 leading-tight">
+                    luas, junhos e rodas-gigantes
+                </h2>
+
+                <div class="space-y-4 text-base sm:text-lg text-slate-100/90 font-normal leading-relaxed">
+                    <p>
+                        o título do ep veio da canção que, pra mim, talvez seja uma das mais belas de todos os tempos: <strong>both sides now</strong>, de <strong>joni mitchell</strong>.
+                    </p>
+                    <p>
+                        e calhou de poder ser dividida em três momentos que conversam entre si - ao mesmo tempo que fazem sentido sozinhos.
+                    </p>
+                </div>
+            </div>
+
+            <!-- grade de 4 espaços 1:1 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+                
+                <!-- espaço 1: luas -->
+                <div class="relative w-full aspect-square rounded-3xl p-1.5 bg-gradient-to-b from-white/20 via-white/5 to-transparent shadow-[0_20px_50px_-12px_rgba(13,25,39,0.6)]">
+                    <div class="relative w-full h-full rounded-[20px] overflow-hidden bg-[#1D2A33] border border-white/10">
+                        
+                        <div id="ep-cover-1" class="w-full h-full p-5 flex flex-col justify-between relative group">
+                            
+                            <img 
+                                id="img-ep-1"
+                                src="https://distrokid.imgix.net/http%3A%2F%2Fgather.fandalism.com%2F11909464--FCC942DB-1625-4132-B3A570AC249DB7C8--0--284298--luas.jpg?fm=jpg&q=75&w=800&s=1cb07eb4602c937a85cbee93c2c9ed28" 
+                                alt="capa luas - wendell soares" 
+                                class="absolute inset-0 w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                            />
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0D1927] via-[#0D1927]/55 to-[#0D1927]/40 group-hover:via-[#0D1927]/40 transition-all duration-300 pointer-events-none"></div>
+                            
+                            <div class="relative z-10 flex items-center justify-between">
+                                <span class="inline-flex items-center gap-1.5 text-[11px] tracking-widest bg-[#0D1927]/80 backdrop-blur-md text-emerald-300 border border-emerald-400/30 px-3 py-1 rounded-full font-medium">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                    disponível
+                                </span>
+                                <span class="text-xs font-bold text-white/80 bg-[#0D1927]/60 backdrop-blur-md px-2.5 py-1 rounded-full tracking-widest">01</span>
+                            </div>
+
+                            <div class="relative z-10 mt-auto flex flex-col gap-3">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white tracking-tight drop-shadow">luas</h3>
+                                    <p class="text-xs text-slate-200/90">parte i • ouça agora</p>
+                                </div>
+
+                                <div class="flex flex-col gap-1.5">
+                                    <button 
+                                        type="button"
+                                        onclick="openEpFrame(1, 'https://distrokid.com/hyperfollow/wendellsoares/luas-2', 'luas')"
+                                        class="w-full py-2.5 px-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-[#0D1927] font-semibold text-xs tracking-wider transition-all shadow-lg flex items-center justify-center gap-1.5">
+                                        <span>abrir aqui</span>
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                    </button>
+                                    <a href="https://distrokid.com/hyperfollow/wendellsoares/luas-2" target="_blank" rel="noopener noreferrer"
+                                       class="w-full py-1 text-center text-[11px] text-white/85 hover:text-amber-300 underline underline-offset-4 transition-colors">
+                                        abrir hyperfollow ↗
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="ep-frame-1" class="hidden w-full h-full relative bg-[#0D1927]"></div>
+                    </div>
+                </div>
+
+                <!-- espaço 2: junhos -->
+                <div class="relative w-full aspect-square rounded-3xl p-1.5 bg-gradient-to-b from-white/20 via-white/5 to-transparent shadow-[0_20px_50px_-12px_rgba(13,25,39,0.6)]">
+                    <div class="relative w-full h-full rounded-[20px] overflow-hidden bg-[#1D2A33] border border-white/10">
+                        
+                        <div id="ep-cover-2" class="w-full h-full p-5 flex flex-col justify-between relative group">
+                            
+                            <img 
+                                id="img-ep-2"
+                                src="https://distrokid.imgix.net/http%3A%2F%2Fgather.fandalism.com%2F11909464--244FE533-BED7-4948-AE5733AC403ADE43--0--298248--CapaEPjunhosWendellSoares.jpg?fm=jpg&q=75&w=800&s=8293a8e91bb211a6858dcc85b982b9ce" 
+                                alt="capa junhos - wendell soares" 
+                                class="absolute inset-0 w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                            />
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0D1927] via-[#0D1927]/55 to-[#0D1927]/40 group-hover:via-[#0D1927]/40 transition-all duration-300 pointer-events-none"></div>
+                            
+                            <div class="relative z-10 flex items-center justify-between">
+                                <span class="inline-flex items-center gap-1.5 text-[11px] tracking-wider bg-[#0D1927]/85 backdrop-blur-md text-amber-200 border border-amber-300/30 px-3 py-1 rounded-full font-medium">
+                                    disponível em 01/11
+                                </span>
+                                <span class="text-xs font-bold text-white/80 bg-[#0D1927]/60 backdrop-blur-md px-2.5 py-1 rounded-full tracking-widest">02</span>
+                            </div>
+
+                            <div class="relative z-10 mt-auto flex flex-col gap-3">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white tracking-tight drop-shadow">junhos</h3>
+                                    <p class="text-xs text-slate-200/90">parte ii • pré-save</p>
+                                </div>
+
+                                <div class="flex flex-col gap-1.5">
+                                    <button 
+                                        type="button"
+                                        onclick="openEpFrame(2, 'https://distrokid.com/hyperfollow/wendellsoares/junhos', 'junhos')"
+                                        class="w-full py-2.5 px-3 rounded-xl bg-[#0D1927]/80 hover:bg-amber-400 hover:text-[#0D1927] text-white backdrop-blur-md border border-white/20 font-semibold text-xs tracking-wider transition-all flex items-center justify-center gap-1.5">
+                                        <span>abrir aqui</span>
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                        </svg>
+                                    </button>
+                                    <a href="https://distrokid.com/hyperfollow/wendellsoares/junhos" target="_blank" rel="noopener noreferrer"
+                                       class="w-full py-1 text-center text-[11px] text-white/85 hover:text-amber-300 underline underline-offset-4 transition-colors">
+                                        abrir hyperfollow ↗
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="ep-frame-2" class="hidden w-full h-full relative bg-[#0D1927]"></div>
+                    </div>
+                </div>
+
+                <!-- espaço 3: rodas-gigantes -->
+                <div class="relative w-full aspect-square rounded-3xl p-1.5 bg-gradient-to-b from-white/20 via-white/5 to-transparent shadow-[0_20px_50px_-12px_rgba(13,25,39,0.6)]">
+                    <div class="relative w-full h-full rounded-[20px] overflow-hidden bg-[#1D2A33] border border-white/10">
+                        
+                        <div id="ep-cover-3" class="w-full h-full p-5 flex flex-col justify-between relative group">
+                            
+                            <img 
+                                id="img-ep-3"
+                                src="https://distrokid.imgix.net/http%3A%2F%2Fgather.fandalism.com%2F11909464--02E8F8E2-D4D4-4D43-8183399A275612F4--0--15705653--4deusdisformeEProdasgiganteswendellsoares.png?fm=jpg&q=75&w=800&s=cc183b926e46a65c5afcc351fd52215d" 
+                                alt="capa rodas-gigantes - wendell soares" 
+                                class="absolute inset-0 w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                            />
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0D1927] via-[#0D1927]/55 to-[#0D1927]/40 group-hover:via-[#0D1927]/40 transition-all duration-300 pointer-events-none"></div>
+                            
+                            <div class="relative z-10 flex items-center justify-between">
+                                <span class="inline-flex items-center gap-1.5 text-[11px] tracking-wider bg-[#0D1927]/85 backdrop-blur-md text-amber-200 border border-amber-300/30 px-3 py-1 rounded-full font-medium">
+                                    disponível em 14/11
+                                </span>
+                                <span class="text-xs font-bold text-white/80 bg-[#0D1927]/60 backdrop-blur-md px-2.5 py-1 rounded-full tracking-widest">03</span>
+                            </div>
+
+                            <div class="relative z-10 mt-auto flex flex-col gap-3">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white tracking-tight drop-shadow">rodas-gigantes</h3>
+                                    <p class="text-xs text-slate-200/90">parte iii • pré-save</p>
+                                </div>
+
+                                <div class="flex flex-col gap-1.5">
+                                    <button 
+                                        type="button"
+                                        onclick="openEpFrame(3, 'https://distrokid.com/hyperfollow/wendellsoares/rodas-gigantes', 'rodas-gigantes')"
+                                        class="w-full py-2.5 px-3 rounded-xl bg-[#0D1927]/80 hover:bg-amber-400 hover:text-[#0D1927] text-white backdrop-blur-md border border-white/20 font-semibold text-xs tracking-wider transition-all flex items-center justify-center gap-1.5">
+                                        <span>abrir aqui</span>
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                        </svg>
+                                    </button>
+                                    <a href="https://distrokid.com/hyperfollow/wendellsoares/rodas-gigantes" target="_blank" rel="noopener noreferrer"
+                                       class="w-full py-1 text-center text-[11px] text-white/85 hover:text-amber-300 underline underline-offset-4 transition-colors">
+                                        abrir hyperfollow ↗
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="ep-frame-3" class="hidden w-full h-full relative bg-[#0D1927]"></div>
+                    </div>
+                </div>
+
+                <!-- espaço 4: outros lados -->
+                <div class="relative w-full aspect-square rounded-3xl p-1.5 bg-gradient-to-b from-white/15 via-white/5 to-transparent shadow-[0_20px_50px_-12px_rgba(13,25,39,0.6)]">
+                    <div class="relative w-full h-full rounded-[20px] overflow-hidden bg-[#1D2A33] border border-white/10">
+                        
+                        <div id="ep-cover-4" class="w-full h-full p-5 flex flex-col justify-between relative group">
+                            
+                            <img 
+                                id="img-ep-4"
+                                src="https://placehold.co/600x600/16222A/94A3B8?text=outros+lados" 
+                                alt="capa outros lados" 
+                                class="absolute inset-0 w-full h-full object-cover object-center opacity-40 group-hover:scale-105 transition-transform duration-700 ease-out"
+                            />
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0D1927] via-[#0D1927]/70 to-[#0D1927]/40 pointer-events-none"></div>
+
+                            <div class="relative z-10 flex items-center justify-between">
+                                <span class="inline-flex items-center gap-1.5 text-[11px] tracking-widest bg-[#0D1927]/80 backdrop-blur-md text-white/60 border border-white/15 px-3 py-1 rounded-full font-medium">
+                                    em breve
+                                </span>
+                                <span class="text-xs font-bold text-white/60 bg-[#0D1927]/60 backdrop-blur-md px-2.5 py-1 rounded-full tracking-widest">04</span>
+                            </div>
+
+                            <div class="relative z-10 mt-auto flex flex-col gap-3">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white tracking-tight drop-shadow">outros lados</h3>
+                                    <p class="text-xs text-slate-300/75">parte iv • aguarde</p>
+                                </div>
+
+                                <div class="flex flex-col gap-1.5">
+                                    <div class="w-full py-2.5 px-3 rounded-xl bg-white/5 border border-white/10 text-white/50 font-semibold text-xs tracking-wider text-center select-none">
+                                        em breve
+                                    </div>
+                                    <span class="w-full py-1 text-center text-[11px] text-white/40 select-none">
+                                        link indisponível
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- script para abrir frames -->
+    <script>
+        function openYoutubeFrame() {
+            const cover = document.getElementById('video-cover');
+            const frameContainer = document.getElementById('video-frame-container');
+            const videoId = 'D6-IeSTLBbo';
+
+            cover.classList.add('hidden');
+            frameContainer.classList.remove('hidden');
+
+            frameContainer.innerHTML = `
+                <iframe 
+                    id="yt-iframe"
+                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1" 
+                    title="o disco antes do disco"
+                    frameborder="0" 
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen
+                    class="w-full h-full">
+                </iframe>
+
+                <div class="absolute top-3 right-3 left-3 z-20 flex items-center justify-between gap-2 pointer-events-none">
+                    <a href="https://youtu.be/${videoId}" target="_blank" rel="noopener noreferrer" 
+                       class="pointer-events-auto bg-[#0D1927]/90 hover:bg-red-600 text-white/90 hover:text-white text-[11px] px-3 py-1.5 rounded-full border border-white/15 backdrop-blur-md flex items-center gap-1.5 transition-all shadow-lg"
+                       title="abrir direto no youtube">
+                        <span>abrir no app</span>
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                        </svg>
+                    </a>
+                    <button 
+                        type="button"
+                        onclick="closeYoutubeFrame()"
+                        class="pointer-events-auto bg-[#0D1927]/90 hover:bg-white/20 text-white/85 hover:text-white text-[11px] px-2.5 py-1.5 rounded-full border border-white/15 backdrop-blur-md transition-all shadow-lg"
+                        title="voltar para a capa">
+                        ✕ fechar
+                    </button>
+                </div>
+            `;
+        }
+
+        function closeYoutubeFrame() {
+            const cover = document.getElementById('video-cover');
+            const frameContainer = document.getElementById('video-frame-container');
+
+            frameContainer.innerHTML = '';
+            frameContainer.classList.add('hidden');
+            cover.classList.remove('hidden');
+        }
+
+        function openEpFrame(index, url, title) {
+            const cover = document.getElementById(`ep-cover-${index}`);
+            const frameContainer = document.getElementById(`ep-frame-${index}`);
+
+            cover.classList.add('hidden');
+            frameContainer.classList.remove('hidden');
+
+            frameContainer.innerHTML = `
+                <iframe 
+                    src="${url}" 
+                    title="${title}"
+                    frameborder="0"
+                    class="w-full h-full bg-white">
+                </iframe>
+                <div class="absolute top-2.5 right-2.5 left-2.5 z-20 flex items-center justify-between gap-1.5 pointer-events-none">
+                    <a href="${url}" target="_blank" rel="noopener noreferrer"
+                       class="pointer-events-auto bg-[#0D1927]/90 hover:bg-amber-400 hover:text-[#0D1927] text-white text-[10px] font-medium px-2.5 py-1 rounded-full border border-white/15 backdrop-blur-md transition-all shadow">
+                        nova aba ↗
+                    </a>
+                    <button 
+                        type="button"
+                        onclick="closeEpFrame(${index})"
+                        class="pointer-events-auto bg-[#0D1927]/90 hover:bg-white/20 text-white text-[10px] px-2.5 py-1 rounded-full border border-white/15 backdrop-blur-md transition-all shadow">
+                        ✕ voltar
+                    </button>
+                </div>
+            `;
+        }
+
+        function closeEpFrame(index) {
+            const activeCover = document.getElementById(`ep-cover-${index}`);
+            const activeContainer = document.getElementById(`ep-frame-${index}`);
+
+            activeContainer.innerHTML = '';
+            activeContainer.classList.add('hidden');
+            activeCover.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
