@@ -35,11 +35,15 @@
     </script>
 
     <style>
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
         body {
             background-color: #0D1927;
             font-family: 'Nourd', 'Plus Jakarta Sans', sans-serif;
             color: #F8FAFC;
-            overflow-x: hidden;
             text-transform: lowercase;
         }
 
@@ -90,33 +94,56 @@
 </head>
 <body class="bg-stylized min-h-screen antialiased selection:bg-amber-500/30 selection:text-amber-200 lowercase-all">
 
-    <!-- HEADER / MENU HAMBÚRGUER FLUTUANTE -->
-    <header class="fixed top-4 right-4 z-50">
-        <button 
-            type="button" 
-            onclick="toggleMenu()"
-            class="bg-[#0D1927]/90 hover:bg-amber-400 hover:text-[#0D1927] text-white p-3 rounded-full border border-white/20 backdrop-blur-md shadow-2xl transition-all flex items-center justify-center gap-2 px-4">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-            <span class="text-xs font-semibold tracking-wider">menu</span>
-        </button>
+    <!-- BOTÃO FLUTUANTE WHATSAPP (AZUL ESCURO) -->
+    <a id="whatsapp-float" href="https://api.whatsapp.com/send?phone=5531983073854&text=Vim%20do%20site%20pra%20falar%20de%20m%C3%BAsica." target="_blank" rel="noopener noreferrer" 
+       class="fixed bottom-6 right-6 z-50 bg-[#1E3A8A] hover:bg-[#1D4ED8] text-white p-4 rounded-full shadow-[0_10px_25px_rgba(30,58,138,0.5)] border border-white/25 transition-all duration-300 flex items-center justify-center hover:scale-110 opacity-100 pointer-events-auto"
+       title="falar no whatsapp">
+        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        </svg>
+    </a>
 
-        <div id="nav-dropdown" class="hidden absolute right-0 mt-3 w-64 bg-[#0D1927]/95 backdrop-blur-xl border border-white/15 rounded-3xl p-5 shadow-2xl flex flex-col gap-3 text-sm">
-            <div class="flex items-center justify-between pb-2 border-b border-white/10">
-                <span class="text-xs tracking-[0.2em] text-amber-400 font-semibold">navegação</span>
-                <button type="button" onclick="toggleMenu()" class="text-white/60 hover:text-white text-xs">✕ fechar</button>
+    <!-- HEADER / MENU HAMBÚRGUER FLUTUANTE E LOGO -->
+    <header class="fixed top-0 w-full z-50 pointer-events-none px-5 py-4 bg-[#0D1927]">
+        <div class="w-full max-w-6xl mx-auto relative flex items-center justify-end">
+            
+            <!-- logo centralizada com 15% -->
+            <a href="#inicio" class="absolute left-1/2 -translate-x-1/2 pointer-events-auto transition-transform hover:scale-105 flex items-center mt-1">
+                <img 
+                    src="https://raw.githubusercontent.com/dellsoares/disco/a4ffcb42bf04fe35332345174b80689b07f38741/logo%20wendell.png" 
+                    alt="logo wendell soares" 
+                    class="w-[15vw] min-w-[110px] max-w-[200px] h-auto object-contain drop-shadow-xl opacity-90 hover:opacity-100 transition-opacity" 
+                />
+            </a>
+
+            <!-- menu hambúrguer flutuante -->
+            <div class="relative pointer-events-auto z-10">
+                <button type="button" 
+                onclick="toggleMenu()"
+                class="bg-[#0D1927] hover:bg-amber-400 hover:text-[#0D1927] text-white p-2.5 rounded-full border border-white/20 shadow-2xl transition-all flex items-center justify-center gap-2 px-4">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+                <span class="text-xs font-semibold tracking-wider">menu</span>
+                </button>
+
+                <div id="nav-dropdown" class="hidden absolute right-0 mt-3 w-64 bg-[#0D1927]/95 backdrop-blur-xl border border-white/15 rounded-3xl p-5 shadow-2xl flex flex-col gap-3 text-sm">
+                    <div class="flex items-center justify-between pb-2 border-b border-white/10">
+                        <span class="text-xs tracking-[0.2em] text-amber-400 font-semibold">navegação</span>
+                        <button type="button" onclick="toggleMenu()" class="text-white/60 hover:text-white text-xs">✕ fechar</button>
+                    </div>
+                    <a href="#inicio" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">início</a>
+                    <a href="#eps" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">o ep em três atos</a>
+                    <a href="#mais-cancoes" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">mais canções</a>
+                    <a href="#por-dentro" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">por dentro dos ep's</a>
+                    <a href="#contato" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">redes e links</a>
+                </div>
             </div>
-            <a href="#inicio" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">início</a>
-            <a href="#eps" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">o ep em três atos</a>
-            <a href="#mais-cancoes" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">mais canções</a>
-            <a href="#por-dentro" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">por dentro dos ep's</a>
-            <a href="#contato" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">redes e links</a>
         </div>
     </header>
 
     <!-- HERO SECTION -->
-    <main id="inicio" class="relative min-h-screen flex items-center justify-center px-5 py-10 sm:py-16 lg:py-20">
+    <main id="inicio" class="relative min-h-screen flex items-center justify-center px-5 py-20 sm:py-24">
         
         <div class="pointer-events-none fixed inset-0 overflow-hidden z-0">
             <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-sky-500/5 blur-3xl"></div>
@@ -304,58 +331,12 @@
                 </div>
             </div>
 
-            <!-- grade de 4 espaços 1:1 -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+            <!-- grade de 3 espaços (luas spotfy + 2 earcards) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-center">
                 
-                <!-- espaço 1: luas -->
-                <div class="relative w-full aspect-square rounded-3xl p-1.5 bg-gradient-to-b from-white/20 via-white/5 to-transparent shadow-[0_20px_50px_-12px_rgba(13,25,39,0.6)]">
-                    <div class="relative w-full h-full rounded-[20px] overflow-hidden bg-[#1D2A33] border border-white/10">
-                        
-                        <div id="ep-cover-1" class="w-full h-full p-5 flex flex-col justify-between relative group">
-                            
-                            <img 
-                                id="img-ep-1"
-                                src="https://distrokid.imgix.net/http%3A%2F%2Fgather.fandalism.com%2F11909464--FCC942DB-1625-4132-B3A570AC249DB7C8--0--284298--luas.jpg?fm=jpg&q=75&w=800&s=1cb07eb4602c937a85cbee93c2c9ed28" 
-                                alt="capa luas" 
-                                class="absolute inset-0 w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out"
-                            />
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#0D1927] via-[#0D1927]/55 to-[#0D1927]/40 group-hover:via-[#0D1927]/40 transition-all duration-300 pointer-events-none"></div>
-                            
-                            <div class="relative z-10 flex items-center justify-between">
-                                <span class="inline-flex items-center gap-1.5 text-[11px] tracking-widest bg-[#0D1927]/80 backdrop-blur-md text-emerald-300 border border-emerald-400/30 px-3 py-1 rounded-full font-medium">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                                    disponível
-                                </span>
-                                <span class="text-xs font-bold text-white/80 bg-[#0D1927]/60 backdrop-blur-md px-2.5 py-1 rounded-full tracking-widest">01</span>
-                            </div>
-
-                            <div class="relative z-10 mt-auto flex flex-col gap-3">
-                                <div>
-                                    <h3 class="text-2xl font-bold text-white tracking-tight drop-shadow">luas</h3>
-                                    <p class="text-xs text-slate-200/90">parte i • ouça agora</p>
-                                </div>
-
-                                <div class="flex flex-col gap-1.5">
-                                    <button 
-                                        type="button"
-                                        onclick="openEpFrame(1, 'https://distrokid.com/hyperfollow/wendellsoares/luas-2', 'luas')"
-                                        class="w-full py-2.5 px-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-[#0D1927] font-semibold text-xs tracking-wider transition-all shadow-lg flex items-center justify-center gap-1.5">
-                                        <span>abrir aqui</span>
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                        </svg>
-                                    </button>
-                                    <a href="https://distrokid.com/hyperfollow/wendellsoares/luas-2" target="_blank" rel="noopener noreferrer"
-                                       class="w-full py-1 text-center text-[11px] text-white/85 hover:text-amber-300 underline underline-offset-4 transition-colors">
-                                        abrir hyperfollow ↗
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="ep-frame-1" class="hidden w-full h-full relative bg-[#0D1927]"></div>
-                    </div>
+                <!-- espaço 1: luas (spotify embed) -->
+                <div class="w-full relative shadow-[0_20px_50px_-12px_rgba(13,25,39,0.6)] rounded-[12px] overflow-hidden bg-[#1D2A33]">
+                    <iframe data-testid="embed-iframe" style="border-radius:12px; display: block;" src="https://open.spotify.com/embed/album/4f1LldjG9vssrarr9GBIAF?utm_source=generator&si=8c0a79aacc5c40a1" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                 </div>
 
                 <!-- espaço 2: junhos -->
@@ -458,55 +439,28 @@
                     </div>
                 </div>
 
-                <!-- espaço 4: outros lados -->
-                <div class="relative w-full aspect-square rounded-3xl p-1.5 bg-gradient-to-b from-white/15 via-white/5 to-transparent shadow-[0_20px_50px_-12px_rgba(13,25,39,0.6)]">
-                    <div class="relative w-full h-full rounded-[20px] overflow-hidden bg-[#1D2A33] border border-white/10">
-                        
-                        <div id="ep-cover-4" class="w-full h-full p-5 flex flex-col justify-between relative group">
-                            
-                            <img 
-                                id="img-ep-4"
-                                src="https://placehold.co/600x600/16222A/94A3B8?text=outros+lados" 
-                                alt="capa outros lados" 
-                                class="absolute inset-0 w-full h-full object-cover object-center opacity-40 group-hover:scale-105 transition-transform duration-700 ease-out"
-                            />
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#0D1927] via-[#0D1927]/70 to-[#0D1927]/40 pointer-events-none"></div>
-
-                            <div class="relative z-10 flex items-center justify-between">
-                                <span class="inline-flex items-center gap-1.5 text-[11px] tracking-widest bg-[#0D1927]/80 backdrop-blur-md text-white/60 border border-white/15 px-3 py-1 rounded-full font-medium">
-                                    em breve
-                                </span>
-                                <span class="text-xs font-bold text-white/60 bg-[#0D1927]/60 backdrop-blur-md px-2.5 py-1 rounded-full tracking-widest">04</span>
-                            </div>
-
-                            <div class="relative z-10 mt-auto flex flex-col gap-3">
-                                <div>
-                                    <h3 class="text-2xl font-bold text-white tracking-tight drop-shadow">outros lados</h3>
-                                    <p class="text-xs text-slate-300/75">parte iv • aguarde</p>
-                                </div>
-
-                                <div class="flex flex-col gap-1.5">
-                                    <div class="w-full py-2.5 px-3 rounded-xl bg-white/5 border border-white/10 text-white/50 font-semibold text-xs tracking-wider text-center select-none">
-                                        em breve
-                                    </div>
-                                    <span class="w-full py-1 text-center text-[11px] text-white/40 select-none">
-                                        link indisponível
-                                    </span>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
             </div>
 
         </div>
     </section>
 
+    <!-- FAIXA ESTÁTICA: COISAS QUE ESCREVO (ALTURA REDUZIDA E CENTRALIZADA) -->
+    <section class="relative bg-[#16283E] text-white py-5 px-5 border-t border-b border-white/10 text-center shadow-md">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12">
+            <div class="text-center sm:text-left">
+                <span class="text-[10px] tracking-[0.3em] text-amber-400 font-medium uppercase">substantivo & prosa</span>
+                <h3 class="text-xl sm:text-2xl font-bold mt-0.5 text-white">coisas que escrevo</h3>
+            </div>
+            <a href="https://wendellsoares.substack.com/" target="_blank" rel="noopener noreferrer" 
+               class="bg-amber-400 hover:bg-amber-300 text-[#0D1927] px-6 py-2.5 rounded-full font-bold text-xs tracking-[0.2em] transition-all shadow-lg hover:scale-105 flex items-center gap-2">
+                <span>vem ler</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+        </div>
+    </section>
+
     <!-- SEÇÃO: MAIS CANÇÕES -->
-    <section id="mais-cancoes" class="relative bg-[#16283E] py-16 px-5 border-t border-white/10">
+    <section id="mais-cancoes" class="relative bg-[#0D1927] py-16 px-5 border-t border-white/10">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-10">
                 <span class="text-xs tracking-[0.3em] text-amber-400 font-medium uppercase">reprodutor</span>
@@ -527,7 +481,7 @@
                 </div>
             </div>
 
-            <!-- novos vídeos adicionados lado a lado no desktop, um abaixo do outro no mobile -->
+            <!-- vídeos adicionais lado a lado no desktop, um abaixo do outro no mobile -->
             <div class="mt-10 flex flex-col md:flex-row gap-6 items-center justify-center">
                 <div class="w-full md:w-1/2 aspect-video rounded-2xl overflow-hidden border border-white/20 shadow-xl bg-[#070E17] relative">
                     <div 
@@ -893,7 +847,7 @@
                     <span class="text-xs font-bold uppercase tracking-widest bg-[#1D2A33]/10 text-[#1D2A33] px-3 py-1 rounded-full">parte iii • rodas-gigantes</span>
                     <h2 class="text-4xl font-bold mt-3 mb-4 text-[#1D2A33]">rodas-gigantes</h2>
                     <p class="text-base md:text-lg leading-relaxed text-[#1D2A33]/90 font-medium">
-                        sempre ouvi que a vida é uma montanha-russa e talvez seja verdade. afinal, ela tem me enjoado só de olhar. mas aqui, sob a óritca de outro brinquedo, é hora de cuspir de volta (ou mandar beijo) pra todos que fizeram o mesmo enquanto estavam lá em cima.
+                        sempre ouvi que a vida é uma montanha-russa e talvez seja verdade. afinal, ela tem me enjoado só de olhar. mas aqui, sob a ótica de outro brinquedo, é hora de cuspir de volta (ou mandar beijo) pra todos que fizeram o mesmo enquanto estavam lá em cima.
                     </p>
 
                     <div class="mt-6">
@@ -1133,6 +1087,17 @@
         </div>
     </section>
 
+    <!-- RODAPÉ -->
+    <footer class="bg-[#070E17] py-12 px-5 border-t border-white/10 text-center flex flex-col items-center justify-center gap-6">
+        <a href="https://github.com/dellsoares/disco/tree/dda2013ea9deb8c803f6a8754b287462b041f5bb/papel%20de%20parede%20hd" target="_blank" rel="noopener noreferrer" class="bg-amber-400 hover:bg-amber-300 text-[#0D1927] px-8 py-3.5 rounded-full font-bold text-xs tracking-[0.2em] transition-all shadow-lg flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <span>papel de parede hd</span>
+        </a>
+        <p class="text-white/40 text-[10px] tracking-[0.15em] lowercase">
+            todos os direitos reservados pra sabe-se lá quem e porquê
+        </p>
+    </footer>
+
     <!-- modal para visualizar imagem original -->
     <div id="image-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4" onclick="closeImageModal()">
         <div class="relative max-w-lg w-full bg-[#0D1927] p-3 rounded-3xl border border-white/20 shadow-2xl" onclick="event.stopPropagation()">
@@ -1143,6 +1108,23 @@
 
     <!-- script para abrir frames e interações -->
     <script>
+        // controle de visibilidade do botão do whatsapp baseado na rolagem (aparece quando para de rolar)
+        let scrollTimeout;
+        const whatsappBtn = document.getElementById('whatsapp-float');
+
+        window.addEventListener('scroll', function() {
+            // ao rolar: esconde o botão
+            whatsappBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+            whatsappBtn.classList.remove('opacity-100', 'translate-y-0');
+
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(function() {
+                // ao parar de rolar: mostra o botão novamente
+                whatsappBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+                whatsappBtn.classList.add('opacity-100', 'translate-y-0');
+            }, 250);
+        }, false);
+
         function toggleMenu() {
             const dropdown = document.getElementById('nav-dropdown');
             dropdown.classList.toggle('hidden');
