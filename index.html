@@ -62,14 +62,6 @@
             text-transform: lowercase;
         }
 
-        .bg-stylized {
-            background-color: #0D1927;
-            background-image: 
-                radial-gradient(circle at 18% 20%, rgba(45, 85, 135, 0.22) 0%, transparent 45%),
-                radial-gradient(circle at 85% 80%, rgba(217, 119, 6, 0.08) 0%, transparent 50%),
-                linear-gradient(180deg, #09121D 0%, #0D1927 50%, #09121D 100%);
-        }
-
         @keyframes pulse-ring {
             0% { transform: scale(0.95); opacity: 0.7; }
             70% { transform: scale(1.25); opacity: 0; }
@@ -107,7 +99,7 @@
         }
     </style>
 </head>
-<body class="bg-stylized min-h-screen antialiased selection:bg-amber-500/30 selection:text-amber-200 lowercase-all">
+<body class="bg-[#0D1927] min-h-screen antialiased selection:bg-amber-500/30 selection:text-amber-200 lowercase-all">
 
     <!-- BOTÃO FLUTUANTE WHATSAPP (AMARELO) -->
     <a id="whatsapp-float" href="https://api.whatsapp.com/send?phone=5531983073854&text=Vim%20do%20site%20pra%20falar%20de%20m%C3%BAsica." target="_blank" rel="noopener noreferrer" 
@@ -155,8 +147,9 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <main id="inicio" class="relative min-h-screen flex items-center justify-center px-5 py-20 sm:py-24">
+    <!-- HERO SECTION (COM FUNDO 14.webp) -->
+    <main id="inicio" class="relative min-h-screen flex items-center justify-center px-5 py-20 sm:py-24 bg-cover bg-center" style="background-image: url('https://raw.githubusercontent.com/dellsoares/disco/80690ce3d7dfb4e0c9dce76147d6ae1347365ec6/14.webp');">
+        <div class="absolute inset-0 bg-[#0D1927]/80 pointer-events-none z-0"></div>
         <div class="pointer-events-none fixed inset-0 overflow-hidden z-0">
             <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-sky-500/5 blur-3xl"></div>
             <div class="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-amber-500/5 blur-3xl"></div>
@@ -274,22 +267,19 @@
         </div>
     </section>
 
-    <!-- seção 2: luas, junhos e rodas-gigantes -->
-    <section id="eps" class="relative bg-[#2B3D48] py-16 sm:py-24 px-5 border-t border-white/10 overflow-hidden">
-        <div class="pointer-events-none absolute inset-0 overflow-hidden z-0">
-            <div class="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-amber-400/5 blur-3xl"></div>
-            <div class="absolute bottom-0 left-10 w-80 h-80 rounded-full bg-[#0D1927]/40 blur-3xl"></div>
-        </div>
+    <!-- seção 2: o ep em três atos (COM FUNDO luas fundo.jpg E TEXTO ESCURO) -->
+    <section id="eps" class="relative bg-cover bg-center py-16 sm:py-24 px-5 border-t border-white/10 overflow-hidden" style="background-image: url('https://raw.githubusercontent.com/dellsoares/disco/54c18d5a17350e5f5127de4fbe85ac217a7deb29/luas%20fundo.jpg');">
+        <div class="pointer-events-none absolute inset-0 overflow-hidden z-0 bg-[#DECBA4]/85"></div>
         <div class="relative z-10 w-full max-w-6xl mx-auto">
             <div class="max-w-3xl mb-12 sm:mb-16">
                 <div class="inline-flex items-center gap-3 mb-4">
-                    <span class="h-[1px] w-8 bg-amber-400/60"></span>
-                    <span class="text-xs tracking-[0.25em] text-amber-300/90 font-medium">o ep em três atos</span>
+                    <span class="h-[1px] w-8 bg-[#1D2A33]/60"></span>
+                    <span class="text-xs tracking-[0.25em] text-[#1D2A33]/90 font-medium">o ep em três atos</span>
                 </div>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 leading-tight">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1D2A33] mb-6 leading-tight">
                     luas, junhos e rodas-gigantes
                 </h2>
-                <div class="space-y-4 text-base sm:text-lg text-slate-100/90 font-normal leading-relaxed">
+                <div class="space-y-4 text-base sm:text-lg text-[#1D2A33]/90 font-medium leading-relaxed">
                     <p>
                         o título do ep veio da canção que, pra mim, talvez seja uma das mais belas de todos os tempos: <strong><strong>both sides now</strong></strong>, de <strong><strong>joni mitchell</strong></strong>.
                     </p>
@@ -375,9 +365,10 @@
         </div>
     </section>
 
-    <!-- SEÇÃO: MAIS CANÇÕES -->
-    <section id="mais-cancoes" class="relative bg-[#0D1927] py-16 px-5 border-t border-white/10">
-        <div class="max-w-4xl mx-auto">
+    <!-- SEÇÃO: MAIS CANÇÕES (COM FUNDO 15.webp) -->
+    <section id="mais-cancoes" class="relative bg-cover bg-center py-16 px-5 border-t border-white/10" style="background-image: url('https://raw.githubusercontent.com/dellsoares/disco/80690ce3d7dfb4e0c9dce76147d6ae1347365ec6/15.webp');">
+        <div class="absolute inset-0 bg-[#0D1927]/85 pointer-events-none z-0"></div>
+        <div class="relative z-10 max-w-4xl mx-auto">
             <div class="text-center mb-10">
                 <span class="text-xs tracking-[0.3em] text-amber-400 font-medium uppercase">reprodutor</span>
                 <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">mais canções</h2>
@@ -850,9 +841,11 @@
     </section>
 
     <!-- SEÇÃO FINAL: O QUE VEM A SEGUIR -->
-    <section id="contato" class="relative bg-stylized py-20 px-5 border-t border-white/10 text-center">
-        <div class="max-w-3xl mx-auto space-y-8">
+    <section id="contato" class="relative bg-cover bg-center py-20 px-5 border-t border-white/10 text-center" style="background-image: url('https://raw.githubusercontent.com/dellsoares/disco/80690ce3d7dfb4e0c9dce76147d6ae1347365ec6/15.webp');">
+        <div class="absolute inset-0 bg-[#0D1927]/90 pointer-events-none z-0"></div>
+        <div class="relative z-10 max-w-3xl mx-auto space-y-8">
             <span class="text-xs tracking-[0.3em] text-amber-400 font-medium uppercase">o que vem a seguir</span>
+            
             <div class="space-y-4 text-base sm:text-lg text-slate-200/90 leading-relaxed font-normal">
                 <p>
                     talvez nada. mas se as coisas vingarem, sem prazo - e a qualquer tempo - vem o disco da banda. mais canções. mais ensaios. mais melodias. ou mais vácuo. por ora, não me sigam no mundo real, pois não sei pra onde vou. no ambiente digital, você pode acompanhar o que surgir num dos links abaixo:
@@ -889,6 +882,7 @@
                 <p class="text-amber-200 text-sm sm:text-base font-medium">
                     e enquanto o disco da banda não vem, a primeira prévia (com direito a clipe)
                 </p>
+                
                 <div class="max-w-xl mx-auto aspect-video rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-[#070E17] relative">
                     <div 
                         id="footer-video-cover"
@@ -974,7 +968,6 @@
             const lastTriggerDate = localStorage.getItem('momTriggerDate');
 
             if (lastTriggerDate !== today) {
-                // 600.000 milissegundos = 10 minutos
                 setTimeout(() => {
                     showMomTrigger(today);
                 }, 600000);
