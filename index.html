@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>o disco antes do disco</title>
     
+    <!-- Open Graph / WhatsApp / Redes Sociais -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dellsoares.github.io/disco/">
+    <meta property="og:title" content="wendell soares | o disco antes do disco">
+    <meta property="og:description" content="ouça os EPs junhos, rodas-gigantes, luas e mais canções.">
+    <meta property="og:image" content="https://i.imgur.com/8zVVBMB.jpeg">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -334,59 +341,14 @@
             <!-- grade de 3 espaços (luas spotfy + 2 earcards) -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-center">
                 
-                <!-- espaço 1: luas (spotify embed) -->
+                <!-- espaço 1: luas (soundcloud embed) -->
                 <div class="w-full relative shadow-[0_20px_50px_-12px_rgba(13,25,39,0.6)] rounded-[12px] overflow-hidden bg-[#1D2A33]">
-                    <iframe data-testid="embed-iframe" style="border-radius:12px; display: block;" src="https://open.spotify.com/embed/album/4f1LldjG9vssrarr9GBIAF?utm_source=generator&si=8c0a79aacc5c40a1" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2314650207&color=%232b241f&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/dellsoares" title="Wendell Soares" target="_blank" style="color: #cccccc; text-decoration: none;">Wendell Soares</a> · <a href="https://soundcloud.com/dellsoares/sets/luas" title="Luas" target="_blank" style="color: #cccccc; text-decoration: none;">Luas</a></div>
                 </div>
 
-                <!-- espaço 2: junhos -->
-                <div class="relative w-full aspect-square rounded-3xl p-1.5 bg-gradient-to-b from-white/20 via-white/5 to-transparent shadow-[0_20px_50px_-12px_rgba(13,25,39,0.6)]">
-                    <div class="relative w-full h-full rounded-[20px] overflow-hidden bg-[#1D2A33] border border-white/10">
-                        
-                        <div id="ep-cover-2" class="w-full h-full p-5 flex flex-col justify-between relative group">
-                            
-                            <img 
-                                id="img-ep-2"
-                                src="https://distrokid.imgix.net/http%3A%2F%2Fgather.fandalism.com%2F11909464--244FE533-BED7-4948-AE5733AC403ADE43--0--298248--CapaEPjunhosWendellSoares.jpg?fm=jpg&q=75&w=800&s=8293a8e91bb211a6858dcc85b982b9ce" 
-                                alt="capa junhos" 
-                                class="absolute inset-0 w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out"
-                            />
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#0D1927] via-[#0D1927]/55 to-[#0D1927]/40 group-hover:via-[#0D1927]/40 transition-all duration-300 pointer-events-none"></div>
-                            
-                            <div class="relative z-10 flex items-center justify-between">
-                                <span class="inline-flex items-center gap-1.5 text-[11px] tracking-wider bg-[#0D1927]/85 backdrop-blur-md text-amber-200 border border-amber-300/30 px-3 py-1 rounded-full font-medium">
-                                    disponível em 01/11
-                                </span>
-                                <span class="text-xs font-bold text-white/80 bg-[#0D1927]/60 backdrop-blur-md px-2.5 py-1 rounded-full tracking-widest">02</span>
-                            </div>
-
-                            <div class="relative z-10 mt-auto flex flex-col gap-3">
-                                <div>
-                                    <h3 class="text-2xl font-bold text-white tracking-tight drop-shadow">junhos</h3>
-                                    <p class="text-xs text-slate-200/90">parte ii • pré-save</p>
-                                </div>
-
-                                <div class="flex flex-col gap-1.5">
-                                    <button 
-                                        type="button"
-                                        onclick="openEpFrame(2, 'https://distrokid.com/hyperfollow/wendellsoares/junhos', 'junhos')"
-                                        class="w-full py-2.5 px-3 rounded-xl bg-[#0D1927]/80 hover:bg-amber-400 hover:text-[#0D1927] text-white backdrop-blur-md border border-white/20 font-semibold text-xs tracking-wider transition-all flex items-center justify-center gap-1.5">
-                                        <span>abrir aqui</span>
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                        </svg>
-                                    </button>
-                                    <a href="https://distrokid.com/hyperfollow/wendellsoares/junhos" target="_blank" rel="noopener noreferrer"
-                                       class="w-full py-1 text-center text-[11px] text-white/85 hover:text-amber-300 underline underline-offset-4 transition-colors">
-                                        abrir hyperfollow ↗
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="ep-frame-2" class="hidden w-full h-full relative bg-[#0D1927]"></div>
-                    </div>
+                <!-- espaço 2: junhos (soundcloud embed) -->
+                <div class="w-full relative shadow-[0_20px_50px_-12px_rgba(13,25,39,0.6)] rounded-[12px] overflow-hidden bg-[#1D2A33]">
+                    <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%3Aplaylists%3A2314669623%3Fsecret_token%3Ds-TgTn7rk3DQU&color=%23959877&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/dellsoares" title="Wendell Soares" target="_blank" style="color: #cccccc; text-decoration: none;">Wendell Soares</a> · <a href="https://soundcloud.com/dellsoares/sets/junhos/s-TgTn7rk3DQU" title="Junhos" target="_blank" style="color: #cccccc; text-decoration: none;">Junhos</a></div>
                 </div>
 
                 <!-- espaço 3: rodas-gigantes -->
