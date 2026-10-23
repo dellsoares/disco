@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>o disco antes do disco</title>
-    
+
     <!-- Open Graph / WhatsApp / Redes Sociais -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://dellsoares.github.io/disco/">
     <meta property="og:title" content="wendell soares | o disco antes do disco">
     <meta property="og:description" content="ouça os EPs junhos, rodas-gigantes, luas e mais canções.">
     <meta property="og:image" content="https://i.imgur.com/8zVVBMB.jpeg">
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Tipografia Nourd + Fallback Plus Jakarta Sans -->
     <link href="https://fonts.cdnfonts.com/css/nourd" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,6 +34,7 @@
                         epRodas: '#A6B8B7'
                     },
                     fontFamily: {
+                        sans: ['Nourd', 'Plus Jakarta Sans', 'sans-serif'],
                         nourd: ['Nourd', 'Plus Jakarta Sans', 'sans-serif'],
                     }
                 }
@@ -52,6 +53,11 @@
             font-family: 'Nourd', 'Plus Jakarta Sans', sans-serif;
             color: #F8FAFC;
             text-transform: lowercase;
+        }
+
+        /* Aplicar Nourd também aos controles nativos, sem interferir nos players externos. */
+        button, input, select, textarea {
+            font-family: 'Nourd', 'Plus Jakarta Sans', sans-serif;
         }
 
         a, iframe, input {
@@ -97,12 +103,58 @@
         .animate-float {
             animation: float-cushion 4s ease-in-out infinite;
         }
+
+        /* Carrossel mobile da seção "toró de ideias". */
+        .toro-track {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+        .toro-video {
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: #0D1927;
+        }
+        .toro-video:focus-visible {
+            outline: 3px solid #0D1927;
+            outline-offset: 3px;
+        }
+        .toro-play {
+            pointer-events: none;
+            transition: opacity 180ms ease;
+        }
+        .toro-video-item.is-playing .toro-play {
+            opacity: 0;
+        }
+        @media (max-width: 767px) {
+            .toro-track {
+                display: flex;
+                gap: 0;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                scroll-behavior: smooth;
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
+            }
+            .toro-track::-webkit-scrollbar { display: none; }
+            .toro-video-item {
+                flex: 0 0 100%;
+                scroll-snap-align: center;
+                padding: 0 0.35rem;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .toro-track { scroll-behavior: auto; }
+        }
     </style>
 </head>
 <body class="bg-[#0D1927] min-h-screen antialiased selection:bg-amber-500/30 selection:text-amber-200 lowercase-all">
 
     <!-- BOTÃO FLUTUANTE WHATSAPP (AMARELO) -->
-    <a id="whatsapp-float" href="https://api.whatsapp.com/send?phone=5531983073854&text=Vim%20do%20site%20pra%20falar%20de%20m%C3%BAsica." target="_blank" rel="noopener noreferrer" 
+    <a id="whatsapp-float" href="https://api.whatsapp.com/send?phone=5531983073854&text=Vim%20do%20site%20pra%20falar%20de%20m%C3%BAsica." target="_blank" rel="noopener noreferrer"
        class="fixed bottom-6 right-6 z-50 bg-amber-400 hover:bg-amber-300 text-[#0D1927] p-4 rounded-full shadow-[0_10px_25px_rgba(251,191,36,0.4)] border border-[#0D1927]/20 transition-all duration-300 flex items-center justify-center hover:scale-110 opacity-100 pointer-events-auto"
        title="falar no whatsapp">
         <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
@@ -113,17 +165,16 @@
     <!-- HEADER / MENU HAMBÚRGUER FLUTUANTE E LOGO -->
     <header class="fixed top-0 w-full z-50 pointer-events-none px-5 py-4 bg-[#0D1927]">
         <div class="w-full max-w-6xl mx-auto relative flex items-center justify-end">
-            
             <a href="#inicio" class="absolute left-1/2 -translate-x-1/2 pointer-events-auto transition-transform hover:scale-105 flex items-center mt-1">
-                <img 
-                    src="https://raw.githubusercontent.com/dellsoares/disco/a4ffcb42bf04fe35332345174b80689b07f38741/logo%20wendell.png" 
-                    alt="logo wendell soares" 
-                    class="w-[15vw] min-w-[110px] max-w-[200px] h-auto object-contain drop-shadow-xl opacity-90 hover:opacity-100 transition-opacity" 
+                <img
+                    src="https://raw.githubusercontent.com/dellsoares/disco/a4ffcb42bf04fe35332345174b80689b07f38741/logo%20wendell.png"
+                    alt="logo wendell soares"
+                    class="w-[15vw] min-w-[110px] max-w-[200px] h-auto object-contain drop-shadow-xl opacity-90 hover:opacity-100 transition-opacity"
                 />
             </a>
 
             <div class="relative pointer-events-auto z-10">
-                <button type="button" 
+                <button type="button"
                 onclick="toggleMenu()"
                 class="bg-[#0D1927] hover:bg-amber-400 hover:text-[#0D1927] text-white p-2.5 rounded-full border border-white/20 shadow-2xl transition-all flex items-center justify-center gap-2 px-4">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -149,7 +200,7 @@
 
     <!-- HERO SECTION (COM FUNDO 14.webp) -->
     <main id="inicio" class="relative min-h-screen flex items-center justify-center px-5 py-20 sm:py-24 bg-cover bg-center" style="background-image: url('https://raw.githubusercontent.com/dellsoares/disco/80690ce3d7dfb4e0c9dce76147d6ae1347365ec6/14.webp');">
-        <div class="absolute inset-0 bg-[#0D1927]/80 pointer-events-none z-0"></div>
+        <div class="absolute inset-0 bg-[#0D1927]/50 pointer-events-none z-0"></div>
         <div class="pointer-events-none fixed inset-0 overflow-hidden z-0">
             <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-sky-500/5 blur-3xl"></div>
             <div class="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-amber-500/5 blur-3xl"></div>
@@ -160,7 +211,7 @@
                 <div class="w-full lg:w-5/12 flex justify-center order-1 lg:order-1">
                     <div class="relative w-full max-w-[300px] sm:max-w-[330px] aspect-[9/16] rounded-3xl p-1.5 bg-gradient-to-b from-white/15 via-white/5 to-transparent shadow-[0_25px_60px_-15px_rgba(0,0,0,0.75)]">
                         <div id="video-wrapper" class="relative w-full h-full rounded-[20px] overflow-hidden bg-[#070E17] border border-white/10">
-                            <div 
+                            <div
                                 id="video-cover"
                                 onclick="openYoutubeFrame()"
                                 role="button"
@@ -168,11 +219,11 @@
                                 onkeydown="if(event.key === 'Enter' || event.key === ' ') openYoutubeFrame()"
                                 aria-label="reproduzir vídeo o disco antes do disco"
                                 class="w-full h-full relative cursor-pointer group select-none">
-                                <img 
+                                <img
                                     id="cover-image"
-                                    src="https://i.ytimg.com/vi/aQ4F4GDqd1Q/maxresdefault.jpg" 
+                                    src="https://i.ytimg.com/vi/aQ4F4GDqd1Q/maxresdefault.jpg"
                                     onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/aQ4F4GDqd1Q/hqdefault.jpg';"
-                                    alt="capa do vídeo" 
+                                    alt="capa do vídeo"
                                     class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
                                 />
                                 <div class="absolute inset-0 bg-gradient-to-t from-[#0D1927] via-[#0D1927]/30 to-black/30 opacity-85 group-hover:opacity-65 transition-opacity duration-300"></div>
@@ -293,14 +344,15 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-center">
                 <!-- espaço 1: luas -->
                 <div class="w-full relative shadow-[0_20px_50px_-12px_rgba(13,25,39,0.6)] rounded-[12px] overflow-hidden bg-[#1D2A33]">
-                    <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2314650207&color=%232b241f&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/dellsoares" title="Wendell Soares" target="_blank" style="color: #cccccc; text-decoration: none;">Wendell Soares</a> · <a href="https://soundcloud.com/dellsoares/sets/luas" title="Luas" target="_blank" style="color: #cccccc; text-decoration: none;">Luas</a></div>
+                    <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2314650207&color=%232b241f&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: 'Nourd','Plus Jakarta Sans',sans-serif;font-weight: 100;"><a href="https://soundcloud.com/dellsoares" title="Wendell Soares" target="_blank" style="color: #cccccc; text-decoration: none;">Wendell Soares</a> · <a href="https://soundcloud.com/dellsoares/sets/luas" title="Luas" target="_blank" style="color: #cccccc; text-decoration: none;">Luas</a></div>
                 </div>
 
                 <!-- espaço 2: junhos (capa até 1/11 às 11h, horário de Brasília) -->
                 <div class="w-full relative shadow-[0_20px_50px_-12px_rgba(13,25,39,0.6)] rounded-[12px] overflow-hidden bg-[#1D2A33]">
                     <div id="ep-junhos-preview" class="relative w-full aspect-square overflow-hidden group">
                         <img src="https://raw.githubusercontent.com/dellsoares/disco/98286ca059bcf376bcd6361330cc9ef729389856/junhos-111.jpg" alt="capa junhos" class="absolute inset-0 w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0D1927] via-[#0D1927]/55 to-[#0D1927]/40 pointer-events-none"></div>
+                        <!-- Gradiente restrito ao rodapé, preservando a capa. -->
+                        <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to top, rgba(13,25,39,0.95) 0%, rgba(13,25,39,0.50) 27%, transparent 55%);"></div>
                         <div id="ep-cover-2" class="relative z-10 w-full h-full p-5 flex flex-col justify-between">
                             <div class="flex items-center justify-between">
                                 <span class="inline-flex items-center gap-1.5 text-[11px] tracking-wider bg-[#0D1927]/85 backdrop-blur-md text-amber-200 border border-amber-300/30 px-3 py-1 rounded-full font-medium">disponível em 1/11</span>
@@ -332,7 +384,7 @@
                         <div id="ep-frame-2" class="hidden absolute inset-0 z-20 w-full h-full bg-[#0D1927]"></div>
                     </div>
                     <div id="ep-junhos-player" class="hidden">
-                        <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%3Aplaylists%3A2314669623&color=%23959877&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/dellsoares" title="Wendell Soares" target="_blank" style="color: #cccccc; text-decoration: none;">Wendell Soares</a> · <a href="https://soundcloud.com/dellsoares/sets/junhos" title="Junhos" target="_blank" style="color: #cccccc; text-decoration: none;">Junhos</a></div>
+                        <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%3Aplaylists%3A2314669623&color=%23959877&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: 'Nourd','Plus Jakarta Sans',sans-serif;font-weight: 100;"><a href="https://soundcloud.com/dellsoares" title="Wendell Soares" target="_blank" style="color: #cccccc; text-decoration: none;">Wendell Soares</a> · <a href="https://soundcloud.com/dellsoares/sets/junhos" title="Junhos" target="_blank" style="color: #cccccc; text-decoration: none;">Junhos</a></div>
                     </div>
                 </div>
 
@@ -340,14 +392,15 @@
                 <div id="ep-rodas-preview" class="relative w-full aspect-square rounded-3xl p-1.5 bg-gradient-to-b from-white/20 via-white/5 to-transparent shadow-[0_20px_50px_-12px_rgba(13,25,39,0.6)]">
                     <div class="relative w-full h-full rounded-[20px] overflow-hidden bg-[#1D2A33] border border-white/10">
                         <div id="ep-cover-3" class="w-full h-full p-5 flex flex-col justify-between relative group">
-                            <img 
+                            <img
                                 id="img-ep-3"
-                                src="https://raw.githubusercontent.com/dellsoares/disco/98286ca059bcf376bcd6361330cc9ef729389856/rodas-gigantes-14.jpg" 
-                                alt="capa rodas-gigantes" 
+                                src="https://raw.githubusercontent.com/dellsoares/disco/98286ca059bcf376bcd6361330cc9ef729389856/rodas-gigantes-14.jpg"
+                                alt="capa rodas-gigantes"
                                 class="absolute inset-0 w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out"
                             />
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#0D1927] via-[#0D1927]/55 to-[#0D1927]/40 group-hover:via-[#0D1927]/40 transition-all duration-300 pointer-events-none"></div>
-                            
+                            <!-- Gradiente restrito ao rodapé, preservando a capa. -->
+                            <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to top, rgba(13,25,39,0.95) 0%, rgba(13,25,39,0.50) 27%, transparent 55%);"></div>
+
                             <div class="relative z-10 flex items-center justify-between">
                                 <span class="inline-flex items-center gap-1.5 text-[11px] tracking-wider bg-[#0D1927]/85 backdrop-blur-md text-amber-200 border border-amber-300/30 px-3 py-1 rounded-full font-medium">
                                     disponível em 14/11
@@ -361,7 +414,7 @@
                                     <p class="text-xs text-slate-200/90">parte iii • pré-save</p>
                                 </div>
                                 <div class="flex flex-col gap-1.5">
-                                    <button 
+                                    <button
                                         type="button"
                                         onclick="openEpFrame(3, 'https://distrokid.com/hyperfollow/wendellsoares/rodas-gigantes', 'rodas-gigantes')"
                                         class="w-full py-2.5 px-3 rounded-xl bg-[#0D1927]/80 hover:bg-amber-400 hover:text-[#0D1927] text-white backdrop-blur-md border border-white/20 font-semibold text-xs tracking-wider transition-all flex items-center justify-center gap-1.5">
@@ -382,36 +435,21 @@
                     </div>
                 </div>
                 <div id="ep-rodas-player" class="hidden w-full relative shadow-[0_20px_50px_-12px_rgba(13,25,39,0.6)] rounded-[12px] overflow-hidden bg-[#1D2A33]">
-                    <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2318394048&color=%238d9c9b&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/dellsoares" title="Wendell Soares" target="_blank" style="color: #cccccc; text-decoration: none;">Wendell Soares</a> · <a href="https://soundcloud.com/dellsoares/sets/rodas-gigantes" title="Rodas-gigantes" target="_blank" style="color: #cccccc; text-decoration: none;">Rodas-gigantes</a></div>
+                    <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2318394048&color=%238d9c9b&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: 'Nourd','Plus Jakarta Sans',sans-serif;font-weight: 100;"><a href="https://soundcloud.com/dellsoares" title="Wendell Soares" target="_blank" style="color: #cccccc; text-decoration: none;">Wendell Soares</a> · <a href="https://soundcloud.com/dellsoares/sets/rodas-gigantes" title="Rodas-gigantes" target="_blank" style="color: #cccccc; text-decoration: none;">Rodas-gigantes</a></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FAIXA ESTÁTICA: COISAS QUE ESCREVO -->
-    <section class="relative bg-[#16283E] text-white py-5 px-5 border-t border-b border-white/10 text-center shadow-md">
-        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12">
-            <div class="text-center sm:text-left">
-                <span class="text-[10px] tracking-[0.3em] text-amber-400 font-medium uppercase">substantivo & prosa</span>
-                <h3 class="text-xl sm:text-2xl font-bold mt-0.5 text-white">coisas que escrevo</h3>
-            </div>
-            <a href="https://wendellsoares.substack.com/" target="_blank" rel="noopener noreferrer" 
-               class="bg-amber-400 hover:bg-amber-300 text-[#0D1927] px-6 py-2.5 rounded-full font-bold text-xs tracking-[0.2em] transition-all shadow-lg hover:scale-105 flex items-center gap-2">
-                <span>vem ler</span>
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </a>
-        </div>
-    </section>
-
     <!-- SEÇÃO: MAIS CANÇÕES (COM FUNDO 15.webp) -->
     <section id="mais-cancoes" class="relative bg-cover bg-center py-16 px-5 border-t border-white/10" style="background-image: url('https://raw.githubusercontent.com/dellsoares/disco/80690ce3d7dfb4e0c9dce76147d6ae1347365ec6/15.webp');">
-        <div class="absolute inset-0 bg-[#0D1927]/85 pointer-events-none z-0"></div>
+        <div class="absolute inset-0 bg-[#0D1927]/50 pointer-events-none z-0"></div>
         <div class="relative z-10 max-w-4xl mx-auto">
             <div class="text-center mb-10">
                 <span class="text-xs tracking-[0.3em] text-amber-400 font-medium uppercase">reprodutor</span>
                 <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">mais canções</h2>
             </div>
-            
+
             <div class="mt-6 flex justify-center">
                 <div class="w-full max-w-xl">
                     <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4Sofc8lcN5ConZTkAySDR4?utm_source=generator&si=68234d1089484992" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -421,7 +459,7 @@
             <!-- vídeos adicionais -->
             <div class="mt-10 flex flex-col md:flex-row gap-6 items-center justify-center">
                 <div class="w-full md:w-1/2 aspect-video rounded-2xl overflow-hidden border border-white/20 shadow-xl bg-[#070E17] relative">
-                    <div 
+                    <div
                         id="extra-video-cover-1"
                         onclick="openExtraYoutubeFrame('extra-video-cover-1', 'extra-video-frame-1', 'dhZtRUqvtVQ')"
                         role="button"
@@ -444,7 +482,7 @@
                 </div>
 
                 <div class="w-full md:w-1/2 aspect-video rounded-2xl overflow-hidden border border-white/20 shadow-xl bg-[#070E17] relative">
-                    <div 
+                    <div
                         id="extra-video-cover-2"
                         onclick="openExtraYoutubeFrame('extra-video-cover-2', 'extra-video-frame-2', '__urspr6HIM')"
                         role="button"
@@ -870,12 +908,77 @@
         </div>
     </section>
 
+    <!-- NOVA SEÇÃO: TORÓ DE IDEIAS / COISAS QUE ESCREVO -->
+    <section id="toro-de-ideias" class="relative bg-cover bg-center py-16 sm:py-24 px-5 border-t border-white/10 overflow-hidden" style="background-image: url('https://raw.githubusercontent.com/dellsoares/disco/54c18d5a17350e5f5127de4fbe85ac217a7deb29/luas%20fundo.jpg');">
+        <div class="pointer-events-none absolute inset-0 overflow-hidden z-0 bg-[#DECBA4]/85"></div>
+        <div class="relative z-10 max-w-6xl mx-auto">
+            <div class="max-w-3xl mb-10 sm:mb-14">
+                <div class="inline-flex items-center gap-3 mb-4">
+                    <span class="h-[1px] w-8 bg-[#1D2A33]/60"></span>
+                    <span class="text-xs tracking-[0.25em] text-[#1D2A33]/90 font-medium">toró de ideias</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1D2A33] mb-6 leading-tight">coisas que escrevo</h2>
+                <p class="text-base sm:text-lg text-[#1D2A33]/90 font-medium leading-relaxed">
+                    sem data, sem obrigação, você pode me ler no substack. por lá, com maior ou menor uso da poética, falo sobre nietzsche e falo sobre (muito) nada.
+                </p>
+            </div>
+
+            <!-- No desktop, três vídeos em linha. No mobile, carrossel com setas e gesto de deslizar. -->
+            <div class="relative">
+                <div id="toro-track" class="toro-track" aria-label="vídeos de toró de ideias">
+                    <div class="toro-video-item w-full min-w-0" data-toro-slide="0">
+                        <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden shadow-[0_15px_40px_rgba(13,25,39,0.25)] border border-[#1D2A33]/15 bg-[#0D1927]">
+                            <video class="toro-video" src="https://raw.githubusercontent.com/dellsoares/disco/1e9cd3613742db08c7e6432a08215c67a9957a43/cuidado.mp4" preload="metadata" playsinline tabindex="0" aria-label="cuidado: clique para reproduzir ou pausar" onclick="toggleToroVideo(this)" onkeydown="handleToroVideoKey(event, this)" onplay="updateToroVideoState(this)" onpause="updateToroVideoState(this)" onended="updateToroVideoState(this)"></video>
+                            <div class="toro-play absolute inset-0 flex items-center justify-center" aria-hidden="true">
+                                <span class="w-16 h-16 rounded-full bg-[#0D1927]/75 backdrop-blur-sm border border-white/30 text-white flex items-center justify-center shadow-xl">
+                                    <svg class="w-7 h-7 translate-x-0.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </span>
+                            </div>
+                        </div>
+                        <a href="https://wendellsoares.substack.com/p/luas-junhos-e-rodas-gigantes" target="_blank" rel="noopener noreferrer" class="mt-4 mx-auto w-fit flex items-center justify-center gap-2 bg-[#1D2A33]/10 hover:bg-[#1D2A33] text-[#1D2A33] hover:text-[#DECBA4] border border-[#1D2A33]/20 px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-colors">leia aqui <span aria-hidden="true">↗</span></a>
+                    </div>
+                    <div class="toro-video-item w-full min-w-0" data-toro-slide="1">
+                        <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden shadow-[0_15px_40px_rgba(13,25,39,0.25)] border border-[#1D2A33]/15 bg-[#0D1927]">
+                            <video class="toro-video" src="https://raw.githubusercontent.com/dellsoares/disco/1e9cd3613742db08c7e6432a08215c67a9957a43/amor.mp4" preload="metadata" playsinline tabindex="0" aria-label="amor: clique para reproduzir ou pausar" onclick="toggleToroVideo(this)" onkeydown="handleToroVideoKey(event, this)" onplay="updateToroVideoState(this)" onpause="updateToroVideoState(this)" onended="updateToroVideoState(this)"></video>
+                            <div class="toro-play absolute inset-0 flex items-center justify-center" aria-hidden="true">
+                                <span class="w-16 h-16 rounded-full bg-[#0D1927]/75 backdrop-blur-sm border border-white/30 text-white flex items-center justify-center shadow-xl">
+                                    <svg class="w-7 h-7 translate-x-0.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </span>
+                            </div>
+                        </div>
+                        <a href="https://wendellsoares.substack.com/p/inverso-do-aconchego" target="_blank" rel="noopener noreferrer" class="mt-4 mx-auto w-fit flex items-center justify-center gap-2 bg-[#1D2A33]/10 hover:bg-[#1D2A33] text-[#1D2A33] hover:text-[#DECBA4] border border-[#1D2A33]/20 px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-colors">leia aqui <span aria-hidden="true">↗</span></a>
+                    </div>
+                    <div class="toro-video-item w-full min-w-0" data-toro-slide="2">
+                        <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden shadow-[0_15px_40px_rgba(13,25,39,0.25)] border border-[#1D2A33]/15 bg-[#0D1927]">
+                            <video class="toro-video" src="https://raw.githubusercontent.com/dellsoares/disco/1e9cd3613742db08c7e6432a08215c67a9957a43/solid%C3%A3o.mp4" preload="metadata" playsinline tabindex="0" aria-label="solidão: clique para reproduzir ou pausar" onclick="toggleToroVideo(this)" onkeydown="handleToroVideoKey(event, this)" onplay="updateToroVideoState(this)" onpause="updateToroVideoState(this)" onended="updateToroVideoState(this)"></video>
+                            <div class="toro-play absolute inset-0 flex items-center justify-center" aria-hidden="true">
+                                <span class="w-16 h-16 rounded-full bg-[#0D1927]/75 backdrop-blur-sm border border-white/30 text-white flex items-center justify-center shadow-xl">
+                                    <svg class="w-7 h-7 translate-x-0.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </span>
+                            </div>
+                        </div>
+                        <a href="https://wendellsoares.substack.com/p/mensagens-na-garrafa-solidao-e-outros" target="_blank" rel="noopener noreferrer" class="mt-4 mx-auto w-fit flex items-center justify-center gap-2 bg-[#1D2A33]/10 hover:bg-[#1D2A33] text-[#1D2A33] hover:text-[#DECBA4] border border-[#1D2A33]/20 px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-colors">leia aqui <span aria-hidden="true">↗</span></a>
+                    </div>
+                </div>
+                <div class="md:hidden flex items-center justify-center gap-5 mt-6" aria-label="navegação do carrossel">
+                    <button type="button" id="toro-prev" aria-label="vídeo anterior" onclick="moveToroCarousel(-1)" class="w-11 h-11 flex items-center justify-center rounded-full bg-[#1D2A33] text-[#DECBA4] hover:bg-[#2B3D48] disabled:opacity-35 disabled:cursor-not-allowed transition-all">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 18l-6-6 6-6"/></svg>
+                    </button>
+                    <span id="toro-position" aria-live="polite" class="text-xs font-semibold tracking-[0.18em] text-[#1D2A33]/85">1 / 3</span>
+                    <button type="button" id="toro-next" aria-label="próximo vídeo" onclick="moveToroCarousel(1)" class="w-11 h-11 flex items-center justify-center rounded-full bg-[#1D2A33] text-[#DECBA4] hover:bg-[#2B3D48] disabled:opacity-35 disabled:cursor-not-allowed transition-all">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 18l6-6-6-6"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SEÇÃO FINAL: O QUE VEM A SEGUIR -->
     <section id="contato" class="relative bg-cover bg-center py-20 px-5 border-t border-white/10 text-center" style="background-image: url('https://raw.githubusercontent.com/dellsoares/disco/80690ce3d7dfb4e0c9dce76147d6ae1347365ec6/15.webp');">
-        <div class="absolute inset-0 bg-[#0D1927]/90 pointer-events-none z-0"></div>
+        <div class="absolute inset-0 bg-[#0D1927]/50 pointer-events-none z-0"></div>
         <div class="relative z-10 max-w-3xl mx-auto space-y-8">
             <span class="text-xs tracking-[0.3em] text-amber-400 font-medium uppercase">o que vem a seguir</span>
-            
+
             <div class="space-y-4 text-base sm:text-lg text-slate-200/90 leading-relaxed font-normal">
                 <p>
                     talvez nada. mas se as coisas vingarem, sem prazo - e a qualquer tempo - vem o disco da banda. mais canções. mais ensaios. mais melodias. ou mais vácuo. por ora, não me sigam no mundo real, pois não sei pra onde vou. no ambiente digital, você pode acompanhar o que surgir num dos links abaixo:
@@ -909,9 +1012,9 @@
                 <p class="text-amber-200 text-sm sm:text-base font-medium">
                     e enquanto o disco da banda não vem, a primeira prévia (com direito a clipe)
                 </p>
-                
+
                 <div class="max-w-xl mx-auto aspect-video rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-[#070E17] relative">
-                    <div 
+                    <div
                         id="footer-video-cover"
                         onclick="openFooterYoutubeFrame()"
                         role="button"
@@ -919,11 +1022,11 @@
                         onkeydown="if(event.key === 'Enter' || event.key === ' ') openFooterYoutubeFrame()"
                         aria-label="reproduzir primeira prévia clipe"
                         class="w-full h-full relative cursor-pointer group select-none">
-                        
-                        <img 
-                            src="https://i.imgur.com/8zVVBMB.jpeg" 
+
+                        <img
+                            src="https://i.imgur.com/8zVVBMB.jpeg"
                             onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/HtC9aW9MGcc/hqdefault.jpg';"
-                            alt="capa do clipe" 
+                            alt="capa do clipe"
                             class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
                         />
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0D1927] via-[#0D1927]/30 to-black/30 opacity-85 group-hover:opacity-65 transition-opacity duration-300"></div>
@@ -989,6 +1092,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             checkMomTrigger();
             updateScheduledEpCovers();
+            initToroCarousel();
         });
 
         // Exibir os players em 1/11 e 14/11 de 2026, às 11h (Brasília, UTC-03:00).
@@ -1025,12 +1129,12 @@
             const modal = document.getElementById('mom-trigger');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            
+
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 modal.classList.add('opacity-100');
             }, 50);
-            
+
             localStorage.setItem('momTriggerDate', today);
         }
 
@@ -1040,7 +1144,7 @@
             const container = document.getElementById('mom-cushion-container');
 
             playIcon.innerHTML = `<div class="w-16 h-16 rounded-full bg-amber-500/80 backdrop-blur-md flex items-center justify-center border border-white/50 text-white shadow-[0_0_30px_rgba(245,158,11,0.7)] animate-pulse"><svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M12 3v18m-4-14v10m8-10v10m-12-6v2m16-2v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>`;
-            
+
             container.onclick = null;
             container.classList.remove('cursor-pointer', 'hover:scale-105');
 
@@ -1048,7 +1152,7 @@
 
             audio.onended = () => {
                 playIcon.innerHTML = `<div class="w-12 h-12 rounded-full bg-black/70 text-white/90 flex items-center justify-center text-[10px] font-bold tracking-widest backdrop-blur-md">fechar</div>`;
-                
+
                 setTimeout(() => {
                     window.addEventListener('click', closeMomTrigger, { once: true });
                 }, 100);
@@ -1094,19 +1198,19 @@
             frameContainer.classList.remove('hidden');
 
             frameContainer.innerHTML = `
-                <iframe 
+                <iframe
                     id="yt-iframe"
-                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1" 
+                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1"
                     title="o disco antes do disco"
-                    frameborder="0" 
+                    frameborder="0"
                     referrerpolicy="strict-origin-when-cross-origin"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen
                     class="w-full h-full">
                 </iframe>
 
                 <div class="absolute top-3 right-3 left-3 z-20 flex items-center justify-between gap-2 pointer-events-none">
-                    <a href="https://youtu.be/${videoId}" target="_blank" rel="noopener noreferrer" 
+                    <a href="https://youtu.be/${videoId}" target="_blank" rel="noopener noreferrer"
                        class="pointer-events-auto bg-[#0D1927]/90 hover:bg-red-600 text-white/90 hover:text-white text-[11px] px-3 py-1.5 rounded-full border border-white/15 backdrop-blur-md flex items-center gap-1.5 transition-all shadow-lg"
                        title="abrir direto no youtube">
                         <span>abrir no app</span>
@@ -1114,7 +1218,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                         </svg>
                     </a>
-                    <button 
+                    <button
                         type="button"
                         onclick="closeYoutubeFrame()"
                         class="pointer-events-auto bg-[#0D1927]/90 hover:bg-white/20 text-white/85 hover:text-white text-[11px] px-2.5 py-1.5 rounded-full border border-white/15 backdrop-blur-md transition-all shadow-lg"
@@ -1143,19 +1247,19 @@
             frameContainer.classList.remove('hidden');
 
             frameContainer.innerHTML = `
-                <iframe 
+                <iframe
                     id="footer-yt-iframe"
-                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1" 
+                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1"
                     title="primeira prévia clipe"
-                    frameborder="0" 
+                    frameborder="0"
                     referrerpolicy="strict-origin-when-cross-origin"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen
                     class="w-full h-full">
                 </iframe>
 
                 <div class="absolute top-3 right-3 left-3 z-20 flex items-center justify-between gap-2 pointer-events-none">
-                    <a href="https://youtu.be/${videoId}" target="_blank" rel="noopener noreferrer" 
+                    <a href="https://youtu.be/${videoId}" target="_blank" rel="noopener noreferrer"
                        class="pointer-events-auto bg-[#0D1927]/90 hover:bg-red-600 text-white/90 hover:text-white text-[11px] px-3 py-1.5 rounded-full border border-white/15 backdrop-blur-md flex items-center gap-1.5 transition-all shadow-lg"
                        title="abrir direto no youtube">
                         <span>abrir no app</span>
@@ -1163,7 +1267,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                         </svg>
                     </a>
-                    <button 
+                    <button
                         type="button"
                         onclick="closeFooterYoutubeFrame()"
                         class="pointer-events-auto bg-[#0D1927]/90 hover:bg-white/20 text-white/85 hover:text-white text-[11px] px-2.5 py-1.5 rounded-full border border-white/15 backdrop-blur-md transition-all shadow-lg"
@@ -1191,11 +1295,11 @@
             frameContainer.classList.remove('hidden');
 
             frameContainer.innerHTML = `
-                <iframe 
-                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1" 
+                <iframe
+                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1"
                     title="vídeo extra"
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen
                     class="w-full h-full">
                 </iframe>
@@ -1210,8 +1314,8 @@
             frameContainer.classList.remove('hidden');
 
             frameContainer.innerHTML = `
-                <iframe 
-                    src="${url}" 
+                <iframe
+                    src="${url}"
                     title="${title}"
                     frameborder="0"
                     class="w-full h-full bg-white">
@@ -1221,7 +1325,7 @@
                        class="pointer-events-auto bg-[#0D1927]/90 hover:bg-amber-400 hover:text-[#0D1927] text-white text-[10px] font-medium px-2.5 py-1 rounded-full border border-white/15 backdrop-blur-md transition-all shadow">
                         nova aba ↗
                     </a>
-                    <button 
+                    <button
                         type="button"
                         onclick="closeEpFrame(${index})"
                         class="pointer-events-auto bg-[#0D1927]/90 hover:bg-white/20 text-white text-[10px] px-2.5 py-1 rounded-full border border-white/15 backdrop-blur-md transition-all shadow">
@@ -1262,6 +1366,71 @@
             const modal = document.getElementById('image-modal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
+        }
+
+        // Interações apenas da nova seção "toró de ideias".
+        function toggleToroVideo(video) {
+            if (video.paused || video.ended) {
+                document.querySelectorAll('.toro-video').forEach(other => {
+                    if (other !== video) other.pause();
+                });
+                const playback = video.play();
+                if (playback && typeof playback.catch === 'function') {
+                    playback.catch(() => updateToroVideoState(video));
+                }
+            } else {
+                video.pause();
+            }
+        }
+
+        function handleToroVideoKey(event, video) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleToroVideo(video);
+            }
+        }
+
+        function updateToroVideoState(video) {
+            const item = video.closest('.toro-video-item');
+            if (item) item.classList.toggle('is-playing', !video.paused && !video.ended);
+        }
+
+        function toroCurrentIndex() {
+            const track = document.getElementById('toro-track');
+            if (!track || track.clientWidth === 0) return 0;
+            return Math.max(0, Math.min(2, Math.round(track.scrollLeft / track.clientWidth)));
+        }
+
+        function updateToroCarousel() {
+            const current = toroCurrentIndex();
+            const pos = document.getElementById('toro-position');
+            const prev = document.getElementById('toro-prev');
+            const next = document.getElementById('toro-next');
+            if (pos) pos.textContent = `${current + 1} / 3`;
+            if (prev) prev.disabled = current === 0;
+            if (next) next.disabled = current === 2;
+            if (window.innerWidth < 768) {
+                document.querySelectorAll('.toro-video-item').forEach((item, index) => {
+                    if (index !== current) item.querySelector('video').pause();
+                });
+            }
+        }
+
+        function moveToroCarousel(direction) {
+            const track = document.getElementById('toro-track');
+            if (!track) return;
+            const current = toroCurrentIndex();
+            const nextIndex = Math.max(0, Math.min(2, current + direction));
+            const slide = track.querySelector(`[data-toro-slide="${nextIndex}"]`);
+            if (slide) track.scrollTo({ left: nextIndex * track.clientWidth, behavior: 'smooth' });
+        }
+
+        function initToroCarousel() {
+            const track = document.getElementById('toro-track');
+            if (!track) return;
+            track.addEventListener('scroll', updateToroCarousel, { passive: true });
+            window.addEventListener('resize', updateToroCarousel);
+            updateToroCarousel();
         }
     </script>
 </body>
