@@ -618,6 +618,7 @@
                             <template id="song-desc-luas-8"><p>da falsa empatia à posse do contexto. sai o otimismo e entra uma visão menos romântica do mundo. não é contrária à óticado john, e sim da própria vida.</p></template>
                         </div>
                     </div>
+                    
                     <p class="mt-5 text-xs font-medium text-[#1D2A33]/75 text-center">passe o mouse ou toque na faixa para ler sobre a canção</p>
                 </div>
             </div>
@@ -638,6 +639,7 @@
                 </div>
                 <div class="border-t border-[#1D2A33]/20 pt-5">
                     <h4 class="font-semibold text-xs tracking-widest mb-4">canções • explore as faixas</h4>
+                    
                     <!-- JUNHOS (9 faixas, 2 colunas, 9ª centralizada) -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 auto-rows-fr">
                         <div class="min-w-0 h-full">
@@ -1085,7 +1087,7 @@
         </a>
 
         <p class="text-white/40 text-[10px] tracking-[0.15em] lowercase mt-2">
-            todos os direitos reservados pra sabe-se lá quem e porquê
+            todos os direitos reservados pra sabe-se lá quem e porquê <span onclick="showMomTrigger('secret')" class="cursor-pointer hover:text-amber-400 transition-colors" title="segredo">♡</span>
         </p>
     </footer>
 
@@ -1172,7 +1174,6 @@
     <script>
         // Gatilho diário e popups
         document.addEventListener('DOMContentLoaded', () => {
-            checkMomTrigger();
             initSecretTrigger();
             updateScheduledEpCovers();
             initToroCarousel();
@@ -1180,7 +1181,7 @@
 
         // POP-UP SECRETO (Feedback)
         function secretAlreadyShown() {
-            try { return localStorage.getItem('secretFeedbackShown') === 'true'; }
+            try { return sessionStorage.getItem('secretFeedbackShown') === 'true'; }
             catch(e) { return false; }
         }
 
@@ -1196,15 +1197,15 @@
                         if (!secretAlreadyShown()) {
                             showSecretFeedback();
                         }
-                    }, 1500); // 1.5s de delay após chegar no fim
+                    }, 1000); // 1s delay
                 }
-            }, { threshold: 0.1 });
+            }, { threshold: 0.01, rootMargin: '50px' });
 
             observer.observe(footer);
         }
 
         function showSecretFeedback() {
-            try { localStorage.setItem('secretFeedbackShown', 'true'); } catch(e) {}
+            try { sessionStorage.setItem('secretFeedbackShown', 'true'); } catch(e) {}
             const modal = document.getElementById('secret-feedback');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
@@ -1221,9 +1222,6 @@
             setTimeout(() => {
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
-                
-                // Reseta caso a pessoa queira reabrir o site amanhã (opcional)
-                // Se quiser que NUNCA MAIS apareça, mantenha como está.
             }, 700);
         }
 
@@ -1285,28 +1283,17 @@
             }
         }
 
-        const momVisitStarted = Date.now();
         function momToday() { return new Date().toDateString(); }
-        function checkMomTrigger() {
-            if (momAlreadyShown()) return;
-            momTimer = setTimeout(() => showMomTrigger('ten-minutes'), 600000);
-            // Intenção de saída pelo topo: apenas desktop com mouse, antes de 5 minutos.
-            if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-                document.addEventListener('mouseout', function(event) {
-                    if (momAlreadyShown() || Date.now() - momVisitStarted >= 300000) return;
-                    if (!event.relatedTarget && event.clientY <= 5) showMomTrigger('early-exit');
-                });
-            }
+        function momAlreadyShown() {
+            try { return localStorage.getItem('momTriggerDate') === momToday(); }
+            catch (e) { return false; }
         }
+        
         function showMomTrigger(reason) {
             if (momAlreadyShown()) return;
-            momShownThisSession = true;
-            if (momTimer) clearTimeout(momTimer);
             try { localStorage.setItem('momTriggerDate', momToday()); } catch (e) { /* bloqueio de armazenamento */ }
             const modal = document.getElementById('mom-trigger');
-            document.getElementById('mom-message').textContent = reason === 'early-exit'
-                ? 'tá indo cedo, mas isso não impede de ouvir um minutinho de sabedoria de mãe.'
-                : 'que legal que ainda tá aqui. tire um minuto pra sabedoria de mãe e dê play aqui.';
+            document.getElementById('mom-message').textContent = 'você encontrou um segredo. tire um minuto pra sabedoria de mãe e dê play aqui.';
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             requestAnimationFrame(() => {
