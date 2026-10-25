@@ -10,7 +10,7 @@
     <meta property="og:url" content="https://dellsoares.github.io/disco/">
     <meta property="og:title" content="wendell soares | o disco antes do disco">
     <meta property="og:description" content="ouça os EPs junhos, rodas-gigantes, luas e mais canções.">
-    <meta property="og:image" content="https://i.imgur.com/8zVVBMB.jpeg">
+    <meta property="og:image" content="https://raw.githubusercontent.com/dellsoares/disco/1a5c5d21f812adb6152eb32091b445502b4f0f8d/avatar_wendell.png">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -104,8 +104,8 @@
             animation: float-cushion 4s ease-in-out infinite;
         }
 
-        /* Carrossel mobile da seção "toró de ideias". */
-        .toro-track {
+        /* Carrossel mobile da seção "toró de ideias" e "sintonia". */
+        .toro-track, .sintonia-track {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 1.5rem;
@@ -130,34 +130,37 @@
             opacity: 0;
         }
         @media (max-width: 767px) {
-            .toro-track {
+            .toro-track, .sintonia-track {
                 display: flex;
-                gap: 0;
+                gap: 1rem;
                 overflow-x: auto;
                 scroll-snap-type: x mandatory;
                 scroll-behavior: smooth;
                 scrollbar-width: none;
                 -webkit-overflow-scrolling: touch;
+                padding-bottom: 1rem;
             }
-            .toro-track::-webkit-scrollbar { display: none; }
+            .toro-track::-webkit-scrollbar, .sintonia-track::-webkit-scrollbar { display: none; }
             .toro-video-item {
                 flex: 0 0 100%;
                 scroll-snap-align: center;
                 padding: 0 0.35rem;
             }
+            .sintonia-item {
+                flex: 0 0 85%;
+                scroll-snap-align: center;
+            }
         }
         @media (prefers-reduced-motion: reduce) {
-            .toro-track { scroll-behavior: auto; }
+            .toro-track, .sintonia-track { scroll-behavior: auto; }
         }
 
         /* Abas dos EPs: cada página preserva suas cores e arte de fundo. */
         .ep-tab { color: #e4e9ea; background: #152738; }
         .ep-tab.is-active { color: #1D2A33; background: var(--ep-tab-color); border-color: var(--ep-tab-color); }
-        .ep-tab:focus-visible, .ep-song-thumb:focus-visible { outline: 2px solid #334e5f; outline-offset: 3px; }
+        .ep-tab:focus-visible { outline: 2px solid #334e5f; outline-offset: 3px; }
         .ep-panel.hidden { display: none; }
         .ep-panel > div.relative p { line-height: 1.7; }
-        .ep-song-thumb { transition: transform .18s ease, box-shadow .18s ease; }
-        .ep-song-thumb:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 10px 22px rgba(13,25,39,.3); }
         .ep-song-modal.hover-preview { pointer-events: none; }
         .ep-song-modal.hover-preview .ep-song-popup,
         .ep-song-modal.hover-preview .ep-song-popup * { pointer-events: none !important; }
@@ -166,10 +169,6 @@
         .ep-modal-scroll { scrollbar-width: thin; scrollbar-color: #a6b8b7 transparent; }
         @media (max-width: 420px) {
             .ep-song-modal .ep-song-popup { aspect-ratio: 4 / 5; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .ep-song-thumb { transition: none; }
-            .ep-song-thumb:hover { transform: none; }
         }
     </style>
 </head>
@@ -214,6 +213,7 @@
                     <a href="#eps" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">o ep em três atos</a>
                     <a href="#mais-cancoes" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">mais canções</a>
                     <a href="#por-dentro" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">por dentro dos ep's</a>
+                    <a href="#sintonia" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">sintonia</a>
                     <a href="#contato" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">redes e links</a>
                 </div>
             </div>
@@ -295,7 +295,7 @@
     </main>
 
     <!-- faixa contínua rodando (marquee) -->
-    <section class="relative w-full bg-[#A6B8B7] text-[#0D1927] py-4 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.3)] rotate-[-0.5deg] scale-[1.02] z-20">
+    <section class="relative w-full bg-[#A6B8B7] text-[#0D1927] py-4 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.3)] rotate-[-0.5deg] scale-[1.02] z-20 mt-6">
         <div class="flex overflow-hidden whitespace-nowrap select-none">
             <div class="animate-marquee flex items-center gap-12 sm:gap-16">
                 <!-- bloco 1 -->
@@ -530,19 +530,21 @@
     </section>
 
     <!-- POR DENTRO DOS EP'S: navegação compacta por abas e galeria de capas -->
-    <section id="por-dentro" class="bg-[#0D1927] border-t border-white/10">
+    <section id="por-dentro" class="bg-[#0D1927] border-t border-white/10 flex flex-col">
         <div class="pt-10 pb-7 px-5 text-center">
             <span class="text-xs tracking-[0.3em] text-amber-400 font-medium uppercase">exploração autoral</span>
             <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">por dentro dos ep's</h2>
         </div>
-        <div class="max-w-4xl mx-auto px-4 sm:px-5 pb-5">
+        <div class="max-w-4xl mx-auto px-4 sm:px-5 relative z-10 -mb-[1px] w-full">
             <div role="tablist" aria-label="escolha um ep" class="ep-tabs grid grid-cols-3 gap-2">
-                <button id="tab-luas" role="tab" aria-controls="panel-luas" aria-selected="true" tabindex="0" onclick="switchEpTab('luas')" type="button" class="ep-tab is-active text-xs sm:text-sm font-semibold px-2 py-3 border border-white/20 rounded-md transition-colors" style="--ep-tab-color:#DECBA4">luas</button>
-                <button id="tab-junhos" role="tab" aria-controls="panel-junhos" aria-selected="false" tabindex="-1" onclick="switchEpTab('junhos')" type="button" class="ep-tab text-xs sm:text-sm font-semibold px-2 py-3 border border-white/20 rounded-md transition-colors" style="--ep-tab-color:#A5A881">junhos</button>
-                <button id="tab-rodas" role="tab" aria-controls="panel-rodas" aria-selected="false" tabindex="-1" onclick="switchEpTab('rodas')" type="button" class="ep-tab text-xs sm:text-sm font-semibold px-2 py-3 border border-white/20 rounded-md transition-colors" style="--ep-tab-color:#A6B8B7">rodas-gigantes</button>
+                <button id="tab-luas" role="tab" aria-controls="panel-luas" aria-selected="true" tabindex="0" onclick="switchEpTab('luas')" type="button" class="ep-tab is-active text-xs sm:text-sm font-semibold px-2 py-3 border-x border-t border-b-0 border-white/20 rounded-t-xl rounded-b-none transition-colors" style="--ep-tab-color:#DECBA4">luas</button>
+                <button id="tab-junhos" role="tab" aria-controls="panel-junhos" aria-selected="false" tabindex="-1" onclick="switchEpTab('junhos')" type="button" class="ep-tab text-xs sm:text-sm font-semibold px-2 py-3 border-x border-t border-b-0 border-white/20 rounded-t-xl rounded-b-none transition-colors" style="--ep-tab-color:#A5A881">junhos</button>
+                <button id="tab-rodas" role="tab" aria-controls="panel-rodas" aria-selected="false" tabindex="-1" onclick="switchEpTab('rodas')" type="button" class="ep-tab text-xs sm:text-sm font-semibold px-2 py-3 border-x border-t border-b-0 border-white/20 rounded-t-xl rounded-b-none transition-colors" style="--ep-tab-color:#A6B8B7">rodas-gigantes</button>
             </div>
         </div>
-        <div id="panel-luas" role="tabpanel" aria-labelledby="tab-luas" class="ep-panel relative bg-cover bg-center text-[#1D2A33] py-8 sm:py-12 px-5 " style="background-image:url('https://raw.githubusercontent.com/dellsoares/disco/54c18d5a17350e5f5127de4fbe85ac217a7deb29/luas%20fundo.jpg')">
+        
+        <!-- Paineis de Conteúdo -->
+        <div id="panel-luas" role="tabpanel" aria-labelledby="tab-luas" class="ep-panel relative bg-cover bg-center text-[#1D2A33] py-8 sm:py-12 px-5" style="background-image:url('https://raw.githubusercontent.com/dellsoares/disco/54c18d5a17350e5f5127de4fbe85ac217a7deb29/luas%20fundo.jpg')">
             <div class="absolute inset-0 pointer-events-none bg-[#DECBA4]/85"></div>
             <div class="relative z-10 max-w-4xl mx-auto">
                 <div class="flex flex-col sm:flex-row items-center gap-6 sm:gap-10 mb-9">
@@ -556,69 +558,71 @@
                     </div>
                 </div>
                 <div class="border-t border-[#1D2A33]/20 pt-5">
-                    <h4 class="font-semibold text-xs tracking-widest mb-4">canções • explore as capas</h4>
-                    <div class="ep-song-grid grid grid-cols-4 sm:grid-cols-6 gap-3 sm:gap-4">
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="luas" data-track="1" data-title="a vida é isso (e ainda nos quer vivos)" data-image="https://imgur.com/h4c83rd.png" aria-label="faixa 1: a vida é isso (e ainda nos quer vivos)" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/h4c83rd.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">01</span>
+                    <h4 class="font-semibold text-xs tracking-widest mb-4">canções • explore as faixas</h4>
+                    <!-- LUAS (8 faixas, 2 colunas) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 auto-rows-fr">
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#DECBA4]/30 hover:border-[#DECBA4] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="luas" data-track="1" data-title="a vida é isso (e ainda nos quer vivos)" data-image="https://imgur.com/h4c83rd.png" aria-label="faixa 1: a vida é isso (e ainda nos quer vivos)" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#DECBA4]/15 text-[#DECBA4] font-bold text-xs tracking-widest border border-[#DECBA4]/20 group-hover:bg-[#DECBA4] group-hover:text-[#1D2A33] transition-colors">01</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">a vida é isso (e ainda nos quer vivos)</span>
                             </button>
                             <template id="song-desc-luas-1"><p>entre parênteses, quando surgiu havia o texto “se não for, que viva”.escrita num domingo de janeiro, voltando da casa da minha <strong><strong>mãe</strong></strong>, na estrada entre <strong><strong>ouro branco</strong></strong> e <strong><strong>bh</strong></strong>.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="luas" data-track="2" data-title="a canção do ontem" data-image="https://imgur.com/Yqm3eSX.png" aria-label="faixa 2: a canção do ontem" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/Yqm3eSX.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">02</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#DECBA4]/30 hover:border-[#DECBA4] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="luas" data-track="2" data-title="a canção do ontem" data-image="https://imgur.com/Yqm3eSX.png" aria-label="faixa 2: a canção do ontem" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#DECBA4]/15 text-[#DECBA4] font-bold text-xs tracking-widest border border-[#DECBA4]/20 group-hover:bg-[#DECBA4] group-hover:text-[#1D2A33] transition-colors">02</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">a canção do ontem</span>
                             </button>
                             <template id="song-desc-luas-2"><p>surgiu em julho de 2025 e foi repaginada um ano depois. o primeiro título era canção de retrovisor e a letra surgiu em primeira pessoa. com os ajustes, o sentido ficou completo.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="luas" data-track="3" data-title="o pouco do pouco" data-image="https://imgur.com/c0CxPJy.png" aria-label="faixa 3: o pouco do pouco" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/c0CxPJy.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">03</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#DECBA4]/30 hover:border-[#DECBA4] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="luas" data-track="3" data-title="o pouco do pouco" data-image="https://imgur.com/c0CxPJy.png" aria-label="faixa 3: o pouco do pouco" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#DECBA4]/15 text-[#DECBA4] font-bold text-xs tracking-widest border border-[#DECBA4]/20 group-hover:bg-[#DECBA4] group-hover:text-[#1D2A33] transition-colors">03</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">o pouco do pouco</span>
                             </button>
                             <template id="song-desc-luas-3"><p>escrevi numa noite em que alguém me repetiu pela milésima vez que era preciso nomear o que eu sentia. grande bosta de conselho, ótima inspiração musical.</p><p class="mt-4"><a class="inline-flex items-center gap-2 underline underline-offset-4 text-amber-200" href="https://youtu.be/HR1sHTetX-g" target="_blank" rel="noopener noreferrer">ouvir no youtube ↗</a></p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="luas" data-track="4" data-title="a vida sob a ótica de john" data-image="https://imgur.com/r65Oyos.png" aria-label="faixa 4: a vida sob a ótica de john" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/r65Oyos.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">04</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#DECBA4]/30 hover:border-[#DECBA4] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="luas" data-track="4" data-title="a vida sob a ótica de john" data-image="https://imgur.com/r65Oyos.png" aria-label="faixa 4: a vida sob a ótica de john" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#DECBA4]/15 text-[#DECBA4] font-bold text-xs tracking-widest border border-[#DECBA4]/20 group-hover:bg-[#DECBA4] group-hover:text-[#1D2A33] transition-colors">04</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">a vida sob a ótica de john</span>
                             </button>
                             <template id="song-desc-luas-4"><p>esta foi uma adaptação do monólogo que um amigo, <strong><strong><a class="underline text-[#1D2A33]" href="https://www.instagram.com/johnribeiro" rel="noopener noreferrer" target="_blank">john ribeiro</a></strong></strong>, escreveu em um momento difícil da própria vida. seria empatia se o sentimento não fosse uma besteira só.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="luas" data-track="5" data-title="a luz que continua acesa (no lugar de onde fugimos)" data-image="https://imgur.com/cY5nv3h.png" aria-label="faixa 5: a luz que continua acesa (no lugar de onde fugimos)" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/cY5nv3h.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">05</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#DECBA4]/30 hover:border-[#DECBA4] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="luas" data-track="5" data-title="a luz que continua acesa (no lugar de onde fugimos)" data-image="https://imgur.com/cY5nv3h.png" aria-label="faixa 5: a luz que continua acesa (no lugar de onde fugimos)" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#DECBA4]/15 text-[#DECBA4] font-bold text-xs tracking-widest border border-[#DECBA4]/20 group-hover:bg-[#DECBA4] group-hover:text-[#1D2A33] transition-colors">05</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">a luz que continua acesa (no lugar de onde fugimos)</span>
                             </button>
                             <template id="song-desc-luas-5"><p>em 2026, chego a 20 anos dividindo a vida com alguém que escolhi. e, bem, é uma pessoa literalmente iluminada. mas percebi que brilha mais intensamente onde vivemos antes.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="luas" data-track="6" data-title="arquivo morto" data-image="https://imgur.com/YJGjFjj.png" aria-label="faixa 6: arquivo morto" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/YJGjFjj.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">06</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#DECBA4]/30 hover:border-[#DECBA4] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="luas" data-track="6" data-title="arquivo morto" data-image="https://imgur.com/YJGjFjj.png" aria-label="faixa 6: arquivo morto" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#DECBA4]/15 text-[#DECBA4] font-bold text-xs tracking-widest border border-[#DECBA4]/20 group-hover:bg-[#DECBA4] group-hover:text-[#1D2A33] transition-colors">06</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">arquivo morto</span>
                             </button>
                             <template id="song-desc-luas-6"><p>foi a segunda canção feita, como continuação de atendendo a pedidos. porém, ganhou vida própria e outro contexto ns letra.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="luas" data-track="7" data-title="o exílio no espelho" data-image="https://imgur.com/UEA7IIz.png" aria-label="faixa 7: o exílio no espelho" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/UEA7IIz.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">07</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#DECBA4]/30 hover:border-[#DECBA4] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="luas" data-track="7" data-title="o exílio no espelho" data-image="https://imgur.com/UEA7IIz.png" aria-label="faixa 7: o exílio no espelho" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#DECBA4]/15 text-[#DECBA4] font-bold text-xs tracking-widest border border-[#DECBA4]/20 group-hover:bg-[#DECBA4] group-hover:text-[#1D2A33] transition-colors">07</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">o exílio no espelho</span>
                             </button>
                             <template id="song-desc-luas-7"><p>este foi um poema de 2014 que foi musicado quando percebi que o tema conversava diretamente com o assunto do ep.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="luas" data-track="8" data-title="canção contrária à vida sob a ótica de john" data-image="https://imgur.com/c7kHeiD.png" aria-label="faixa 8: canção contrária à vida sob a ótica de john" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/c7kHeiD.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">08</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#DECBA4]/30 hover:border-[#DECBA4] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="luas" data-track="8" data-title="canção contrária à vida sob a ótica de john" data-image="https://imgur.com/c7kHeiD.png" aria-label="faixa 8: canção contrária à vida sob a ótica de john" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#DECBA4]/15 text-[#DECBA4] font-bold text-xs tracking-widest border border-[#DECBA4]/20 group-hover:bg-[#DECBA4] group-hover:text-[#1D2A33] transition-colors">08</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">canção contrária à vida sob a ótica de john</span>
                             </button>
                             <template id="song-desc-luas-8"><p>da falsa empatia à posse do contexto. sai o otimismo e entra uma visão menos romântica do mundo. não é contrária à óticado john, e sim da própria vida.</p></template>
                         </div>
                     </div>
-                    <p class="mt-5 text-xs font-medium text-[#1D2A33]/75 text-center">passe o mouse ou toque na capa para ler sobre a canção</p>
+                    <p class="mt-5 text-xs font-medium text-[#1D2A33]/75 text-center">passe o mouse ou toque na faixa para ler sobre a canção</p>
                 </div>
             </div>
         </div>
+        
         <div id="panel-junhos" role="tabpanel" aria-labelledby="tab-junhos" class="ep-panel relative bg-cover bg-center text-[#1D2A33] py-8 sm:py-12 px-5 hidden" style="background-image:url('https://raw.githubusercontent.com/dellsoares/disco/54c18d5a17350e5f5127de4fbe85ac217a7deb29/junhos%20fundo.jpg')">
             <div class="absolute inset-0 pointer-events-none bg-[#A5A881]/85"></div>
             <div class="relative z-10 max-w-4xl mx-auto">
@@ -633,76 +637,83 @@
                     </div>
                 </div>
                 <div class="border-t border-[#1D2A33]/20 pt-5">
-                    <h4 class="font-semibold text-xs tracking-widest mb-4">canções • explore as capas</h4>
-                    <div class="ep-song-grid grid grid-cols-4 sm:grid-cols-6 gap-3 sm:gap-4">
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="junhos" data-track="1" data-title="atendendo a pedidos (a única regra)" data-image="https://imgur.com/qOC21uu.png" aria-label="faixa 1: atendendo a pedidos (a única regra)" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/qOC21uu.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">01</span>
+                    <h4 class="font-semibold text-xs tracking-widest mb-4">canções • explore as faixas</h4>
+                    <!-- JUNHOS (9 faixas, 2 colunas, 9ª centralizada) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 auto-rows-fr">
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#A5A881]/30 hover:border-[#A5A881] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="junhos" data-track="1" data-title="atendendo a pedidos (a única regra)" data-image="https://imgur.com/qOC21uu.png" aria-label="faixa 1: atendendo a pedidos (a única regra)" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A5A881]/15 text-[#A5A881] font-bold text-xs tracking-widest border border-[#A5A881]/20 group-hover:bg-[#A5A881] group-hover:text-[#1D2A33] transition-colors">01</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">atendendo a pedidos (a única regra)</span>
                             </button>
                             <template id="song-desc-junhos-1"><p>certamente a canção que teve mais letras e versões para, ao final, terminar com apenas uma modificação final nas últimas palavras da canção.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="junhos" data-track="2" data-title="do sentimento ao sinto muito" data-image="https://imgur.com/3CLPysm.png" aria-label="faixa 2: do sentimento ao sinto muito" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/3CLPysm.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">02</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#A5A881]/30 hover:border-[#A5A881] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="junhos" data-track="2" data-title="do sentimento ao sinto muito" data-image="https://imgur.com/3CLPysm.png" aria-label="faixa 2: do sentimento ao sinto muito" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A5A881]/15 text-[#A5A881] font-bold text-xs tracking-widest border border-[#A5A881]/20 group-hover:bg-[#A5A881] group-hover:text-[#1D2A33] transition-colors">02</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">do sentimento ao sinto muito</span>
                             </button>
                             <template id="song-desc-junhos-2"><p>nasceu como uma canção tardia sobre a perda da minha irmã,mas após perder minha mãe, ganhou um adição ao final e os versos se tornaram mais abrangentes. ou não.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="junhos" data-track="3" data-title="errado e cafona" data-image="https://imgur.com/2E6Ewvy.png" aria-label="faixa 3: errado e cafona" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/2E6Ewvy.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">03</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#A5A881]/30 hover:border-[#A5A881] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="junhos" data-track="3" data-title="errado e cafona" data-image="https://imgur.com/2E6Ewvy.png" aria-label="faixa 3: errado e cafona" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A5A881]/15 text-[#A5A881] font-bold text-xs tracking-widest border border-[#A5A881]/20 group-hover:bg-[#A5A881] group-hover:text-[#1D2A33] transition-colors">03</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">errado e cafona</span>
                             </button>
                             <template id="song-desc-junhos-3"><p>nasceu rock, pediu pra ser forró para estender o amor que celebra pra dois lugares que habitam a minha memória com o mesmo carinho: campina grande e joão pessoa.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="junhos" data-track="4" data-title="desde sempre, sexta" data-image="https://imgur.com/KOOF64F.png" aria-label="faixa 4: desde sempre, sexta" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/KOOF64F.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">04</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#A5A881]/30 hover:border-[#A5A881] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="junhos" data-track="4" data-title="desde sempre, sexta" data-image="https://imgur.com/KOOF64F.png" aria-label="faixa 4: desde sempre, sexta" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A5A881]/15 text-[#A5A881] font-bold text-xs tracking-widest border border-[#A5A881]/20 group-hover:bg-[#A5A881] group-hover:text-[#1D2A33] transition-colors">04</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">desde sempre, sexta</span>
                             </button>
                             <template id="song-desc-junhos-4"><p>é co-irmã de todo dia é quinta, que é uma canção sobre perda de um pet. aqui, a dor foi maior e conversa com a outra dor, que já soava insuportável.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="junhos" data-track="5" data-title="enquanto a saudade costura" data-image="https://imgur.com/esz8pFd.png" aria-label="faixa 5: enquanto a saudade costura" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/esz8pFd.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">05</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#A5A881]/30 hover:border-[#A5A881] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="junhos" data-track="5" data-title="enquanto a saudade costura" data-image="https://imgur.com/esz8pFd.png" aria-label="faixa 5: enquanto a saudade costura" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A5A881]/15 text-[#A5A881] font-bold text-xs tracking-widest border border-[#A5A881]/20 group-hover:bg-[#A5A881] group-hover:text-[#1D2A33] transition-colors">05</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">enquanto a saudade costura</span>
                             </button>
                             <template id="song-desc-junhos-5"><p>canções de roberto e erasmo remendadas pra tocar no radinho am da dona maria. e citação a man who sold the world de bowie, a música mais bonita do mundo, segundo ela.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="junhos" data-track="6" data-title="o vazio também é janela" data-image="https://imgur.com/1Xr8f1t.png" aria-label="faixa 6: o vazio também é janela" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/1Xr8f1t.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">06</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#A5A881]/30 hover:border-[#A5A881] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="junhos" data-track="6" data-title="o vazio também é janela" data-image="https://imgur.com/1Xr8f1t.png" aria-label="faixa 6: o vazio também é janela" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A5A881]/15 text-[#A5A881] font-bold text-xs tracking-widest border border-[#A5A881]/20 group-hover:bg-[#A5A881] group-hover:text-[#1D2A33] transition-colors">06</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">o vazio também é janela</span>
                             </button>
                             <template id="song-desc-junhos-6"><p>foi a primeira canção insone, quando, após um mês de dias ruins, vi pela primeira vez o dia ficar claro e as vida acontecer pela janela do quarto.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="junhos" data-track="7" data-title="as flores do jardim da nossa casa" data-image="https://imgur.com/nkkdnvW.png" aria-label="faixa 7: as flores do jardim da nossa casa" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/nkkdnvW.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">07</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#A5A881]/30 hover:border-[#A5A881] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="junhos" data-track="7" data-title="as flores do jardim da nossa casa" data-image="https://imgur.com/nkkdnvW.png" aria-label="faixa 7: as flores do jardim da nossa casa" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A5A881]/15 text-[#A5A881] font-bold text-xs tracking-widest border border-[#A5A881]/20 group-hover:bg-[#A5A881] group-hover:text-[#1D2A33] transition-colors">07</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">as flores do jardim da nossa casa</span>
                             </button>
                             <template id="song-desc-junhos-7"><p>a canção favorita da minha mãe é citada aqui. mas quis regravar a minha favorita que, devo admitir, era bela apenas quando não ilustrava sentimento meu.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="junhos" data-track="8" data-title="um retalho, um remendo, um recorte (alfaiataria)" data-image="https://imgur.com/s2qf9eJ.png" aria-label="faixa 8: um retalho, um remendo, um recorte (alfaiataria)" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/s2qf9eJ.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">08</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#A5A881]/30 hover:border-[#A5A881] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="junhos" data-track="8" data-title="um retalho, um remendo, um recorte (alfaiataria)" data-image="https://imgur.com/s2qf9eJ.png" aria-label="faixa 8: um retalho, um remendo, um recorte (alfaiataria)" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A5A881]/15 text-[#A5A881] font-bold text-xs tracking-widest border border-[#A5A881]/20 group-hover:bg-[#A5A881] group-hover:text-[#1D2A33] transition-colors">08</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">um retalho, um remendo, um recorte (alfaiataria)</span>
                             </button>
                             <template id="song-desc-junhos-8"><p>foi a canção mais difícil de chegar a um resultado final porque, trata-se da tal canção que colocamos pra minha mãe ouvir no coma. todas as outras se resumem nela.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="junhos" data-track="9" data-title="deus disforme" data-image="https://imgur.com/xWEHcC2.png" aria-label="faixa 9: deus disforme" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/xWEHcC2.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">09</span>
-                            </button>
-                            <template id="song-desc-junhos-9"><p>surgiu de um riff do meu irmão emulando demis roussos e se tornou a canção-ponte pro outro ep já que começa derramando tristeza e termina transbordando raiva.</p></template>
+                        
+                        <!-- Faixa 9: Centralizada -->
+                        <div class="min-w-0 h-full sm:col-span-2 flex justify-center">
+                            <div class="w-full sm:w-[calc(50%-0.5rem)] h-full">
+                                <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#A5A881]/30 hover:border-[#A5A881] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="junhos" data-track="9" data-title="deus disforme" data-image="https://imgur.com/xWEHcC2.png" aria-label="faixa 9: deus disforme" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                    <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A5A881]/15 text-[#A5A881] font-bold text-xs tracking-widest border border-[#A5A881]/20 group-hover:bg-[#A5A881] group-hover:text-[#1D2A33] transition-colors">09</span>
+                                    <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">deus disforme</span>
+                                </button>
+                                <template id="song-desc-junhos-9"><p>surgiu de um riff do meu irmão emulando demis roussos e se tornou a canção-ponte pro outro ep já que começa derramando tristeza e termina transbordando raiva.</p></template>
+                            </div>
                         </div>
                     </div>
-                    <p class="mt-5 text-xs font-medium text-[#1D2A33]/75 text-center">passe o mouse ou toque na capa para ler sobre a canção</p>
+                    
+                    <p class="mt-5 text-xs font-medium text-[#1D2A33]/75 text-center">passe o mouse ou toque na faixa para ler sobre a canção</p>
                 </div>
             </div>
         </div>
+        
         <div id="panel-rodas" role="tabpanel" aria-labelledby="tab-rodas" class="ep-panel relative bg-cover bg-center text-[#1D2A33] py-8 sm:py-12 px-5 hidden" style="background-image:url('https://raw.githubusercontent.com/dellsoares/disco/54c18d5a17350e5f5127de4fbe85ac217a7deb29/rodas-gigantes%20fundo.jpg')">
             <div class="absolute inset-0 pointer-events-none bg-[#A6B8B7]/85"></div>
             <div class="relative z-10 max-w-4xl mx-auto">
@@ -717,88 +728,109 @@
                     </div>
                 </div>
                 <div class="border-t border-[#1D2A33]/20 pt-5">
-                    <h4 class="font-semibold text-xs tracking-widest mb-4">canções • explore as capas</h4>
-                    <div class="ep-song-grid grid grid-cols-4 sm:grid-cols-6 gap-3 sm:gap-4">
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="rodas" data-track="1" data-title="uma grande mentira" data-image="https://imgur.com/d5iqhK3.png" aria-label="faixa 1: uma grande mentira" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/d5iqhK3.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">01</span>
+                    <h4 class="font-semibold text-xs tracking-widest mb-4">canções • explore as faixas</h4>
+                    
+                    <!-- RODAS-GIGANTES (10 faixas, 2 colunas) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 auto-rows-fr">
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#A6B8B7]/30 hover:border-[#A6B8B7] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="rodas" data-track="1" data-title="uma grande mentira" data-image="https://imgur.com/d5iqhK3.png" aria-label="faixa 1: uma grande mentira" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A6B8B7]/15 text-[#A6B8B7] font-bold text-xs tracking-widest border border-[#A6B8B7]/20 group-hover:bg-[#A6B8B7] group-hover:text-[#1D2A33] transition-colors">01</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">uma grande mentira</span>
                             </button>
                             <template id="song-desc-rodas-1"><p>sim, é mentira esse papo de superar e seguir em frente. e se querem mesmo acreditar nisso, ao menos incluam coisas menos dignas como vingança entre os objetivos.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="rodas" data-track="2" data-title="nem horizonte, nem belo" data-image="https://imgur.com/rlji004.png" aria-label="faixa 2: nem horizonte, nem belo" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/rlji004.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">02</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#A6B8B7]/30 hover:border-[#A6B8B7] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="rodas" data-track="2" data-title="nem horizonte, nem belo" data-image="https://imgur.com/rlji004.png" aria-label="faixa 2: nem horizonte, nem belo" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A6B8B7]/15 text-[#A6B8B7] font-bold text-xs tracking-widest border border-[#A6B8B7]/20 group-hover:bg-[#A6B8B7] group-hover:text-[#1D2A33] transition-colors">02</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">nem horizonte, nem belo</span>
                             </button>
                             <template id="song-desc-rodas-2"><p>o mito da cidade grande, do mineiro receptivo e do acolhimento de interior nas capital faz de bh a coisa mais superestimada e estranha que já tive notícias.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="rodas" data-track="3" data-title="sênior, júnior" data-image="https://imgur.com/U4ktM3M.png" aria-label="faixa 3: sênior, júnior" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/U4ktM3M.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">03</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#A6B8B7]/30 hover:border-[#A6B8B7] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="rodas" data-track="3" data-title="sênior, júnior" data-image="https://imgur.com/U4ktM3M.png" aria-label="faixa 3: sênior, júnior" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A6B8B7]/15 text-[#A6B8B7] font-bold text-xs tracking-widest border border-[#A6B8B7]/20 group-hover:bg-[#A6B8B7] group-hover:text-[#1D2A33] transition-colors">03</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">sênior, júnior</span>
                             </button>
                             <template id="song-desc-rodas-3"><p>surgiu de uma brincadeira com o nome pelo qual chamam meu irmão. e, sim, é ele quem conduz o ritmo da vida, ainda mais agora.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="rodas" data-track="4" data-title="ao azedume de madrinha" data-image="https://imgur.com/qFnBdDE.png" aria-label="faixa 4: ao azedume de madrinha" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/qFnBdDE.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">04</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#A6B8B7]/30 hover:border-[#A6B8B7] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="rodas" data-track="4" data-title="ao azedume de madrinha" data-image="https://imgur.com/qFnBdDE.png" aria-label="faixa 4: ao azedume de madrinha" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A6B8B7]/15 text-[#A6B8B7] font-bold text-xs tracking-widest border border-[#A6B8B7]/20 group-hover:bg-[#A6B8B7] group-hover:text-[#1D2A33] transition-colors">04</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">ao azedume de madrinha</span>
                             </button>
                             <template id="song-desc-rodas-4"><p>azedume ainda é um modo fofo de abordar a pessoa mais amarga, chantagista, mal educada e presunçosa que já conheci na vida.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="rodas" data-track="5" data-title="amorzinho de vovó" data-image="https://imgur.com/k4rYdfW.png" aria-label="faixa 5: amorzinho de vovó" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/k4rYdfW.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">05</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#A6B8B7]/30 hover:border-[#A6B8B7] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="rodas" data-track="5" data-title="amorzinho de vovó" data-image="https://imgur.com/k4rYdfW.png" aria-label="faixa 5: amorzinho de vovó" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A6B8B7]/15 text-[#A6B8B7] font-bold text-xs tracking-widest border border-[#A6B8B7]/20 group-hover:bg-[#A6B8B7] group-hover:text-[#1D2A33] transition-colors">05</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">amorzinho de vovó</span>
                             </button>
                             <template id="song-desc-rodas-5"><p>quando descobri a extorsão que minha sobrinha e o então marido deram na minha mãe, tive de ouvir “ganhamos porque ela nos ama”.então, tá.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="rodas" data-track="6" data-title="o belo de um jogo sujo" data-image="https://imgur.com/gmdp3UP.png" aria-label="faixa 6: o belo de um jogo sujo" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/gmdp3UP.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">06</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#A6B8B7]/30 hover:border-[#A6B8B7] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="rodas" data-track="6" data-title="o belo de um jogo sujo" data-image="https://imgur.com/gmdp3UP.png" aria-label="faixa 6: o belo de um jogo sujo" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A6B8B7]/15 text-[#A6B8B7] font-bold text-xs tracking-widest border border-[#A6B8B7]/20 group-hover:bg-[#A6B8B7] group-hover:text-[#1D2A33] transition-colors">06</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">o belo de um jogo sujo</span>
                             </button>
                             <template id="song-desc-rodas-6"><p>surgiu de uma paródia da canção jogo sujo de erasmo mas acabou se tornando outra coisa. e é, possivelmente, minha visão mais realista da vida.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="rodas" data-track="7" data-title="vamos combinar (de não combinar mais nada)" data-image="https://imgur.com/h01sBO3.png" aria-label="faixa 7: vamos combinar (de não combinar mais nada)" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/h01sBO3.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">07</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#A6B8B7]/30 hover:border-[#A6B8B7] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="rodas" data-track="7" data-title="vamos combinar (de não combinar mais nada)" data-image="https://imgur.com/h01sBO3.png" aria-label="faixa 7: vamos combinar (de não combinar mais nada)" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A6B8B7]/15 text-[#A6B8B7] font-bold text-xs tracking-widest border border-[#A6B8B7]/20 group-hover:bg-[#A6B8B7] group-hover:text-[#1D2A33] transition-colors">07</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">vamos combinar (de não combinar mais nada)</span>
                             </button>
                             <template id="song-desc-rodas-7"><p>não tem nada pior que gente nos incentivando a qualquer merda por intenção própria. afinal, o que nos interessa, iniciamos sem torcida, não é mesmo?</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="rodas" data-track="8" data-title="minha possível chance" data-image="https://imgur.com/gjWL7K1.png" aria-label="faixa 8: minha possível chance" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/gjWL7K1.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">08</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#A6B8B7]/30 hover:border-[#A6B8B7] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="rodas" data-track="8" data-title="minha possível chance" data-image="https://imgur.com/gjWL7K1.png" aria-label="faixa 8: minha possível chance" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A6B8B7]/15 text-[#A6B8B7] font-bold text-xs tracking-widest border border-[#A6B8B7]/20 group-hover:bg-[#A6B8B7] group-hover:text-[#1D2A33] transition-colors">08</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">minha possível chance</span>
                             </button>
                             <template id="song-desc-rodas-8"><p>quando todo mundo foi embora e o mundo apagou a última luz que me guiava, fiz um pequeno teste e liguei pra vários que diziam que estavam lá se eu precisasse. a rafaela estava. há 40 anos.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="rodas" data-track="9" data-title="cuidado de latrina" data-image="https://imgur.com/VFDWsxG.png" aria-label="faixa 9: cuidado de latrina" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/VFDWsxG.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">09</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#A6B8B7]/30 hover:border-[#A6B8B7] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="rodas" data-track="9" data-title="cuidado de latrina" data-image="https://imgur.com/VFDWsxG.png" aria-label="faixa 9: cuidado de latrina" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A6B8B7]/15 text-[#A6B8B7] font-bold text-xs tracking-widest border border-[#A6B8B7]/20 group-hover:bg-[#A6B8B7] group-hover:text-[#1D2A33] transition-colors">09</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">cuidado de latrina</span>
                             </button>
                             <template id="song-desc-rodas-9"><p>se soar ofensiva demais é porque cheguei perto do quanto precisava dizer. se parecer exagerado, acredite em mim: atenuar uma parte boa.</p></template>
                         </div>
-                        <div class="min-w-0">
-                            <button type="button" class="ep-song-thumb relative block w-full aspect-square rounded-md overflow-hidden shadow-md bg-[#1D2A33] focus-visible:outline-2 focus-visible:outline-offset-2" data-ep="rodas" data-track="10" data-title="caos de bolso" data-image="https://imgur.com/a4sK9Ma.png" aria-label="faixa 10: caos de bolso" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
-                                <img src="https://imgur.com/a4sK9Ma.png" alt="" class="w-full h-full object-cover" loading="lazy">
-                                <span class="absolute top-1 left-1 text-white bg-[#0D1927]/85 px-1.5 py-0.5 rounded text-[10px] font-semibold">10</span>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#1D2A33] border border-[#A6B8B7]/30 hover:border-[#A6B8B7] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left" data-ep="rodas" data-track="10" data-title="caos de bolso" data-image="https://imgur.com/a4sK9Ma.png" aria-label="faixa 10: caos de bolso" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A6B8B7]/15 text-[#A6B8B7] font-bold text-xs tracking-widest border border-[#A6B8B7]/20 group-hover:bg-[#A6B8B7] group-hover:text-[#1D2A33] transition-colors">10</span>
+                                <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">caos de bolso</span>
                             </button>
                             <template id="song-desc-rodas-10"><p>essa é pra paulinha. o termo surgiu após um texto que fiz dizendo sobre a forma que cada pessoa ilumina a vida. ela, sem tirar nem pôr, é isso aqui tudo. o tempo todo.</p></template>
                         </div>
                     </div>
-                    <p class="mt-5 text-xs font-medium text-[#1D2A33]/75 text-center">passe o mouse ou toque na capa para ler sobre a canção</p>
+                    
+                    <p class="mt-5 text-xs font-medium text-[#1D2A33]/75 text-center">passe o mouse ou toque na faixa para ler sobre a canção</p>
                 </div>
+            </div>
+        </div>
+        
+        <!-- ÁREA DE DOWNLOADS NO FINAL DA SEÇÃO DOS EPS -->
+        <div class="bg-[#0D1927] py-12 px-5 text-center relative z-20 shadow-[0_-15px_30px_rgba(13,25,39,0.8)] border-t border-white/5">
+            <p class="text-sm sm:text-base text-slate-200/90 font-medium mb-6">
+                gostou das artes? você pode baixá-las em 2 formatos
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-2xl mx-auto">
+                <a href="https://github.com/dellsoares/disco/tree/dda2013ea9deb8c803f6a8754b287462b041f5bb/papel%20de%20parede%20hd" target="_blank" rel="noopener noreferrer" class="bg-amber-400 hover:bg-amber-300 text-[#0D1927] px-8 py-3.5 rounded-md font-bold text-xs tracking-[0.2em] transition-all shadow-lg flex items-center justify-center gap-2 w-full sm:w-auto">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    <span>papel de parede hd</span>
+                </a>
+                
+                <a href="https://raw.githubusercontent.com/dellsoares/disco/758c53ee4c72e98f85737788b9cbba6dd2e42581/livrocolorir.pdf" download="livro_para_colorir_wendell_soares.pdf" target="_blank" rel="noopener noreferrer" class="bg-amber-400 hover:bg-amber-300 text-[#0D1927] px-8 py-3.5 rounded-md font-bold text-xs tracking-[0.2em] transition-all shadow-lg flex items-center justify-center gap-2 w-full sm:w-auto">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    <span>livro pra colorir</span>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Janela ampliada para textos das canções; sobreposição sem expandir a página -->
-    <div id="ep-song-modal" class="ep-song-modal fixed inset-0 z-[90] hidden items-center justify-center bg-[#070E17]/85 backdrop-blur-sm p-4" onclick="if(event.target === this) closeEpSong(true)" role="dialog" aria-modal="false" aria-labelledby="ep-song-modal-title">
-        <div class="ep-song-popup relative w-full max-w-[430px] aspect-square max-h-[85vh] rounded-lg overflow-hidden shadow-2xl bg-[#0D1927]">
+    <div id="ep-song-modal" class="ep-song-modal fixed inset-0 z-[90] hidden items-center justify-center bg-[#070E17]/85 backdrop-blur-sm p-4 transition-opacity duration-300 opacity-0" onclick="if(event.target === this) closeEpSong(true)" role="dialog" aria-modal="false" aria-labelledby="ep-song-modal-title">
+        <div class="ep-song-popup relative w-full max-w-[430px] aspect-square max-h-[85vh] rounded-lg overflow-hidden shadow-2xl bg-[#0D1927] transition-transform duration-300 scale-95">
             <img id="ep-song-modal-image" src="" alt="capa da canção ampliada" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(7,14,23,0.98) 0%,rgba(7,14,23,0.84) 49%,rgba(7,14,23,0.12) 100%)"></div>
             <button id="ep-song-modal-close" type="button" onclick="closeEpSong(true)" aria-label="fechar detalhes" class="absolute top-3 right-3 z-20 bg-[#0D1927]/85 text-white border border-white/30 w-9 h-9 rounded-md flex items-center justify-center">✕</button>
@@ -811,6 +843,88 @@
             </div>
         </div>
     </div>
+
+    <!-- NOVA SEÇÃO: SINTONIA -->
+    <section id="sintonia" class="relative bg-cover bg-center py-16 sm:py-24 px-5 border-t border-white/10 overflow-hidden" style="background-image: url('https://raw.githubusercontent.com/dellsoares/disco/dda2013ea9deb8c803f6a8754b287462b041f5bb/papel%20de%20parede%20hd/1%20-%20a%20%20v%20ida%20%C3%A9%20isso%20(e%20ainda%20nos%20quer%20vivos)%20-%20EP%20Luas%20-%20Wendell%20Soares.jpg');">
+        <!-- Fundo escurecido para dar contraste -->
+        <div class="absolute inset-0 bg-[#0D1927]/85 pointer-events-none z-0 backdrop-blur-[2px]"></div>
+        
+        <div class="relative z-10 max-w-6xl mx-auto">
+            <div class="max-w-3xl mb-10 sm:mb-14">
+                <div class="inline-flex items-center gap-3 mb-4">
+                    <span class="h-[1px] w-8 bg-amber-400/60"></span>
+                    <span class="text-xs tracking-[0.25em] text-amber-300/80 font-medium">sintonia</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 leading-tight">quem sou eu (e os outros)</h2>
+                <p class="text-base sm:text-lg text-slate-200/90 font-medium leading-relaxed">
+                    em época de escola, esse seria o trabalho solo que a professora autorizou fazer em grupo. ou seja, é meu sem ser apenas meu. conheça a turma.
+                </p>
+            </div>
+
+            <div class="sintonia-track">
+                <!-- Card Wendell -->
+                <div class="sintonia-item relative w-full aspect-[4/6] rounded-xl overflow-hidden shadow-2xl border border-white/15 bg-[#0D1927] group">
+                    <img src="https://raw.githubusercontent.com/dellsoares/disco/62aab20d43d94f72eb784eb8ab37ca32952f6396/dell.jpg" alt="wendell soares" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                
+                <!-- Card Batata Jr -->
+                <div class="sintonia-item relative w-full aspect-[4/6] rounded-xl overflow-hidden shadow-2xl border border-white/15 bg-[#0D1927] group">
+                    <img src="https://raw.githubusercontent.com/dellsoares/disco/62aab20d43d94f72eb784eb8ab37ca32952f6396/batata.jpg" alt="batata jr" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                
+                <!-- Card Levi Almeida -->
+                <div class="sintonia-item relative w-full aspect-[4/6] rounded-xl overflow-hidden shadow-2xl border border-white/15 bg-[#0D1927] group">
+                    <img src="https://raw.githubusercontent.com/dellsoares/disco/6ccb1215ea397d533016020748ef16d814a467bb/levioso.jpg" alt="levi almeida" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- faixa contínua rodando (marquee) replicada -->
+    <section class="relative w-full bg-[#A6B8B7] text-[#0D1927] py-4 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.3)] rotate-[-0.5deg] scale-[1.02] z-20">
+        <div class="flex overflow-hidden whitespace-nowrap select-none">
+            <div class="animate-marquee flex items-center gap-12 sm:gap-16">
+                <!-- bloco 1 -->
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                    <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" stroke-linejoin="round"/></svg><span>luas</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
+                    <span>•</span><span>junhos</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                    <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M7 2v6M17 2v6M3 10h18M7 14h3M13 14h3M7 18h3"/></svg><span>junhos</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
+                    <span>•</span><span>rodas-gigantes</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                    <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="10" r="8"/><circle cx="12" cy="10" r="1.5"/><path d="M12 2v6.5M12 11.5v6.5M4 10h6.5M13.5 10H20M6.3 4.3l4.7 4.7M13 11l4.7 4.7M17.7 4.3L13 9M11 11l-4.7 4.7M9 18l-2 4M15 18l2 4M6 22h12"/></svg><span>rodas-gigantes</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
+                    <span>•</span><span>wendell soares</span>
+                </div>
+                <!-- bloco 2 -->
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                    <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" stroke-linejoin="round"/></svg><span>luas</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
+                    <span>•</span><span>junhos</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                    <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M7 2v6M17 2v6M3 10h18M7 14h3M13 14h3M7 18h3"/></svg><span>junhos</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
+                    <span>•</span><span>rodas-gigantes</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                    <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="10" r="8"/><circle cx="12" cy="10" r="1.5"/><path d="M12 2v6.5M12 11.5v6.5M4 10h6.5M13.5 10H20M6.3 4.3l4.7 4.7M13 11l4.7 4.7M17.7 4.3L13 9M11 11l-4.7 4.7M9 18l-2 4M15 18l2 4M6 22h12"/></svg><span>rodas-gigantes</span>
+                </div>
+                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
+                    <span>•</span><span>wendell soares</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- NOVA SEÇÃO: TORÓ DE IDEIAS / COISAS QUE ESCREVO -->
     <section id="toro-de-ideias" class="relative bg-cover bg-center py-16 sm:py-24 px-5 border-t border-white/10 overflow-hidden" style="background-image: url('https://raw.githubusercontent.com/dellsoares/disco/54c18d5a17350e5f5127de4fbe85ac217a7deb29/luas%20fundo.jpg');">
@@ -891,24 +1005,24 @@
             </div>
 
             <!-- links de redes e streaming -->
-            <div class="w-full max-w-[820px] mx-auto grid grid-cols-3 lg:grid-cols-6 items-center justify-items-center gap-2 sm:gap-3 pt-4">
-                <a href="https://www.youtube.com/@dellsoares/" target="_blank" rel="noopener noreferrer" class="w-full max-w-[132px] hover:scale-105 transition-transform">
-                    <img src="https://raw.githubusercontent.com/dellsoares/disco/a1c85f82b119f853c9e21ed7dd2562228d1d7835/youtube1.png" alt="youtube" width="195" height="95" class="w-full aspect-[195/95] object-contain">
+            <div class="w-full mx-auto flex flex-wrap justify-center gap-4 lg:gap-6 pt-4">
+                <a href="https://www.youtube.com/@dellsoares/" target="_blank" rel="noopener noreferrer" class="w-16 sm:w-20 lg:w-[100px] hover:scale-105 transition-transform">
+                    <img src="https://raw.githubusercontent.com/dellsoares/disco/main/youtube1.png" alt="youtube" width="100" height="100" class="w-full aspect-square object-contain">
                 </a>
-                <a href="https://www.instagram.com/_wendellsoares_" target="_blank" rel="noopener noreferrer" class="w-full max-w-[132px] hover:scale-105 transition-transform">
-                    <img src="https://raw.githubusercontent.com/dellsoares/disco/a1c85f82b119f853c9e21ed7dd2562228d1d7835/instagram1.png" alt="instagram" width="195" height="95" class="w-full aspect-[195/95] object-contain">
+                <a href="https://www.instagram.com/_wendellsoares_" target="_blank" rel="noopener noreferrer" class="w-16 sm:w-20 lg:w-[100px] hover:scale-105 transition-transform">
+                    <img src="https://raw.githubusercontent.com/dellsoares/disco/main/instagram1.png" alt="instagram" width="100" height="100" class="w-full aspect-square object-contain">
                 </a>
-                <a href="https://open.spotify.com/intl-pt/artist/0jG9dHWgnoy5o2nIxjBc69?si=qu2Ipb8gSHKYJBJwbIpIfA" target="_blank" rel="noopener noreferrer" class="w-full max-w-[132px] hover:scale-105 transition-transform">
-                    <img src="https://raw.githubusercontent.com/dellsoares/disco/a1c85f82b119f853c9e21ed7dd2562228d1d7835/spotify1.png" alt="spotify" width="195" height="95" class="w-full aspect-[195/95] object-contain">
+                <a href="https://open.spotify.com/intl-pt/artist/0jG9dHWgnoy5o2nIxjBc69?si=qu2Ipb8gSHKYJBJwbIpIfA" target="_blank" rel="noopener noreferrer" class="w-16 sm:w-20 lg:w-[100px] hover:scale-105 transition-transform">
+                    <img src="https://raw.githubusercontent.com/dellsoares/disco/main/spotify1.png" alt="spotify" width="100" height="100" class="w-full aspect-square object-contain">
                 </a>
-                <a href="https://music.apple.com/us/artist/wendell-soares/1881788221" target="_blank" rel="noopener noreferrer" class="w-full max-w-[132px] hover:scale-105 transition-transform">
-                    <img src="https://raw.githubusercontent.com/dellsoares/disco/a1c85f82b119f853c9e21ed7dd2562228d1d7835/applemusic1.png" alt="apple music" width="195" height="95" class="w-full aspect-[195/95] object-contain">
+                <a href="https://music.apple.com/us/artist/wendell-soares/1881788221" target="_blank" rel="noopener noreferrer" class="w-16 sm:w-20 lg:w-[100px] hover:scale-105 transition-transform">
+                    <img src="https://raw.githubusercontent.com/dellsoares/disco/main/applemusic1.png" alt="apple music" width="100" height="100" class="w-full aspect-square object-contain">
                 </a>
-                <a href="https://www.letras.mus.br/wendell-soares/" target="_blank" rel="noopener noreferrer" class="w-full max-w-[132px] hover:scale-105 transition-transform">
-                    <img src="https://raw.githubusercontent.com/dellsoares/disco/a1c85f82b119f853c9e21ed7dd2562228d1d7835/letras1.png" alt="letras.com" width="195" height="95" class="w-full aspect-[195/95] object-contain">
+                <a href="https://www.letras.mus.br/wendell-soares/" target="_blank" rel="noopener noreferrer" class="w-16 sm:w-20 lg:w-[100px] hover:scale-105 transition-transform">
+                    <img src="https://raw.githubusercontent.com/dellsoares/disco/main/letras1.png" alt="letras.com" width="100" height="100" class="w-full aspect-square object-contain">
                 </a>
-                <a href="https://wendellsoares.substack.com/" target="_blank" rel="noopener noreferrer" class="w-full max-w-[132px] hover:scale-105 transition-transform">
-                    <img src="https://raw.githubusercontent.com/dellsoares/disco/a1c85f82b119f853c9e21ed7dd2562228d1d7835/subastack1.png" alt="substack" width="195" height="95" class="w-full aspect-[195/95] object-contain">
+                <a href="https://wendellsoares.substack.com/" target="_blank" rel="noopener noreferrer" class="w-16 sm:w-20 lg:w-[100px] hover:scale-105 transition-transform">
+                    <img src="https://raw.githubusercontent.com/dellsoares/disco/c28a802d091e134c39280639f811ddcc69e531a7/substack1.png" alt="substack" width="100" height="100" class="w-full aspect-square object-contain">
                 </a>
             </div>
 
@@ -929,7 +1043,7 @@
                         class="w-full h-full relative cursor-pointer group select-none">
 
                         <img
-                            src="https://i.imgur.com/8zVVBMB.jpeg"
+                            src="https://raw.githubusercontent.com/dellsoares/disco/1a5c5d21f812adb6152eb32091b445502b4f0f8d/capa_spoiler.jpeg"
                             onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/HtC9aW9MGcc/hqdefault.jpg';"
                             alt="capa do clipe"
                             class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
@@ -961,11 +1075,16 @@
 
     <!-- RODAPÉ -->
     <footer class="bg-[#070E17] py-12 px-5 border-t border-white/10 text-center flex flex-col items-center justify-center gap-6">
-        <a href="https://github.com/dellsoares/disco/tree/dda2013ea9deb8c803f6a8754b287462b041f5bb/papel%20de%20parede%20hd" target="_blank" rel="noopener noreferrer" class="bg-amber-400 hover:bg-amber-300 text-[#0D1927] px-8 py-3.5 rounded-md font-bold text-xs tracking-[0.2em] transition-all shadow-lg flex items-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-            <span>papel de parede hd</span>
+        
+        <a href="#inicio" class="transition-transform hover:scale-105 flex items-center mt-2">
+            <img
+                src="https://raw.githubusercontent.com/dellsoares/disco/62aab20d43d94f72eb784eb8ab37ca32952f6396/logo%20wendell.png"
+                alt="logo wendell soares"
+                class="w-[15vw] min-w-[110px] max-w-[200px] h-auto object-contain opacity-75 hover:opacity-100 transition-opacity"
+            />
         </a>
-        <p class="text-white/40 text-[10px] tracking-[0.15em] lowercase">
+
+        <p class="text-white/40 text-[10px] tracking-[0.15em] lowercase mt-2">
             todos os direitos reservados pra sabe-se lá quem e porquê
         </p>
     </footer>
@@ -996,14 +1115,155 @@
         <audio id="mom-audio" preload="none" src="https://raw.githubusercontent.com/dellsoares/disco/ece6fb617f7cb4d6162c3438ecb4661d48f99501/m%C3%A3e.WAV"></audio>
     </div>
 
+    <!-- SECRET FEEDBACK MODAL (Aparece ao chegar no rodapé) -->
+    <div id="secret-feedback" class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/80 backdrop-blur-sm transition-opacity duration-700 opacity-0 p-5" role="dialog" aria-modal="true" aria-labelledby="secret-title">
+        <div class="relative w-full max-w-md bg-[#0D1927] border border-white/20 rounded-xl shadow-2xl p-6 sm:p-8 overflow-hidden">
+            <!-- Step 1: Convite -->
+            <div id="secret-step-1" class="flex flex-col items-center text-center gap-5">
+                <h3 id="secret-title" class="text-xl font-bold text-amber-300 tracking-tight">uma surpresa...</h3>
+                <p class="text-sm sm:text-base leading-relaxed text-slate-200/90 font-medium">
+                    já que viu tudo com cuidado, que tal deixar sua opinião e assistir antes de todo mundo um clipe inédito? não é necessário se identificar (mas se quiser, pode).
+                </p>
+                <div class="flex items-center gap-4 mt-2 w-full">
+                    <button type="button" onclick="closeSecretFeedback()" class="flex-1 py-3 text-xs font-semibold text-white/70 hover:text-white bg-white/5 hover:bg-white/10 rounded-md transition-colors border border-white/10">
+                        agora não
+                    </button>
+                    <button type="button" onclick="showSecretStep2()" class="flex-1 py-3 text-xs font-bold text-[#0D1927] bg-amber-400 hover:bg-amber-300 rounded-md transition-colors shadow-[0_0_15px_rgba(251,191,36,0.3)]">
+                        topo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2: Formulário -->
+            <div id="secret-step-2" class="hidden flex-col gap-4">
+                <h3 class="text-lg font-bold text-amber-300 tracking-tight text-center mb-1">me conta sua opinião</h3>
+                <form id="secret-form" action="https://formspree.io/f/mqppeepl" method="POST" class="flex flex-col gap-3">
+                    <textarea name="mensagem" rows="4" required placeholder="sobre uma canção, uma letra, ou um dos ep's..." class="w-full bg-[#070E17] border border-white/15 rounded-md p-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-amber-400/50 resize-none transition-colors"></textarea>
+                    <input type="text" name="identificacao" placeholder="nome ou @ (opcional)" class="w-full bg-[#070E17] border border-white/15 rounded-md p-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-amber-400/50 transition-colors">
+                    
+                    <div class="flex items-center gap-3 mt-2">
+                        <button type="button" onclick="closeSecretFeedback()" class="py-2.5 px-4 text-xs font-medium text-white/60 hover:text-white transition-colors">cancelar</button>
+                        <button type="submit" id="secret-submit-btn" class="flex-1 py-3 text-xs font-bold text-[#0D1927] bg-amber-400 hover:bg-amber-300 rounded-md transition-colors flex justify-center items-center gap-2">
+                            <span>enviar</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Step 3: Recompensa -->
+            <div id="secret-step-3" class="hidden flex-col items-center text-center gap-5">
+                <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-2">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white tracking-tight mb-2">mensagem enviada!</h3>
+                    <p class="text-sm text-slate-200/90 leading-relaxed">muito obrigado pelo seu tempo. conforme prometido, aqui está o seu acesso antecipado:</p>
+                </div>
+                <a href="https://youtu.be/dhZtRUqvtVQ" target="_blank" rel="noopener noreferrer" onclick="closeSecretFeedback()" class="w-full py-3.5 mt-2 text-sm font-bold text-[#0D1927] bg-amber-400 hover:bg-amber-300 rounded-md transition-all shadow-[0_0_20px_rgba(251,191,36,0.4)] flex justify-center items-center gap-2 hover:scale-105">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                    <span>assistir clipe inédito</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- script para abrir frames e interações -->
     <script>
-        // Gatilho diário: desktop pode receber convite ao tentar sair antes de 5 min;
-        // em todos os dispositivos, o convite aparece após 10 min caso não tenha aparecido.
+        // Gatilho diário e popups
         document.addEventListener('DOMContentLoaded', () => {
             checkMomTrigger();
+            initSecretTrigger();
             updateScheduledEpCovers();
             initToroCarousel();
+        });
+
+        // POP-UP SECRETO (Feedback)
+        function secretAlreadyShown() {
+            try { return localStorage.getItem('secretFeedbackShown') === 'true'; }
+            catch(e) { return false; }
+        }
+
+        function initSecretTrigger() {
+            if (secretAlreadyShown()) return;
+            const footer = document.querySelector('footer');
+            if (!footer) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    observer.disconnect(); // Só ativa uma vez
+                    setTimeout(() => {
+                        if (!secretAlreadyShown()) {
+                            showSecretFeedback();
+                        }
+                    }, 1500); // 1.5s de delay após chegar no fim
+                }
+            }, { threshold: 0.1 });
+
+            observer.observe(footer);
+        }
+
+        function showSecretFeedback() {
+            try { localStorage.setItem('secretFeedbackShown', 'true'); } catch(e) {}
+            const modal = document.getElementById('secret-feedback');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            requestAnimationFrame(() => {
+                modal.classList.remove('opacity-0');
+                modal.classList.add('opacity-100');
+            });
+        }
+
+        function closeSecretFeedback() {
+            const modal = document.getElementById('secret-feedback');
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                
+                // Reseta caso a pessoa queira reabrir o site amanhã (opcional)
+                // Se quiser que NUNCA MAIS apareça, mantenha como está.
+            }, 700);
+        }
+
+        function showSecretStep2() {
+            document.getElementById('secret-step-1').classList.add('hidden');
+            document.getElementById('secret-step-1').classList.remove('flex');
+            document.getElementById('secret-step-2').classList.remove('hidden');
+            document.getElementById('secret-step-2').classList.add('flex');
+            document.querySelector('#secret-form textarea').focus();
+        }
+
+        document.getElementById('secret-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const btn = document.getElementById('secret-submit-btn');
+            const originalBtnText = btn.innerHTML;
+            
+            btn.innerHTML = `<svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-[#0D1927]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> <span>enviando...</span>`;
+            btn.disabled = true;
+
+            fetch(form.action, {
+                method: form.method,
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    document.getElementById('secret-step-2').classList.add('hidden');
+                    document.getElementById('secret-step-2').classList.remove('flex');
+                    document.getElementById('secret-step-3').classList.remove('hidden');
+                    document.getElementById('secret-step-3').classList.add('flex');
+                } else {
+                    alert('Oops! Houve um problema ao enviar. Tente novamente.');
+                    btn.innerHTML = originalBtnText;
+                    btn.disabled = false;
+                }
+            }).catch(error => {
+                alert('Oops! Houve um problema ao enviar. Tente novamente.');
+                btn.innerHTML = originalBtnText;
+                btn.disabled = false;
+            });
         });
 
         // Exibir os players em 1/11 e 14/11 de 2026, às 11h (Brasília, UTC-03:00).
@@ -1025,15 +1285,8 @@
             }
         }
 
-        let momShownThisSession = false;
-        let momTimer = null;
         const momVisitStarted = Date.now();
         function momToday() { return new Date().toDateString(); }
-        function momAlreadyShown() {
-            if (momShownThisSession) return true;
-            try { return localStorage.getItem('momTriggerDate') === momToday(); }
-            catch (e) { return false; }
-        }
         function checkMomTrigger() {
             if (momAlreadyShown()) return;
             momTimer = setTimeout(() => showMomTrigger('ten-minutes'), 600000);
@@ -1282,42 +1535,76 @@
         }
         let epSongLocked = false;
         let epSongLastTrigger = null;
+        let epSongTimeout = null;
+
         function showEpSong(button, lock) {
             if (epSongLocked && !lock) return;
             epSongLocked = Boolean(lock);
             epSongLastTrigger = button;
+            
             const modal = document.getElementById('ep-song-modal');
+            const popup = modal.querySelector('.ep-song-popup');
+            
+            clearTimeout(epSongTimeout);
+            
             document.getElementById('ep-song-modal-image').src = button.dataset.image;
             document.getElementById('ep-song-modal-title').textContent = button.dataset.title;
             document.getElementById('ep-song-modal-label').textContent =
                 'faixa ' + String(button.dataset.track).padStart(2, '0') + ' • ' + (button.dataset.ep === 'rodas' ? 'rodas-gigantes' : button.dataset.ep);
             document.getElementById('ep-song-modal-text').innerHTML =
                 document.getElementById('song-desc-' + button.dataset.ep + '-' + button.dataset.track).innerHTML;
+                
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             modal.classList.toggle('hover-preview', !lock);
             modal.setAttribute('aria-modal', String(Boolean(lock)));
+            
+            // Força a renderização para que a transição de opacidade aconteça
+            void modal.offsetWidth;
+            
+            modal.classList.remove('opacity-0');
+            modal.classList.add('opacity-100');
+            popup.classList.remove('scale-95');
+            popup.classList.add('scale-100');
+            
             if (lock) document.getElementById('ep-song-modal-close').focus();
         }
+
         function hoverEpSong(button) {
             if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
             showEpSong(button, false);
         }
+
         function leaveEpSong(button) {
             if (!epSongLocked) closeEpSong(false);
         }
+
         function clickEpSong(button) { showEpSong(button, true); }
+
         function closeEpSong(force) {
             if (epSongLocked && !force) return;
             const shouldRestoreFocus = epSongLocked && force;
             epSongLocked = false;
+            
             const modal = document.getElementById('ep-song-modal');
             if (!modal) return;
-            modal.classList.add('hidden');
-            modal.classList.remove('flex', 'hover-preview');
-            modal.setAttribute('aria-modal', 'false');
-            if (shouldRestoreFocus && epSongLastTrigger) epSongLastTrigger.focus({ preventScroll: true });
+            const popup = modal.querySelector('.ep-song-popup');
+            
+            clearTimeout(epSongTimeout);
+            
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            popup.classList.remove('scale-100');
+            popup.classList.add('scale-95');
+            
+            epSongTimeout = setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex', 'hover-preview');
+                modal.setAttribute('aria-modal', 'false');
+                if (shouldRestoreFocus && epSongLastTrigger) epSongLastTrigger.focus({ preventScroll: true });
+            }, 300);
         }
+
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') closeEpSong(true);
             if ((event.key === 'ArrowLeft' || event.key === 'ArrowRight') && document.activeElement?.getAttribute('role') === 'tab') {
@@ -1354,7 +1641,7 @@
             modal.classList.remove('flex');
         }
 
-        // Interações apenas da nova seção "toró de ideias".
+        // Interações apenas da nova seção "toró de ideias" e "sintonia".
         function toggleToroVideo(video) {
             if (video.paused || video.ended) {
                 document.querySelectorAll('.toro-video').forEach(other => {
@@ -1421,3 +1708,4 @@
     </script>
 </body>
 </html>
+```eof
