@@ -34,3 +34,5 @@
 
 /* acesso direto a jogo.html sem passar por index.html */
 #directNameOverlay[hidden]{display:none}
+
+html,body{scrollbar-width:none;}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none;}
