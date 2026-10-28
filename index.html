@@ -43,6 +43,7 @@
     </script>
 
     <style>
+        /* Trava adicionada para impedir o scroll horizontal no celular */
         html, body {
             width: 100%;
             max-width: 100%;
@@ -57,7 +58,6 @@
             text-transform: lowercase;
         }
 
-        /* Aplicar Nourd também aos controles nativos, sem interferir nos players externos. */
         button, input, select, textarea {
             font-family: 'Nourd', 'Plus Jakarta Sans', sans-serif;
         }
@@ -89,15 +89,6 @@
             animation: marquee 28s linear infinite;
         }
 
-        .song-line {
-            position: absolute;
-            left: 19px;
-            top: 24px;
-            bottom: 24px;
-            width: 2px;
-            background: rgba(0, 0, 0, 0.15);
-        }
-
         @keyframes float-cushion {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-15px); }
@@ -112,25 +103,7 @@
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 1.5rem;
         }
-        .toro-video {
-            cursor: pointer;
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background-color: #0D1927;
-        }
-        .toro-video:focus-visible {
-            outline: 3px solid #0D1927;
-            outline-offset: 3px;
-        }
-        .toro-play {
-            pointer-events: none;
-            transition: opacity 180ms ease;
-        }
-        .toro-video-item.is-playing .toro-play {
-            opacity: 0;
-        }
+        
         @media (max-width: 767px) {
             .toro-track, .sintonia-track {
                 display: flex;
@@ -157,7 +130,7 @@
             .toro-track, .sintonia-track { scroll-behavior: auto; }
         }
 
-        /* Abas dos EPs: cada página preserva suas cores e arte de fundo. */
+        /* Abas dos EPs */
         .ep-tab { color: #e4e9ea; background: #152738; }
         .ep-tab.is-active { color: #1D2A33; background: var(--ep-tab-color); border-color: var(--ep-tab-color); }
         .ep-tab:focus-visible { outline: 2px solid #334e5f; outline-offset: 3px; }
@@ -176,7 +149,7 @@
 </head>
 <body class="bg-[#0D1927] min-h-screen antialiased selection:bg-amber-500/30 selection:text-amber-200 lowercase-all">
 
-    <!-- BOTÃO FLUTUANTE WHATSAPP (AMARELO) -->
+    <!-- BOTÃO FLUTUANTE WHATSAPP -->
     <a id="whatsapp-float" href="https://api.whatsapp.com/send?phone=5531983073854&text=Vim%20do%20site%20pra%20falar%20de%20m%C3%BAsica." target="_blank" rel="noopener noreferrer"
        class="fixed bottom-6 right-6 z-50 bg-amber-400 hover:bg-amber-300 text-[#0D1927] p-4 rounded-full shadow-[0_10px_25px_rgba(251,191,36,0.4)] border border-[#0D1927]/20 transition-all duration-300 flex items-center justify-center hover:scale-110 opacity-100 pointer-events-auto"
        title="falar no whatsapp">
@@ -185,7 +158,7 @@
         </svg>
     </a>
 
-    <!-- HEADER / MENU HAMBÚRGUER FLUTUANTE E LOGO -->
+    <!-- HEADER -->
     <header class="fixed top-0 w-full z-50 pointer-events-none px-5 py-4 bg-[#0D1927]">
         <div class="w-full max-w-6xl mx-auto relative flex items-center justify-end">
             <a href="#inicio" class="absolute left-1/2 -translate-x-1/2 pointer-events-auto transition-transform hover:scale-105 flex items-center mt-1">
@@ -222,7 +195,7 @@
         </div>
     </header>
 
-    <!-- HERO SECTION (COM FUNDO 14.webp) -->
+    <!-- HERO SECTION -->
     <main id="inicio" class="relative min-h-screen flex items-center justify-center px-5 py-20 sm:py-24 bg-cover bg-center" style="background-image: url('https://raw.githubusercontent.com/dellsoares/disco/80690ce3d7dfb4e0c9dce76147d6ae1347365ec6/14.webp');">
         <div class="absolute inset-0 bg-[#0D1927]/50 pointer-events-none z-0"></div>
         <div class="pointer-events-none fixed inset-0 overflow-hidden z-0">
@@ -342,7 +315,7 @@
         </div>
     </section>
 
-    <!-- seção 2: o ep em três atos (COM FUNDO luas fundo.jpg E TEXTO ESCURO) -->
+    <!-- seção 2: o ep em três atos -->
     <section id="eps" class="relative bg-cover bg-center py-16 sm:py-24 px-5 border-t border-white/10 overflow-hidden" style="background-image: url('https://raw.githubusercontent.com/dellsoares/disco/54c18d5a17350e5f5127de4fbe85ac217a7deb29/luas%20fundo.jpg');">
         <div class="pointer-events-none absolute inset-0 overflow-hidden z-0 bg-[#DECBA4]/85"></div>
         <div class="relative z-10 w-full max-w-6xl mx-auto">
@@ -655,17 +628,7 @@
                                 <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">um retalho, um remendo, um recorte (alfaiataria)</span>
                             </button>
                             <template id="song-desc-junhos-8">
-                                <div class="mb-3 flex justify-start">
-                                    <div class="relative cursor-pointer transition-transform hover:scale-105 animate-float w-16" onclick="showMomTrigger()" title="sabedoria de mãe">
-                                        <img src="https://raw.githubusercontent.com/dellsoares/disco/a221dbe732fd39606f86a8bca1f35ff54b88671c/almofada.png" alt="sabedoria de mãe" class="w-full h-auto drop-shadow-[0_10px_20px_rgba(251,191,36,0.3)]">
-                                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                            <div class="w-6 h-6 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center border border-white/40 text-white shadow-xl">
-                                                <svg class="w-3 h-3 translate-x-[0.5px] fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p>foi a canção mais difícil de chegar a um resultado final porque, trata-se da tal canção que colocamos pra minha mãe ouvir no coma. todas as outras se resumem nela.</p>
+                                <p>foi a canção mais difícil de chegar a um resultado final porque, trata-se da tal canção que colocamos pra minha mãe <span onclick="playMomAudioInline(this)" class="inline-block cursor-pointer text-amber-400 hover:text-amber-200 animate-pulse hover:animate-none transition-colors text-base mx-0.5 pointer-events-auto" title="ouvir áudio"><span class="play-icon">♡</span></span> ouvir no coma. todas as outras se resumem nela.</p>
                             </template>
                         </div>
                         
@@ -916,38 +879,36 @@
             <!-- No desktop, três vídeos em linha. No mobile, carrossel com setas e gesto de deslizar. -->
             <div class="relative">
                 <div id="toro-track" class="toro-track" aria-label="vídeos de toró de ideias">
+                    <!-- Item 1: Substack -->
                     <div class="toro-video-item w-full min-w-0" data-toro-slide="0">
-                        <div class="relative w-full aspect-square rounded-lg overflow-hidden shadow-[0_15px_40px_rgba(13,25,39,0.25)] border border-[#1D2A33]/15 bg-[#0D1927]">
-                            <video class="toro-video" src="https://raw.githubusercontent.com/dellsoares/disco/1e9cd3613742db08c7e6432a08215c67a9957a43/cuidado.mp4#t=0.1" preload="metadata" playsinline tabindex="0" aria-label="cuidado: clique para reproduzir ou pausar" onclick="toggleToroVideo(this)" onkeydown="handleToroVideoKey(event, this)" onplay="updateToroVideoState(this)" onpause="updateToroVideoState(this)" onended="updateToroVideoState(this)"></video>
-                            <div class="toro-play absolute inset-0 flex items-center justify-center" aria-hidden="true">
-                                <span class="w-16 h-16 rounded-full bg-[#0D1927]/75 backdrop-blur-sm border border-white/30 text-white flex items-center justify-center shadow-xl">
-                                    <svg class="w-7 h-7 translate-x-0.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                </span>
-                            </div>
+                        <div class="relative w-full aspect-square rounded-lg overflow-hidden shadow-[0_15px_40px_rgba(13,25,39,0.25)] border border-[#1D2A33]/15 bg-[#0D1927] group">
+                            <img src="https://raw.githubusercontent.com/dellsoares/disco/main/substack.webp" alt="substack" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                         </div>
-                        <a href="https://wendellsoares.substack.com/p/luas-junhos-e-rodas-gigantes" target="_blank" rel="noopener noreferrer" class="mt-4 mx-auto w-fit flex items-center justify-center gap-2 bg-[#1D2A33]/10 hover:bg-[#1D2A33] text-[#1D2A33] hover:text-[#DECBA4] border border-[#1D2A33]/20 px-6 py-2.5 rounded-md text-sm font-semibold tracking-wide transition-colors">leia aqui <span aria-hidden="true">↗</span></a>
+                        <a href="https://wendellsoares.substack.com/" target="_blank" rel="noopener noreferrer" class="mt-4 mx-auto w-fit flex items-center justify-center gap-2 bg-[#1D2A33]/10 hover:bg-[#1D2A33] text-[#1D2A33] hover:text-[#DECBA4] border border-[#1D2A33]/20 px-6 py-2.5 rounded-md text-sm font-semibold tracking-wide transition-colors">leia aqui <span aria-hidden="true">↗</span></a>
                     </div>
+                    
+                    <!-- Item 2: Anamorismo -->
                     <div class="toro-video-item w-full min-w-0" data-toro-slide="1">
-                        <div class="relative w-full aspect-square rounded-lg overflow-hidden shadow-[0_15px_40px_rgba(13,25,39,0.25)] border border-[#1D2A33]/15 bg-[#0D1927]">
-                            <video class="toro-video" src="https://raw.githubusercontent.com/dellsoares/disco/1e9cd3613742db08c7e6432a08215c67a9957a43/amor.mp4#t=0.1" preload="metadata" playsinline tabindex="0" aria-label="amor: clique para reproduzir ou pausar" onclick="toggleToroVideo(this)" onkeydown="handleToroVideoKey(event, this)" onplay="updateToroVideoState(this)" onpause="updateToroVideoState(this)" onended="updateToroVideoState(this)"></video>
-                            <div class="toro-play absolute inset-0 flex items-center justify-center" aria-hidden="true">
-                                <span class="w-16 h-16 rounded-full bg-[#0D1927]/75 backdrop-blur-sm border border-white/30 text-white flex items-center justify-center shadow-xl">
-                                    <svg class="w-7 h-7 translate-x-0.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                </span>
-                            </div>
+                        <div class="relative w-full aspect-square rounded-lg overflow-hidden shadow-[0_15px_40px_rgba(13,25,39,0.25)] border border-[#1D2A33]/15 bg-[#0D1927] group">
+                            <img src="https://raw.githubusercontent.com/dellsoares/disco/main/anamorismo.webp" alt="anamorismo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                         </div>
-                        <a href="https://wendellsoares.substack.com/p/inverso-do-aconchego" target="_blank" rel="noopener noreferrer" class="mt-4 mx-auto w-fit flex items-center justify-center gap-2 bg-[#1D2A33]/10 hover:bg-[#1D2A33] text-[#1D2A33] hover:text-[#DECBA4] border border-[#1D2A33]/20 px-6 py-2.5 rounded-md text-sm font-semibold tracking-wide transition-colors">leia aqui <span aria-hidden="true">↗</span></a>
+                        <a href="https://www.amazon.com.br/dp/B0FMQVFBS6?" target="_blank" rel="noopener noreferrer" class="mt-4 mx-auto w-fit flex items-center justify-center gap-2 bg-[#1D2A33]/10 hover:bg-[#1D2A33] text-[#1D2A33] hover:text-[#DECBA4] border border-[#1D2A33]/20 px-6 py-2.5 rounded-md text-sm font-semibold tracking-wide transition-colors">compre aqui <span aria-hidden="true">↗</span></a>
                     </div>
+                    
+                    <!-- Item 3: Audiolivro -->
                     <div class="toro-video-item w-full min-w-0" data-toro-slide="2">
-                        <div class="relative w-full aspect-square rounded-lg overflow-hidden shadow-[0_15px_40px_rgba(13,25,39,0.25)] border border-[#1D2A33]/15 bg-[#0D1927]">
-                            <video class="toro-video" src="https://raw.githubusercontent.com/dellsoares/disco/1e9cd3613742db08c7e6432a08215c67a9957a43/solid%C3%A3o.mp4#t=0.1" preload="metadata" playsinline tabindex="0" aria-label="solidão: clique para reproduzir ou pausar" onclick="toggleToroVideo(this)" onkeydown="handleToroVideoKey(event, this)" onplay="updateToroVideoState(this)" onpause="updateToroVideoState(this)" onended="updateToroVideoState(this)"></video>
-                            <div class="toro-play absolute inset-0 flex items-center justify-center" aria-hidden="true">
-                                <span class="w-16 h-16 rounded-full bg-[#0D1927]/75 backdrop-blur-sm border border-white/30 text-white flex items-center justify-center shadow-xl">
-                                    <svg class="w-7 h-7 translate-x-0.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        <div class="relative w-full aspect-square rounded-lg overflow-hidden shadow-[0_15px_40px_rgba(13,25,39,0.25)] border border-[#1D2A33]/15 bg-[#0D1927] group">
+                            <img src="https://raw.githubusercontent.com/dellsoares/disco/main/audiolivro.webp" alt="audiolivro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <!-- Botão de Play em cima da imagem -->
+                            <button type="button" onclick="playAudiobook(this)" aria-label="reproduzir audiolivro" class="absolute inset-0 w-full h-full flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors z-10">
+                                <span class="audiobook-btn-bg w-16 h-16 rounded-full bg-[#0D1927]/75 backdrop-blur-sm border border-white/30 text-white flex items-center justify-center shadow-xl transition-all hover:scale-110">
+                                    <svg class="w-7 h-7 translate-x-0.5 fill-current play-icon-inner" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                                 </span>
-                            </div>
+                            </button>
                         </div>
-                        <a href="https://wendellsoares.substack.com/p/mensagens-na-garrafa-solidao-e-outros" target="_blank" rel="noopener noreferrer" class="mt-4 mx-auto w-fit flex items-center justify-center gap-2 bg-[#1D2A33]/10 hover:bg-[#1D2A33] text-[#1D2A33] hover:text-[#DECBA4] border border-[#1D2A33]/20 px-6 py-2.5 rounded-md text-sm font-semibold tracking-wide transition-colors">leia aqui <span aria-hidden="true">↗</span></a>
+                        <a href="https://archive.org/details/poeticas_audiolivro" target="_blank" rel="noopener noreferrer" class="mt-4 mx-auto w-fit flex items-center justify-center gap-2 bg-[#1D2A33]/10 hover:bg-[#1D2A33] text-[#1D2A33] hover:text-[#DECBA4] border border-[#1D2A33]/20 px-6 py-2.5 rounded-md text-sm font-semibold tracking-wide transition-colors">baixe aqui <span aria-hidden="true">↗</span></a>
+                        <!-- Player de áudio invisível -->
+                        <audio id="audiobook-player" preload="none" src="https://ia601009.us.archive.org/13/items/poeticas_audiolivro/po%C3%A9ticas_audiolivro.WAV"></audio>
                     </div>
                 </div>
                 <div class="md:hidden flex items-center justify-center gap-5 mt-6" aria-label="navegação do carrossel">
@@ -1066,23 +1027,6 @@
         <div class="relative max-w-lg w-full bg-[#0D1927] p-3 rounded-lg border border-white/20 shadow-2xl" onclick="event.stopPropagation()">
             <button type="button" onclick="closeImageModal()" class="absolute -top-3 -right-3 bg-white text-[#0D1927] w-8 h-8 rounded-full font-bold shadow-lg flex items-center justify-center">✕</button>
             <img id="modal-img" src="" alt="ampliada" class="w-full h-auto rounded-lg object-contain max-h-[80vh]">
-        </div>
-    </div>
-
-    <!-- SABEDORIA DE MÃE: modal centralizado (acionado pela almofada na faixa 8) -->
-    <div id="mom-trigger" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm transition-opacity duration-300 opacity-0 p-5" role="dialog" aria-modal="true" aria-labelledby="mom-message">
-        <div class="relative w-full max-w-md flex flex-col items-center gap-4 text-center">
-            <button type="button" onclick="closeMomTrigger()" aria-label="fechar sabedoria de mãe" class="absolute -top-2 right-0 z-20 bg-[#0D1927]/80 text-white/90 border border-white/20 rounded-md px-3 py-1.5 text-sm">✕</button>
-            <p id="mom-message" class="text-base sm:text-lg leading-relaxed font-medium text-[#F2E8D8] max-w-sm px-5">tire um minuto pra sabedoria de mãe e dê play aqui.</p>
-            <div id="mom-cushion-container" class="relative cursor-pointer transition-transform hover:scale-105 animate-float" onclick="playMomAudio()" role="button" tabindex="0" onkeydown="if(event.key === 'Enter' || event.key === ' ') {event.preventDefault();playMomAudio();}" aria-label="reproduzir sabedoria de mãe">
-                <img src="https://raw.githubusercontent.com/dellsoares/disco/a221dbe732fd39606f86a8bca1f35ff54b88671c/almofada.png" alt="sabedoria de mãe" class="w-64 sm:w-80 h-auto drop-shadow-[0_20px_50px_rgba(251,191,36,0.3)]">
-                <div id="mom-play-icon" class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div class="w-16 h-16 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center border border-white/40 text-white shadow-xl transition-all">
-                        <svg class="w-8 h-8 translate-x-0.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                </div>
-            </div>
-            <button id="mom-decline" type="button" onclick="closeMomTrigger()" class="text-xs font-medium text-white/75 hover:text-white underline underline-offset-4 px-4 py-2">fechar</button>
         </div>
     </div>
 
@@ -1255,62 +1199,35 @@
             }
         }
 
-        function showMomTrigger() {
-            const modal = document.getElementById('mom-trigger');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            requestAnimationFrame(() => {
-                modal.classList.remove('opacity-0');
-                modal.classList.add('opacity-100');
-            });
-        }
-
-        function playMomAudio() {
+        // Toca o áudio inline na música 8
+        function playMomAudioInline(btn) {
             const audio = document.getElementById('mom-audio');
-            const playIcon = document.getElementById('mom-play-icon');
-            const container = document.getElementById('mom-cushion-container');
+            const icon = btn.querySelector('.play-icon');
             
-            if (container.getAttribute('aria-disabled') === 'true') return;
-            container.setAttribute('aria-disabled', 'true');
-            container.removeAttribute('tabindex');
-            container.classList.remove('cursor-pointer', 'hover:scale-105');
-            container.onclick = null;
-            container.onkeydown = null;
+            // Se já estiver tocando, a gente pausa (ação de toggle)
+            if (!audio.paused) {
+                audio.pause();
+                audio.currentTime = 0;
+                icon.innerHTML = '♡';
+                btn.classList.add('animate-pulse');
+                btn.classList.remove('text-emerald-400');
+                btn.classList.add('text-amber-400');
+                return;
+            }
             
-            playIcon.innerHTML = `<div class="w-16 h-16 rounded-full bg-amber-500/80 backdrop-blur-md flex items-center justify-center border border-white/50 text-white shadow-[0_0_30px_rgba(245,158,11,0.7)] animate-pulse"><svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M12 3v18m-4-14v10m8-10v10m-12-6v2m16-2v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>`;
+            // Se estiver pausado, dá o play
+            audio.play().catch(e => console.log('Áudio bloqueado pelo navegador:', e));
             
-            audio.play().catch(() => {
-                playIcon.innerHTML = '<span class="bg-[#0D1927]/90 text-white text-xs px-3 py-2 rounded-md">não foi possível reproduzir</span>';
-            });
+            icon.innerHTML = '🔊';
+            btn.classList.remove('animate-pulse', 'text-amber-400');
+            btn.classList.add('text-emerald-400');
             
             audio.onended = () => {
-                playIcon.innerHTML = '<span class="bg-[#0D1927]/90 text-white text-xs px-3 py-2 rounded-md">ouvido ♡</span>';
+                icon.innerHTML = '♡';
+                btn.classList.add('animate-pulse');
+                btn.classList.remove('text-emerald-400');
+                btn.classList.add('text-amber-400');
             };
-        }
-
-        function closeMomTrigger() {
-            const modal = document.getElementById('mom-trigger');
-            const audio = document.getElementById('mom-audio');
-            
-            audio.pause();
-            audio.currentTime = 0;
-            
-            // Reseta a interface do modal para poder tocar de novo
-            const container = document.getElementById('mom-cushion-container');
-            const playIcon = document.getElementById('mom-play-icon');
-            container.setAttribute('aria-disabled', 'false');
-            container.setAttribute('tabindex', '0');
-            container.classList.add('cursor-pointer', 'hover:scale-105');
-            container.onclick = playMomAudio;
-            container.onkeydown = function(e) { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playMomAudio(); } };
-            playIcon.innerHTML = `<div class="w-16 h-16 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center border border-white/40 text-white shadow-xl transition-all"><svg class="w-8 h-8 translate-x-0.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>`;
-
-            modal.classList.remove('opacity-100');
-            modal.classList.add('opacity-0');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-            }, 300);
         }
 
         // controle de visibilidade do botão do whatsapp baseado na rolagem
@@ -1429,25 +1346,6 @@
             frameContainer.innerHTML = '';
             frameContainer.classList.add('hidden');
             cover.classList.remove('hidden');
-        }
-
-        function openExtraYoutubeFrame(coverId, frameId, videoId) {
-            const cover = document.getElementById(coverId);
-            const frameContainer = document.getElementById(frameId);
-
-            cover.classList.add('hidden');
-            frameContainer.classList.remove('hidden');
-
-            frameContainer.innerHTML = `
-                <iframe
-                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1"
-                    title="vídeo extra"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen
-                    class="w-full h-full">
-                </iframe>
-            `;
         }
 
         function openEpFrame(index, url, title) {
@@ -1581,14 +1479,7 @@
         }
 
         document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const momModal = document.getElementById('mom-trigger');
-                if (momModal && !momModal.classList.contains('hidden')) {
-                    closeMomTrigger();
-                } else {
-                    closeEpSong(true);
-                }
-            }
+            if (event.key === 'Escape') closeEpSong(true);
             if ((event.key === 'ArrowLeft' || event.key === 'ArrowRight') && document.activeElement?.getAttribute('role') === 'tab') {
                 const ids = ['luas','junhos','rodas'];
                 const current = ids.indexOf(document.activeElement.id.replace('tab-',''));
@@ -1598,16 +1489,6 @@
                 event.preventDefault();
             }
         });
-
-        function toggleSongs(elementId, btn) {
-            const el = document.getElementById(elementId);
-            if (el.classList.contains('hidden')) {
-                el.classList.remove('hidden');
-                btn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            } else {
-                el.classList.add('hidden');
-            }
-        }
 
         function openImageModal(src) {
             const modal = document.getElementById('image-modal');
@@ -1623,33 +1504,39 @@
             modal.classList.remove('flex');
         }
 
-        // Interações apenas da nova seção "toró de ideias" e "sintonia".
-        function toggleToroVideo(video) {
-            if (video.paused || video.ended) {
-                document.querySelectorAll('.toro-video').forEach(other => {
-                    if (other !== video) other.pause();
-                });
-                const playback = video.play();
-                if (playback && typeof playback.catch === 'function') {
-                    playback.catch(() => updateToroVideoState(video));
-                }
-            } else {
-                video.pause();
+        // Script do botão de reprodução do audiolivro
+        function playAudiobook(btn, forcePause = false) {
+            const audio = document.getElementById('audiobook-player');
+            const playIcon = btn.querySelector('.play-icon-inner');
+            const bgSpan = btn.querySelector('.audiobook-btn-bg');
+            
+            // Pausar
+            if (!audio.paused || forcePause) {
+                audio.pause();
+                playIcon.innerHTML = `<path d="M8 5v14l11-7z"/>`;
+                playIcon.classList.add('translate-x-0.5');
+                bgSpan.classList.remove('bg-amber-500', 'text-[#0D1927]', 'animate-pulse');
+                bgSpan.classList.add('bg-[#0D1927]/75', 'text-white');
+            } 
+            // Dar Play
+            else {
+                audio.play().catch(e => console.log('Áudio bloqueado:', e));
+                playIcon.innerHTML = `<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>`; // Ícone de pause
+                playIcon.classList.remove('translate-x-0.5');
+                bgSpan.classList.remove('bg-[#0D1927]/75', 'text-white');
+                bgSpan.classList.add('bg-amber-500', 'text-[#0D1927]', 'animate-pulse');
             }
+            
+            // Quando a música acabar de tocar
+            audio.onended = () => {
+                playIcon.innerHTML = `<path d="M8 5v14l11-7z"/>`;
+                playIcon.classList.add('translate-x-0.5');
+                bgSpan.classList.remove('bg-amber-500', 'text-[#0D1927]', 'animate-pulse');
+                bgSpan.classList.add('bg-[#0D1927]/75', 'text-white');
+            };
         }
 
-        function handleToroVideoKey(event, video) {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                toggleToroVideo(video);
-            }
-        }
-
-        function updateToroVideoState(video) {
-            const item = video.closest('.toro-video-item');
-            if (item) item.classList.toggle('is-playing', !video.paused && !video.ended);
-        }
-
+        // Interações da nova seção "toró de ideias".
         function toroCurrentIndex() {
             const track = document.getElementById('toro-track');
             if (!track || track.clientWidth === 0) return 0;
@@ -1664,10 +1551,14 @@
             if (pos) pos.textContent = `${current + 1} / 3`;
             if (prev) prev.disabled = current === 0;
             if (next) next.disabled = current === 2;
+            
+            // Pausa o audiolivro se a pessoa arrastar o carrossel no celular para longe do slide 2
             if (window.innerWidth < 768) {
-                document.querySelectorAll('.toro-video-item').forEach((item, index) => {
-                    if (index !== current) item.querySelector('video').pause();
-                });
+                const audio = document.getElementById('audiobook-player');
+                if (audio && !audio.paused && current !== 2) { 
+                    const btn = document.querySelector('[aria-label="reproduzir audiolivro"]');
+                    if (btn) playAudiobook(btn, true); 
+                }
             }
         }
 
