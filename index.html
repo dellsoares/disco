@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+<html lang="pt-BR"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>o disco antes do disco</title>
@@ -18,8 +17,8 @@
     <!-- Tipografia Nourd + Fallback Plus Jakarta Sans -->
     <link href="https://fonts.cdnfonts.com/css/nourd" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -257,15 +256,34 @@
 @media(prefers-reduced-motion:reduce){#souvenirs .sv-card,#souvenirs .sv-cta,#souvenirs .sv-link{transition:none;}}
 
 </style>
-</head>
+<style id="rm-style">
+/* mini menu do rodapé, isolado do resto do site */
+#rodape-mini-menu { width:100%; max-width:920px; margin:8px auto 0; padding:20px 16px 0; border-top:1px solid rgba(255,223,164,.22); font-family:'Nourd','Plus Jakarta Sans',sans-serif; }
+#rodape-mini-menu .rm-links { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:9px 11px; }
+#rodape-mini-menu button,#rodape-mini-menu a { -webkit-tap-highlight-color:transparent; background:none; color:#dfcba8; padding:9px 11px; border:1px solid transparent; border-radius:8px; cursor:pointer; text-decoration:none; text-transform:lowercase; font-family:inherit; font-weight:650; letter-spacing:.015em; font-size:12px; line-height:1.45; transition:color .18s,background .18s,border-color .18s; }
+#rodape-mini-menu button:hover,#rodape-mini-menu a:hover,#rodape-mini-menu button:focus-visible,#rodape-mini-menu a:focus-visible { background:rgba(228,179,96,.12); border-color:rgba(242,206,140,.45); color:#ffe3ad; outline:0; }
+#rm-dialog[hidden] { display:none !important; }
+#rm-dialog { position:fixed; inset:0; z-index:2147483500; display:flex; align-items:center; justify-content:center; padding:20px; background:rgba(3,7,13,.86); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); font-family:'Nourd','Plus Jakarta Sans',sans-serif; text-transform:lowercase; }
+#rm-dialog *,#rodape-mini-menu * { box-sizing:border-box; }
+#rm-dialog .rm-card { position:relative; width:min(520px,100%); max-height:calc(100dvh - 40px); overflow:auto; padding:clamp(24px,5vw,40px); background:linear-gradient(155deg,#182b3a,#081521); border:1px solid rgba(235,192,120,.6); border-radius:14px; box-shadow:0 25px 100px rgba(0,0,0,.75); color:#eee4d0; }
+#rm-dialog .rm-card:before { content:'☾  ✦  ☽'; display:block; color:#dfba81; text-align:center; letter-spacing:1.1em; font-size:15px; margin-bottom:12px; }
+#rm-dialog #rm-title { color:#f5dca6; font-size:clamp(23px,5vw,31px); font-weight:750; text-align:center; margin:0 22px 19px; letter-spacing:-.02em; }
+#rm-dialog #rm-content { color:#e8ddc8; line-height:1.8; font-size:15px; font-weight:450; overflow-wrap:anywhere; }
+#rm-dialog #rm-content p { margin:0 0 12px; }
+#rm-dialog #rm-content .rm-map { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+#rm-dialog #rm-content .rm-map a { display:block; background:rgba(255,255,255,.045); padding:12px; border:1px solid rgba(226,187,118,.33); border-radius:8px; color:#ffe0ab; text-decoration:none; font-weight:650; }
+#rm-dialog #rm-content .rm-map a:hover,#rm-dialog #rm-content .rm-map a:focus-visible { background:rgba(242,197,112,.15); }
+#rm-dialog .rm-close { position:absolute; top:12px; right:12px; min-height:38px; padding:7px 11px; border:1px solid rgba(255,217,155,.45); border-radius:7px; background:rgba(255,255,255,.07); color:#fff3d9; font:650 12px 'Nourd','Plus Jakarta Sans',sans-serif; cursor:pointer; }
+#rm-dialog .rm-close:hover,#rm-dialog .rm-close:focus-visible { background:rgba(255,255,255,.16); outline:2px solid #f6d491; outline-offset:2px; }
+@media(max-width:540px){ #rodape-mini-menu { padding-inline:0; } #rodape-mini-menu .rm-links { gap:2px 7px; } #rodape-mini-menu button,#rodape-mini-menu a { font-size:11px; padding:10px 6px; } #rm-dialog { padding:12px; } #rm-dialog .rm-card { max-height:calc(100dvh - 24px); } #rm-dialog #rm-content .rm-map { grid-template-columns:1fr; } }
+@media(prefers-reduced-motion:reduce){ #rodape-mini-menu button,#rodape-mini-menu a { transition:none; } }
+</style></head>
 <body class="bg-[#0D1927] min-h-screen antialiased selection:bg-amber-500/30 selection:text-amber-200 lowercase-all">
 
     <!-- BOTÃO FLUTUANTE WHATSAPP (AMARELO) -->
-    <a id="whatsapp-float" href="https://api.whatsapp.com/send?phone=5531983073854&text=Vim%20do%20site%20pra%20falar%20de%20m%C3%BAsica." target="_blank" rel="noopener noreferrer"
-       class="fixed bottom-6 right-6 z-50 bg-amber-400 hover:bg-amber-300 text-[#0D1927] p-4 rounded-full shadow-[0_10px_25px_rgba(251,191,36,0.4)] border border-[#0D1927]/20 transition-all duration-300 flex items-center justify-center hover:scale-110 opacity-100 pointer-events-auto"
-       title="falar no whatsapp">
+    <a id="whatsapp-float" href="https://api.whatsapp.com/send?phone=5531983073854&amp;text=Vim%20do%20site%20pra%20falar%20de%20m%C3%BAsica." target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 bg-amber-400 hover:bg-amber-300 text-[#0D1927] p-4 rounded-full shadow-[0_10px_25px_rgba(251,191,36,0.4)] border border-[#0D1927]/20 transition-all duration-300 flex items-center justify-center hover:scale-110 opacity-100 pointer-events-auto" title="falar no whatsapp">
         <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path>
         </svg>
     </a>
 
@@ -273,19 +291,13 @@
     <header class="fixed top-0 w-full z-50 pointer-events-none px-5 py-4 bg-[#0D1927]">
         <div class="w-full max-w-6xl mx-auto relative flex items-center justify-end">
             <a href="#inicio" class="absolute left-1/2 -translate-x-1/2 pointer-events-auto transition-transform hover:scale-105 flex items-center mt-1">
-                <img
-                    src="https://raw.githubusercontent.com/dellsoares/disco/a4ffcb42bf04fe35332345174b80689b07f38741/logo%20wendell.png"
-                    alt="logo wendell soares"
-                    class="w-[15vw] min-w-[110px] max-w-[200px] h-auto object-contain drop-shadow-xl opacity-90 hover:opacity-100 transition-opacity"
-                />
+                <img src="https://raw.githubusercontent.com/dellsoares/disco/a4ffcb42bf04fe35332345174b80689b07f38741/logo%20wendell.png" alt="logo wendell soares" class="w-[15vw] min-w-[110px] max-w-[200px] h-auto object-contain drop-shadow-xl opacity-90 hover:opacity-100 transition-opacity">
             </a>
 
             <div class="relative pointer-events-auto z-10">
-                <button type="button"
-                onclick="toggleMenu()"
-                class="bg-[#0D1927] hover:bg-amber-400 hover:text-[#0D1927] text-white p-2.5 rounded-md border border-white/20 shadow-2xl transition-all flex items-center justify-center gap-2 px-4">
+                <button type="button" onclick="toggleMenu()" class="bg-[#0D1927] hover:bg-amber-400 hover:text-[#0D1927] text-white p-2.5 rounded-md border border-white/20 shadow-2xl transition-all flex items-center justify-center gap-2 px-4">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
                 <span class="text-xs font-semibold tracking-wider">menu</span>
                 </button>
@@ -320,21 +332,8 @@
                 <div class="w-full lg:w-5/12 flex justify-center order-1 lg:order-1">
                     <div class="relative w-full max-w-[300px] sm:max-w-[330px] aspect-[9/16] rounded-lg p-1.5 bg-gradient-to-b from-white/15 via-white/5 to-transparent shadow-[0_25px_60px_-15px_rgba(0,0,0,0.75)]">
                         <div id="video-wrapper" class="relative w-full h-full rounded-lg overflow-hidden bg-[#070E17] border border-white/10">
-                            <div
-                                id="video-cover"
-                                onclick="openYoutubeFrame()"
-                                role="button"
-                                tabindex="0"
-                                onkeydown="if(event.key === 'Enter' || event.key === ' ') openYoutubeFrame()"
-                                aria-label="reproduzir vídeo o disco antes do disco"
-                                class="w-full h-full relative cursor-pointer group select-none">
-                                <img
-                                    id="cover-image"
-                                    src="https://i.ytimg.com/vi/aQ4F4GDqd1Q/maxresdefault.jpg"
-                                    onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/aQ4F4GDqd1Q/hqdefault.jpg';"
-                                    alt="capa do vídeo"
-                                    class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
-                                />
+                            <div id="video-cover" onclick="openYoutubeFrame()" role="button" tabindex="0" onkeydown="if(event.key === 'Enter' || event.key === ' ') openYoutubeFrame()" aria-label="reproduzir vídeo o disco antes do disco" class="w-full h-full relative cursor-pointer group select-none">
+                                <img id="cover-image" src="https://i.ytimg.com/vi/aQ4F4GDqd1Q/maxresdefault.jpg" onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/aQ4F4GDqd1Q/hqdefault.jpg';" alt="capa do vídeo" class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100">
                                 <div class="absolute inset-0 bg-gradient-to-t from-[#0D1927] via-[#0D1927]/30 to-black/30 opacity-85 group-hover:opacity-65 transition-opacity duration-300"></div>
                                 <div class="absolute top-4 left-4 flex items-center gap-2 bg-[#0D1927]/85 backdrop-blur-md px-3 py-1.5 rounded-md border border-white/10">
                                     <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
@@ -345,7 +344,7 @@
                                         <div class="w-20 h-20 rounded-full bg-amber-400/25 play-ring absolute"></div>
                                         <div class="w-16 h-16 rounded-full bg-[#0D1927]/85 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-2xl group-hover:bg-amber-500 group-hover:border-amber-300 group-hover:text-[#0D1927] text-white group-hover:scale-110 transition-all duration-300">
                                             <svg class="w-7 h-7 translate-x-0.5 fill-current" viewBox="0 0 24 24">
-                                                <path d="M8 5v14l11-7z"/>
+                                                <path d="M8 5v14l11-7z"></path>
                                             </svg>
                                         </div>
                                     </div>
@@ -388,38 +387,38 @@
                 <div class="animate-marquee flex items-center gap-12 sm:gap-16">
                     <!-- bloco 1 -->
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" stroke-linejoin="round"/></svg><span>luas</span>
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" stroke-linejoin="round"></path></svg><span>luas</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
                         <span>•</span><span>junhos</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M7 2v6M17 2v6M3 10h18M7 14h3M13 14h3M7 18h3"/></svg><span>junhos</span>
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5"></rect><path d="M7 2v6M17 2v6M3 10h18M7 14h3M13 14h3M7 18h3"></path></svg><span>junhos</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
                         <span>•</span><span>rodas-gigantes</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="10" r="8"/><circle cx="12" cy="10" r="1.5"/><path d="M12 2v6.5M12 11.5v6.5M4 10h6.5M13.5 10H20M6.3 4.3l4.7 4.7M13 11l4.7 4.7M17.7 4.3L13 9M11 11l-4.7 4.7M9 18l-2 4M15 18l2 4M6 22h12"/></svg><span>rodas-gigantes</span>
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="10" r="8"></circle><circle cx="12" cy="10" r="1.5"></circle><path d="M12 2v6.5M12 11.5v6.5M4 10h6.5M13.5 10H20M6.3 4.3l4.7 4.7M13 11l4.7 4.7M17.7 4.3L13 9M11 11l-4.7 4.7M9 18l-2 4M15 18l2 4M6 22h12"></path></svg><span>rodas-gigantes</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
                         <span>•</span><span>wendell soares</span>
                     </div>
                     <!-- bloco 2 -->
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" stroke-linejoin="round"/></svg><span>luas</span>
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" stroke-linejoin="round"></path></svg><span>luas</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
                         <span>•</span><span>junhos</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M7 2v6M17 2v6M3 10h18M7 14h3M13 14h3M7 18h3"/></svg><span>junhos</span>
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5"></rect><path d="M7 2v6M17 2v6M3 10h18M7 14h3M13 14h3M7 18h3"></path></svg><span>junhos</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
                         <span>•</span><span>rodas-gigantes</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="10" r="8"/><circle cx="12" cy="10" r="1.5"/><path d="M12 2v6.5M12 11.5v6.5M4 10h6.5M13.5 10H20M6.3 4.3l4.7 4.7M13 11l4.7 4.7M17.7 4.3L13 9M11 11l-4.7 4.7M9 18l-2 4M15 18l2 4M6 22h12"/></svg><span>rodas-gigantes</span>
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="10" r="8"></circle><circle cx="12" cy="10" r="1.5"></circle><path d="M12 2v6.5M12 11.5v6.5M4 10h6.5M13.5 10H20M6.3 4.3l4.7 4.7M13 11l4.7 4.7M17.7 4.3L13 9M11 11l-4.7 4.7M9 18l-2 4M15 18l2 4M6 22h12"></path></svg><span>rodas-gigantes</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
                         <span>•</span><span>wendell soares</span>
@@ -455,7 +454,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-center">
                 <!-- espaço 1: luas -->
                 <div class="w-full relative shadow-[0_20px_50px_-12px_rgba(13,25,39,0.6)] rounded-[12px] overflow-hidden bg-[#1D2A33]">
-                    <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2314650207&color=%232b241f&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: 'Nourd','Plus Jakarta Sans',sans-serif;font-weight: 100;"><a href="https://soundcloud.com/dellsoares" title="Wendell Soares" target="_blank" style="color: #cccccc; text-decoration: none;">Wendell Soares</a> · <a href="https://soundcloud.com/dellsoares/sets/luas" title="Luas" target="_blank" style="color: #cccccc; text-decoration: none;">Luas</a></div>
+                    <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2314650207&amp;color=%232b241f&amp;auto_play=false&amp;hide_related=false&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=false"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: 'Nourd','Plus Jakarta Sans',sans-serif;font-weight: 100;"><a href="https://soundcloud.com/dellsoares" title="Wendell Soares" target="_blank" style="color: #cccccc; text-decoration: none;">Wendell Soares</a> · <a href="https://soundcloud.com/dellsoares/sets/luas" title="Luas" target="_blank" style="color: #cccccc; text-decoration: none;">Luas</a></div>
                 </div>
 
                 <!-- espaço 2: junhos (capa até 1/11 às 11h, horário de Brasília) -->
@@ -475,27 +474,15 @@
                                     <p class="text-xs text-slate-200/90">parte ii • pré-save</p>
                                 </div>
                                 <div class="flex flex-col gap-1.5">
-                                    <button
-                                        type="button"
-                                        onclick="openEpFrame(2, 'https://distrokid.com/hyperfollow/wendellsoares/junhos', 'junhos')"
-                                        class="w-full py-2.5 px-3 rounded-md bg-[#0D1927]/80 hover:bg-amber-400 hover:text-[#0D1927] text-white backdrop-blur-md border border-white/20 font-semibold text-xs tracking-wider transition-all flex items-center justify-center gap-1.5">
-                                        <span>abrir aqui</span>
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                        </svg>
-                                    </button>
-                                    <a href="https://distrokid.com/hyperfollow/wendellsoares/junhos" target="_blank" rel="noopener noreferrer"
-                                       class="w-full py-1 text-center text-[11px] text-white/85 hover:text-amber-300 underline underline-offset-4 transition-colors">
-                                        abrir hyperfollow ↗
-                                    </a>
+                                    <a href="https://distrokid.com/hyperfollow/wendellsoares/junhos" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-3 rounded-md bg-[#0D1927]/80 hover:bg-amber-400 hover:text-[#0D1927] text-white backdrop-blur-md border border-white/20 font-semibold text-xs tracking-wider transition-all flex items-center justify-center gap-1.5 text-center" aria-label="abrir pré-save de junhos em nova aba" style="text-decoration: none; min-height: 42px;">abrir pré-save ↗</a>
+                                    
                                 </div>
                             </div>
                         </div>
-                        <div id="ep-frame-2" class="hidden absolute inset-0 z-20 w-full h-full bg-[#0D1927]"></div>
+                        
                     </div>
                     <div id="ep-junhos-player" class="hidden">
-                        <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%3Aplaylists%3A2314669623&color=%23959877&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: 'Nourd','Plus Jakarta Sans',sans-serif;font-weight: 100;"><a href="https://soundcloud.com/dellsoares" title="Wendell Soares" target="_blank" style="color: #cccccc; text-decoration: none;">Wendell Soares</a> · <a href="https://soundcloud.com/dellsoares/sets/junhos" title="Junhos" target="_blank" style="color: #cccccc; text-decoration: none;">Junhos</a></div>
+                        <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%3Aplaylists%3A2314669623&amp;color=%23959877&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: 'Nourd','Plus Jakarta Sans',sans-serif;font-weight: 100;"><a href="https://soundcloud.com/dellsoares" title="Wendell Soares" target="_blank" style="color: #cccccc; text-decoration: none;">Wendell Soares</a> · <a href="https://soundcloud.com/dellsoares/sets/junhos" title="Junhos" target="_blank" style="color: #cccccc; text-decoration: none;">Junhos</a></div>
                     </div>
                 </div>
 
@@ -503,12 +490,7 @@
                 <div id="ep-rodas-preview" class="relative w-full aspect-[4/5] rounded-lg p-1.5 bg-gradient-to-b from-white/20 via-white/5 to-transparent shadow-[0_20px_50px_-12px_rgba(13,25,39,0.6)]">
                     <div class="relative w-full h-full rounded-lg overflow-hidden bg-[#1D2A33] border border-white/10">
                         <div id="ep-cover-3" class="w-full h-full p-5 flex flex-col justify-between relative group">
-                            <img
-                                id="img-ep-3"
-                                src="https://raw.githubusercontent.com/dellsoares/disco/98286ca059bcf376bcd6361330cc9ef729389856/rodas-gigantes-14.jpg"
-                                alt="capa rodas-gigantes"
-                                class="absolute inset-0 w-full h-full object-contain object-center transition-transform duration-700 ease-out"
-                            />
+                            <img id="img-ep-3" src="https://raw.githubusercontent.com/dellsoares/disco/98286ca059bcf376bcd6361330cc9ef729389856/rodas-gigantes-14.jpg" alt="capa rodas-gigantes" class="absolute inset-0 w-full h-full object-contain object-center transition-transform duration-700 ease-out">
                             <!-- Gradiente restrito ao rodapé, preservando a capa. -->
                             <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to top, rgba(13,25,39,0.95) 0%, rgba(13,25,39,0.50) 27%, transparent 55%);"></div>
 
@@ -525,28 +507,16 @@
                                     <p class="text-xs text-slate-200/90">parte iii • pré-save</p>
                                 </div>
                                 <div class="flex flex-col gap-1.5">
-                                    <button
-                                        type="button"
-                                        onclick="openEpFrame(3, 'https://distrokid.com/hyperfollow/wendellsoares/rodas-gigantes', 'rodas-gigantes')"
-                                        class="w-full py-2.5 px-3 rounded-md bg-[#0D1927]/80 hover:bg-amber-400 hover:text-[#0D1927] text-white backdrop-blur-md border border-white/20 font-semibold text-xs tracking-wider transition-all flex items-center justify-center gap-1.5">
-                                        <span>abrir aqui</span>
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                        </svg>
-                                    </button>
-                                    <a href="https://distrokid.com/hyperfollow/wendellsoares/rodas-gigantes" target="_blank" rel="noopener noreferrer"
-                                       class="w-full py-1 text-center text-[11px] text-white/85 hover:text-amber-300 underline underline-offset-4 transition-colors">
-                                        abrir hyperfollow ↗
-                                    </a>
+                                    <a href="https://distrokid.com/hyperfollow/wendellsoares/rodas-gigantes" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-3 rounded-md bg-[#0D1927]/80 hover:bg-amber-400 hover:text-[#0D1927] text-white backdrop-blur-md border border-white/20 font-semibold text-xs tracking-wider transition-all flex items-center justify-center gap-1.5 text-center" aria-label="abrir pré-save de rodas-gigantes em nova aba" style="text-decoration: none; min-height: 42px;">abrir pré-save ↗</a>
+                                    
                                 </div>
                             </div>
                         </div>
-                        <div id="ep-frame-3" class="hidden w-full h-full relative bg-[#0D1927]"></div>
+                        
                     </div>
                 </div>
                 <div id="ep-rodas-player" class="hidden w-full relative shadow-[0_20px_50px_-12px_rgba(13,25,39,0.6)] rounded-[12px] overflow-hidden bg-[#1D2A33]">
-                    <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2318394048&color=%238d9c9b&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: 'Nourd','Plus Jakarta Sans',sans-serif;font-weight: 100;"><a href="https://soundcloud.com/dellsoares" title="Wendell Soares" target="_blank" style="color: #cccccc; text-decoration: none;">Wendell Soares</a> · <a href="https://soundcloud.com/dellsoares/sets/rodas-gigantes" title="Rodas-gigantes" target="_blank" style="color: #cccccc; text-decoration: none;">Rodas-gigantes</a></div>
+                    <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2318394048&amp;color=%238d9c9b&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: 'Nourd','Plus Jakarta Sans',sans-serif;font-weight: 100;"><a href="https://soundcloud.com/dellsoares" title="Wendell Soares" target="_blank" style="color: #cccccc; text-decoration: none;">Wendell Soares</a> · <a href="https://soundcloud.com/dellsoares/sets/rodas-gigantes" title="Rodas-gigantes" target="_blank" style="color: #cccccc; text-decoration: none;">Rodas-gigantes</a></div>
                 </div>
             </div>
         </div>
@@ -563,13 +533,13 @@
 
             <div class="mt-6 flex justify-center">
                 <div class="w-full max-w-xl">
-                    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4Sofc8lcN5ConZTkAySDR4?utm_source=generator&si=68234d1089484992" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4Sofc8lcN5ConZTkAySDR4?utm_source=generator&amp;si=68234d1089484992" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                 </div>
             </div>
 
             <!-- Playlist do YouTube substituindo os vídeos avulsos -->
             <div class="mt-10 max-w-xl mx-auto aspect-video rounded-lg overflow-hidden border border-white/20 shadow-2xl bg-[#070E17]">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/videoseries?si=JTqqyAVOQSgKN0pD&amp;list=PLLFfFODljo64" title="YouTube playlist player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="w-full h-full"></iframe>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/videoseries?si=JTqqyAVOQSgKN0pD&amp;list=PLLFfFODljo64" title="YouTube playlist player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" class="w-full h-full"></iframe>
             </div>
         </div>
     </section>
@@ -869,7 +839,7 @@
             <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(7,14,23,0.98) 0%,rgba(7,14,23,0.84) 49%,rgba(7,14,23,0.12) 100%)"></div>
             <button id="ep-song-modal-close" type="button" onclick="closeEpSong(true)" aria-label="fechar detalhes" class="absolute top-3 right-3 z-20 bg-[#0D1927]/85 text-white border border-white/30 w-9 h-9 rounded-md flex items-center justify-center">✕</button>
             <!-- coração costurado da faixa 08 de junhos: exibido só após clique na faixa -->
-            <div id="mom-cushion-scene" class="mom-cushion-scene" hidden>
+            <div id="mom-cushion-scene" class="mom-cushion-scene" hidden="">
                 <button id="mom-cushion-button" class="mom-cushion-button" type="button" aria-label="tocar áudio da mãe" aria-pressed="false" onclick="toggleMomCushion()">
                     <img src="https://raw.githubusercontent.com/dellsoares/disco/a221dbe732fd39606f86a8bca1f35ff54b88671c/almofada.png" alt="coração de tecido azul costurado com uma lua dourada" width="320" height="327">
                     <span id="mom-cushion-indicator" class="mom-cushion-indicator" aria-hidden="true">▶</span>
@@ -929,38 +899,38 @@
                 <div class="animate-marquee flex items-center gap-12 sm:gap-16">
                     <!-- bloco 1 -->
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" stroke-linejoin="round"/></svg><span>luas</span>
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" stroke-linejoin="round"></path></svg><span>luas</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
                         <span>•</span><span>junhos</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M7 2v6M17 2v6M3 10h18M7 14h3M13 14h3M7 18h3"/></svg><span>junhos</span>
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5"></rect><path d="M7 2v6M17 2v6M3 10h18M7 14h3M13 14h3M7 18h3"></path></svg><span>junhos</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
                         <span>•</span><span>rodas-gigantes</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="10" r="8"/><circle cx="12" cy="10" r="1.5"/><path d="M12 2v6.5M12 11.5v6.5M4 10h6.5M13.5 10H20M6.3 4.3l4.7 4.7M13 11l4.7 4.7M17.7 4.3L13 9M11 11l-4.7 4.7M9 18l-2 4M15 18l2 4M6 22h12"/></svg><span>rodas-gigantes</span>
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="10" r="8"></circle><circle cx="12" cy="10" r="1.5"></circle><path d="M12 2v6.5M12 11.5v6.5M4 10h6.5M13.5 10H20M6.3 4.3l4.7 4.7M13 11l4.7 4.7M17.7 4.3L13 9M11 11l-4.7 4.7M9 18l-2 4M15 18l2 4M6 22h12"></path></svg><span>rodas-gigantes</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
                         <span>•</span><span>wendell soares</span>
                     </div>
                     <!-- bloco 2 -->
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" stroke-linejoin="round"/></svg><span>luas</span>
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" stroke-linejoin="round"></path></svg><span>luas</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
                         <span>•</span><span>junhos</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M7 2v6M17 2v6M3 10h18M7 14h3M13 14h3M7 18h3"/></svg><span>junhos</span>
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5"></rect><path d="M7 2v6M17 2v6M3 10h18M7 14h3M13 14h3M7 18h3"></path></svg><span>junhos</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
                         <span>•</span><span>rodas-gigantes</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="10" r="8"/><circle cx="12" cy="10" r="1.5"/><path d="M12 2v6.5M12 11.5v6.5M4 10h6.5M13.5 10H20M6.3 4.3l4.7 4.7M13 11l4.7 4.7M17.7 4.3L13 9M11 11l-4.7 4.7M9 18l-2 4M15 18l2 4M6 22h12"/></svg><span>rodas-gigantes</span>
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="10" r="8"></circle><circle cx="12" cy="10" r="1.5"></circle><path d="M12 2v6.5M12 11.5v6.5M4 10h6.5M13.5 10H20M6.3 4.3l4.7 4.7M13 11l4.7 4.7M17.7 4.3L13 9M11 11l-4.7 4.7M9 18l-2 4M15 18l2 4M6 22h12"></path></svg><span>rodas-gigantes</span>
                     </div>
                     <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
                         <span>•</span><span>wendell soares</span>
@@ -1011,7 +981,7 @@
                             <!-- Botão de Play em cima da imagem -->
                             <button type="button" onclick="playAudiobook(this)" aria-label="reproduzir audiolivro" class="absolute inset-0 w-full h-full flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors z-10">
                                 <span class="audiobook-btn-bg w-16 h-16 rounded-full bg-[#0D1927]/75 backdrop-blur-sm border border-white/30 text-white flex items-center justify-center shadow-xl transition-all hover:scale-110">
-                                    <svg class="w-7 h-7 translate-x-0.5 fill-current play-icon-inner" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    <svg class="w-7 h-7 translate-x-0.5 fill-current play-icon-inner" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
                                 </span>
                             </button>
                         </div>
@@ -1022,11 +992,11 @@
                 </div>
                 <div class="md:hidden flex items-center justify-center gap-5 mt-6" aria-label="navegação do carrossel">
                     <button type="button" id="toro-prev" aria-label="vídeo anterior" onclick="moveToroCarousel(-1)" class="w-11 h-11 flex items-center justify-center rounded-md bg-[#1D2A33] text-[#DECBA4] hover:bg-[#2B3D48] disabled:opacity-35 disabled:cursor-not-allowed transition-all">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 18l-6-6 6-6"/></svg>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 18l-6-6 6-6"></path></svg>
                     </button>
                     <span id="toro-position" aria-live="polite" class="text-xs font-semibold tracking-[0.18em] text-[#1D2A33]/85">1 / 3</span>
                     <button type="button" id="toro-next" aria-label="próximo vídeo" onclick="moveToroCarousel(1)" class="w-11 h-11 flex items-center justify-center rounded-md bg-[#1D2A33] text-[#DECBA4] hover:bg-[#2B3D48] disabled:opacity-35 disabled:cursor-not-allowed transition-all">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 18l6-6-6-6"/></svg>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 18l6-6-6-6"></path></svg>
                     </button>
                 </div>
             </div>
@@ -1064,7 +1034,7 @@
                         <button type="button" onclick="toggleAccordion(this)" class="group relative w-full flex items-center justify-between gap-3 px-4 py-4 rounded-lg shadow-md bg-[#1D2A33] border border-white/10 hover:border-amber-400/50 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left focus:outline-none">
                             <span class="text-sm sm:text-base font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug pr-2">você pretende começar a tocar isso ao vivo?</span>
                             <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-md bg-[#0D1927]/50 text-amber-400 font-bold border border-white/5 group-hover:bg-amber-400 group-hover:text-[#0D1927] transition-colors">
-                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                             </span>
                         </button>
                         <div class="accordion-panel hidden px-5 py-4 mt-2 bg-[#070E17]/80 border border-white/5 rounded-lg text-sm sm:text-base text-slate-200/90 leading-relaxed">
@@ -1077,7 +1047,7 @@
                         <button type="button" onclick="toggleAccordion(this)" class="group relative w-full flex items-center justify-between gap-3 px-4 py-4 rounded-lg shadow-md bg-[#1D2A33] border border-white/10 hover:border-amber-400/50 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left focus:outline-none">
                             <span class="text-sm sm:text-base font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug pr-2">quais são suas influências?</span>
                             <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-md bg-[#0D1927]/50 text-amber-400 font-bold border border-white/5 group-hover:bg-amber-400 group-hover:text-[#0D1927] transition-colors">
-                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                             </span>
                         </button>
                         <div class="accordion-panel hidden px-5 py-4 mt-2 bg-[#070E17]/80 border border-white/5 rounded-lg text-sm sm:text-base text-slate-200/90 leading-relaxed">
@@ -1090,7 +1060,7 @@
                         <button type="button" onclick="toggleAccordion(this)" class="group relative w-full flex items-center justify-between gap-3 px-4 py-4 rounded-lg shadow-md bg-[#1D2A33] border border-white/10 hover:border-amber-400/50 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left focus:outline-none">
                             <span class="text-sm sm:text-base font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug pr-2">se pudesse escolher 3 canções pra apresentar seu trabalho, quais seriam?</span>
                             <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-md bg-[#0D1927]/50 text-amber-400 font-bold border border-white/5 group-hover:bg-amber-400 group-hover:text-[#0D1927] transition-colors">
-                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                             </span>
                         </button>
                         <div class="accordion-panel hidden px-5 py-4 mt-2 bg-[#070E17]/80 border border-white/5 rounded-lg text-sm sm:text-base text-slate-200/90 leading-relaxed">
@@ -1103,7 +1073,7 @@
                         <button type="button" onclick="toggleAccordion(this)" class="group relative w-full flex items-center justify-between gap-3 px-4 py-4 rounded-lg shadow-md bg-[#1D2A33] border border-white/10 hover:border-amber-400/50 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left focus:outline-none">
                             <span class="text-sm sm:text-base font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug pr-2">quais discos ouviu e que acha que inspirou diretamente seu trabalho?</span>
                             <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-md bg-[#0D1927]/50 text-amber-400 font-bold border border-white/5 group-hover:bg-amber-400 group-hover:text-[#0D1927] transition-colors">
-                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                             </span>
                         </button>
                         <div class="accordion-panel hidden px-5 py-4 mt-2 bg-[#070E17]/80 border border-white/5 rounded-lg text-sm sm:text-base text-slate-200/90 leading-relaxed">
@@ -1116,7 +1086,7 @@
                         <button type="button" onclick="toggleAccordion(this)" class="group relative w-full flex items-center justify-between gap-3 px-4 py-4 rounded-lg shadow-md bg-[#1D2A33] border border-white/10 hover:border-amber-400/50 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left focus:outline-none">
                             <span class="text-sm sm:text-base font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug pr-2">como você define o som que faz?</span>
                             <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-md bg-[#0D1927]/50 text-amber-400 font-bold border border-white/5 group-hover:bg-amber-400 group-hover:text-[#0D1927] transition-colors">
-                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                             </span>
                         </button>
                         <div class="accordion-panel hidden px-5 py-4 mt-2 bg-[#070E17]/80 border border-white/5 rounded-lg text-sm sm:text-base text-slate-200/90 leading-relaxed">
@@ -1129,7 +1099,7 @@
                         <button type="button" onclick="toggleAccordion(this)" class="group relative w-full flex items-center justify-between gap-3 px-4 py-4 rounded-lg shadow-md bg-[#1D2A33] border border-white/10 hover:border-amber-400/50 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left focus:outline-none">
                             <span class="text-sm sm:text-base font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug pr-2">quem gostaria de ver gravando suas canções?</span>
                             <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-md bg-[#0D1927]/50 text-amber-400 font-bold border border-white/5 group-hover:bg-amber-400 group-hover:text-[#0D1927] transition-colors">
-                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                             </span>
                         </button>
                         <div class="accordion-panel hidden px-5 py-4 mt-2 bg-[#070E17]/80 border border-white/5 rounded-lg text-sm sm:text-base text-slate-200/90 leading-relaxed">
@@ -1142,7 +1112,7 @@
                         <button type="button" onclick="toggleAccordion(this)" class="group relative w-full flex items-center justify-between gap-3 px-4 py-4 rounded-lg shadow-md bg-[#1D2A33] border border-white/10 hover:border-amber-400/50 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left focus:outline-none">
                             <span class="text-sm sm:text-base font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug pr-2">com quem gostaria de gravar junto?</span>
                             <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-md bg-[#0D1927]/50 text-amber-400 font-bold border border-white/5 group-hover:bg-amber-400 group-hover:text-[#0D1927] transition-colors">
-                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                             </span>
                         </button>
                         <div class="accordion-panel hidden px-5 py-4 mt-2 bg-[#070E17]/80 border border-white/5 rounded-lg text-sm sm:text-base text-slate-200/90 leading-relaxed">
@@ -1197,21 +1167,9 @@
                 </p>
 
                 <div class="max-w-xl mx-auto aspect-video rounded-lg overflow-hidden border border-white/20 shadow-2xl bg-[#070E17] relative">
-                    <div
-                        id="footer-video-cover"
-                        onclick="openFooterYoutubeFrame()"
-                        role="button"
-                        tabindex="0"
-                        onkeydown="if(event.key === 'Enter' || event.key === ' ') openFooterYoutubeFrame()"
-                        aria-label="reproduzir primeira prévia clipe"
-                        class="w-full h-full relative cursor-pointer group select-none">
+                    <div id="footer-video-cover" onclick="openFooterYoutubeFrame()" role="button" tabindex="0" onkeydown="if(event.key === 'Enter' || event.key === ' ') openFooterYoutubeFrame()" aria-label="reproduzir primeira prévia clipe" class="w-full h-full relative cursor-pointer group select-none">
 
-                        <img
-                            src="https://raw.githubusercontent.com/dellsoares/disco/1a5c5d21f812adb6152eb32091b445502b4f0f8d/capa_spoiler.jpeg"
-                            onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/HtC9aW9MGcc/hqdefault.jpg';"
-                            alt="capa do clipe"
-                            class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
-                        />
+                        <img src="https://raw.githubusercontent.com/dellsoares/disco/1a5c5d21f812adb6152eb32091b445502b4f0f8d/capa_spoiler.jpeg" onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/HtC9aW9MGcc/hqdefault.jpg';" alt="capa do clipe" class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0D1927] via-[#0D1927]/30 to-black/30 opacity-85 group-hover:opacity-65 transition-opacity duration-300"></div>
                         <div class="absolute top-4 left-4 flex items-center gap-2 bg-[#0D1927]/85 backdrop-blur-md px-3 py-1.5 rounded-md border border-white/10">
                             <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
@@ -1222,7 +1180,7 @@
                                 <div class="w-20 h-20 rounded-full bg-amber-400/25 play-ring absolute"></div>
                                 <div class="w-16 h-16 rounded-full bg-[#0D1927]/85 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-2xl group-hover:bg-amber-500 group-hover:border-amber-300 group-hover:text-[#0D1927] text-white group-hover:scale-110 transition-all duration-300">
                                     <svg class="w-7 h-7 translate-x-0.5 fill-current" viewBox="0 0 24 24">
-                                        <path d="M8 5v14l11-7z"/>
+                                        <path d="M8 5v14l11-7z"></path>
                                     </svg>
                                 </div>
                             </div>
@@ -1241,17 +1199,13 @@
     <footer class="bg-[#070E17] py-12 px-5 border-t border-white/10 text-center flex flex-col items-center justify-center gap-6">
         
         <a href="#inicio" class="transition-transform hover:scale-105 flex items-center mt-2">
-            <img
-                src="https://raw.githubusercontent.com/dellsoares/disco/62aab20d43d94f72eb784eb8ab37ca32952f6396/logo%20wendell.png"
-                alt="logo wendell soares"
-                class="w-[15vw] min-w-[110px] max-w-[200px] h-auto object-contain opacity-75 hover:opacity-100 transition-opacity"
-            />
+            <img src="https://raw.githubusercontent.com/dellsoares/disco/62aab20d43d94f72eb784eb8ab37ca32952f6396/logo%20wendell.png" alt="logo wendell soares" class="w-[15vw] min-w-[110px] max-w-[200px] h-auto object-contain opacity-75 hover:opacity-100 transition-opacity">
         </a>
 
         <p class="text-white/40 text-[10px] tracking-[0.15em] lowercase mt-2">
             todos os direitos reservados pra sabe-se lá quem e porquê
         </p>
-    </footer>
+    <nav id="rodape-mini-menu" aria-label="minimenu de informações"><div class="rm-links"><button type="button" data-rm-open="mapa">mapa do site</button><button type="button" data-rm-open="lgpd">lgpd</button><button type="button" data-rm-open="contato">contato</button><a href="https://raw.githubusercontent.com/dellsoares/disco/3668769fef925d0756cb07d77d4f6f25d549e090/Release%20de%20Imprensa%20_%20Wendell%20Soares%20-%20o%20disco%20antes%20do%20disco.pdf" download="release_wendell_soares.pdf" target="_blank" rel="noopener noreferrer">release pra imprensa ↗</a><a href="https://www.youtube.com/watch?v=OmLX0_T60hg" target="_blank" rel="noopener noreferrer">música favorita do bowie ↗</a></div></nav></footer>
 
     <!-- modal para visualizar imagem original -->
     <div id="image-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4" onclick="closeImageModal()">
@@ -1287,14 +1241,14 @@
             <div id="secret-step-2" class="hidden flex-col gap-4">
                 <h3 class="text-lg font-bold text-amber-300 tracking-tight text-center mb-1">me conta sua opinião</h3>
                 <form id="secret-form" action="https://formspree.io/f/mqppeepl" method="POST" class="flex flex-col gap-3">
-                    <textarea name="mensagem" rows="4" required placeholder="sobre uma canção, uma letra, ou um dos ep's..." class="w-full bg-[#070E17] border border-white/15 rounded-md p-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-amber-400/50 resize-none transition-colors"></textarea>
+                    <textarea name="mensagem" rows="4" required="" placeholder="sobre uma canção, uma letra, ou um dos ep's..." class="w-full bg-[#070E17] border border-white/15 rounded-md p-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-amber-400/50 resize-none transition-colors"></textarea>
                     <input type="text" name="identificacao" placeholder="nome ou @ (opcional)" class="w-full bg-[#070E17] border border-white/15 rounded-md p-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-amber-400/50 transition-colors">
                     
                     <div class="flex items-center gap-3 mt-2">
                         <button type="button" onclick="closeSecretFeedback()" class="py-2.5 px-4 text-xs font-medium text-white/60 hover:text-white transition-colors">cancelar</button>
                         <button type="submit" id="secret-submit-btn" class="flex-1 py-3 text-xs font-bold text-[#0D1927] bg-amber-400 hover:bg-amber-300 rounded-md transition-colors flex justify-center items-center gap-2">
                             <span>enviar</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </button>
                     </div>
                 </form>
@@ -1303,14 +1257,14 @@
             <!-- Step 3: Recompensa -->
             <div id="secret-step-3" class="hidden flex-col items-center text-center gap-5">
                 <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-2">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                 </div>
                 <div>
                     <h3 class="text-xl font-bold text-white tracking-tight mb-2">mensagem enviada!</h3>
                     <p class="text-sm text-slate-200/90 leading-relaxed">muito obrigado pelo seu tempo. conforme prometido, aqui está o seu acesso antecipado:</p>
                 </div>
                 <a href="https://youtu.be/dhZtRUqvtVQ" target="_blank" rel="noopener noreferrer" onclick="closeSecretFeedback()" class="w-full py-3.5 mt-2 text-sm font-bold text-[#0D1927] bg-amber-400 hover:bg-amber-300 rounded-md transition-all shadow-[0_0_20px_rgba(251,191,36,0.4)] flex justify-center items-center gap-2 hover:scale-105">
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path></svg>
                     <span>assistir clipe inédito</span>
                 </a>
             </div>
@@ -1970,6 +1924,75 @@
 })();
 
 </script>
-</body>
-</html>
-```eof
+
+
+```eof<div id="rm-dialog" hidden="" role="presentation"><section class="rm-card" role="dialog" aria-modal="true" aria-labelledby="rm-title" aria-describedby="rm-content"><button type="button" class="rm-close" id="rm-close" aria-label="fechar janela">✕ fechar</button><h2 id="rm-title"></h2><div id="rm-content"></div></section></div><script id="rm-actions">
+(() => {
+  'use strict';
+  const overlay = document.getElementById('rm-dialog');
+  const close = document.getElementById('rm-close');
+  const title = document.getElementById('rm-title');
+  const content = document.getElementById('rm-content');
+  if (!overlay || !close || !title || !content) return;
+  let returnFocus = null, savedOverflow = '';
+  const contentTexts = {
+    lgpd: "este site guarda no seu navegador o nome e o histórico de jogadas da jukebox, para controlar o jogo. se você enviar uma opinião, o texto e a identificação opcional serão recebidos por meio do formspree. players e links externos, como spotify, youtube, soundcloud e whatsapp, seguem suas próprias políticas de privacidade. para solicitar acesso, correção ou exclusão das informações enviadas, use o botão do whatsapp.",
+    contato: "não me contata pra show ainda porque meu irmão tá me enrolando. mas já já tem isso ao vivo. então só contata se for pra prosear sobre as canções, entrevista, enviar nudes - ou pedir e se não for perguntar como eu tô. pra isso, clicar no botão do whatsapp ali na página"
+  };
+  const names = { mapa:'mapa do site', lgpd:'lgpd', contato:'contato' };
+  const navItems = [
+    ['#inicio','início'],['#eps','o ep em três atos'],['#mais-cancoes','mais canções'],
+    ['#por-dentro',"por dentro dos ep's"],['#sintonia','sintonia'],
+    ['#toro','toró de ideias'],['#faq','perguntas'],
+    ['#souvenirs',"souvenirs p'rocês"],['#contato','redes e links']
+  ];
+  function buildMap() {
+    const wrap = document.createElement('nav');
+    wrap.className = 'rm-map';
+    wrap.setAttribute('aria-label','links internos do site');
+    for (const [id,label] of navItems) {
+      if (!document.querySelector(id)) continue;
+      const link = document.createElement('a');
+      link.href = id; link.textContent = label;
+      link.addEventListener('click',()=>closeModal(false));
+      wrap.appendChild(link);
+    }
+    return wrap;
+  }
+  function openModal(kind, trigger) {
+    if (!(kind in names)) return;
+    returnFocus = trigger || document.activeElement;
+    savedOverflow = document.body.style.overflow;
+    title.textContent = names[kind];
+    content.replaceChildren();
+    if (kind === 'mapa') content.appendChild(buildMap());
+    else { const p=document.createElement('p');p.textContent=contentTexts[kind];content.appendChild(p); }
+    overlay.hidden = false;
+    document.body.style.overflow='hidden';
+    close.focus();
+  }
+  function closeModal(restoreFocus=true) {
+    if (overlay.hidden) return;
+    overlay.hidden = true;
+    document.body.style.overflow = savedOverflow;
+    if (restoreFocus && returnFocus && returnFocus.isConnected) returnFocus.focus();
+  }
+  document.querySelectorAll('#rodape-mini-menu [data-rm-open]').forEach(button=>{
+    button.addEventListener('click',()=>openModal(button.dataset.rmOpen,button));
+  });
+  close.addEventListener('click',closeModal);
+  overlay.addEventListener('click',event=>{if(event.target===overlay)closeModal();});
+  document.addEventListener('keydown',event=>{
+    if (overlay.hidden) return;
+    if (event.key==='Escape') {event.preventDefault();closeModal();}
+    if(event.key==='Tab'){
+      const items=Array.from(overlay.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])'))
+        .filter(x=>x.getClientRects().length>0);
+      if(!items.length){event.preventDefault();close.focus();return;}
+      const first=items[0],last=items[items.length-1];
+      if(event.shiftKey && document.activeElement===first){event.preventDefault();last.focus();}
+      else if(!event.shiftKey && document.activeElement===last){event.preventDefault();first.focus();}
+    }
+  });
+})();
+</script></body></html>
