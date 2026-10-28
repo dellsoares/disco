@@ -155,9 +155,62 @@
         @media (max-width: 420px) {
             .ep-song-modal .ep-song-popup { aspect-ratio: 4 / 5; }
         }
+        /* almofada do áudio de mãe: exclusiva da faixa junhos 08; nunca é pop-up automático */
+        #mom-cushion-scene[hidden] { display: none !important; }
+        #mom-cushion-scene {
+            position:absolute; z-index:12; top:clamp(6px,2.6%,15px); left:50%;
+            transform:translateX(-50%); width:min(82%,302px); height:min(65%,285px);
+            pointer-events:none; display:flex; align-items:flex-start; justify-content:center;
+        }
+        #mom-cushion-button {
+            display:block; position:relative; width:100%; max-height:100%; cursor:pointer;
+            appearance:none; padding:0; margin:0; border:0; background:transparent;
+            pointer-events:auto; transform-origin: top center;
+            transform:scale(.5); animation:mom-heart-float 3s ease-in-out infinite;
+            filter:drop-shadow(0 14px 18px rgba(0,0,0,.55));
+        }
+        #mom-cushion-button img {display:block;width:100%;height:auto;max-height:clamp(165px,53vh,280px);object-fit:contain;}
+        #mom-cushion-button.is-playing {
+            transform:scale(1);
+            animation:mom-heart-beat 1.15s ease-in-out infinite;
+            filter:drop-shadow(0 13px 25px rgba(236,177,87,.47));
+        }
+        #mom-cushion-button:focus-visible {outline:3px solid #f7c76e;outline-offset:4px;border-radius:12px;}
+        .mom-cushion-indicator {
+            position:absolute;top:52%;left:50%;transform:translate(-50%,-50%);
+            display:grid;place-items:center;width:53px;height:53px;border-radius:50%;
+            background:rgba(7,14,23,.85); color:#ffe9ae; font-size:21px;
+            border:1px solid rgba(255,223,156,.6);box-shadow:0 8px 22px rgba(0,0,0,.45);
+        }
+        #mom-cushion-button.is-playing .mom-cushion-indicator {opacity:0;}
+        #mom-cushion-scene ~ div:last-child {z-index:13;}
+        .mom-song-actions {display:flex; flex-wrap:wrap;gap:7px; margin-top:12px;align-items:center;}
+        .mom-song-actions button {
+            border:1px solid rgba(255,211,139,.48);background:rgba(5,15,23,.88);
+            color:#ffe4a7;font:inherit;font-size:11px;font-weight:650;
+            border-radius:7px;padding:8px 10px;cursor:pointer;
+        }
+        .mom-song-actions button:hover,.mom-song-actions button:focus-visible {background:rgba(207,157,85,.35);}
+        .mom-song-actions span {color:#d9ceb8;font-size:10px;}
+        @keyframes mom-heart-float {
+            0%,100% {transform:scale(.5) translateY(0)}
+            50% {transform:scale(.5) translateY(-11px)}
+        }
+        @keyframes mom-heart-beat {
+            0%,100% {transform:scale(1)}
+            35% {transform:scale(1.055)}
+            65% {transform:scale(.988)}
+        }
+        @media (max-width:420px){
+            #mom-cushion-scene {top:5%;width:80%;height:56%;}
+            #mom-cushion-button img {max-height:230px;}
+        }
+        @media (prefers-reduced-motion:reduce){
+            #mom-cushion-button {animation:none;transform:scale(.5)}
+            #mom-cushion-button.is-playing {animation:none;transform:scale(1)}
+        }
     </style>
-
-<!-- souvenirs: estilos -->
+<!-- souvenirs: estilos isolados da nova seção -->
 <style id="sv-inline-css">
 /* souvenirs p'rocês | estilos isolados do site principal */
 #souvenirs { position:relative; isolation:isolate; min-width:0; background:#071521; color:#f6e9cd; padding:clamp(62px,8vw,110px) 18px; border-top:1px solid rgba(244,200,123,.19); overflow:hidden; font-family:'Nourd','Plus Jakarta Sans',system-ui,sans-serif; text-transform:lowercase; }
@@ -689,7 +742,7 @@
                                 <span class="text-sm font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug">um retalho, um remendo, um recorte (alfaiataria)</span>
                             </button>
                             <template id="song-desc-junhos-8">
-                                <p>foi a canção mais difícil de chegar a um resultado final porque, trata-se da tal canção que colocamos pra minha mãe <span onclick="playMomAudioInline(this)" class="inline-block cursor-pointer text-amber-400 hover:text-amber-200 animate-pulse hover:animate-none transition-colors text-base mx-0.5 pointer-events-auto" title="ouvir áudio"><span class="play-icon">♡</span></span> ouvir no coma. todas as outras se resumem nela.</p>
+                                <p>foi a canção mais difícil de chegar a um resultado final porque, trata-se da tal canção que colocamos pra minha mãe ouvir no coma. todas as outras se resumem nela.</p>
                             </template>
                         </div>
                         
@@ -804,9 +857,8 @@
                 </div>
             </div>
         </div>
-        
-        
-        <!-- bloco antigo de downloads removido; agora está em souvenirs -->
+
+        <!-- downloads transferidos para souvenirs p'rocês -->
 
     </section>
 
@@ -816,6 +868,14 @@
             <img id="ep-song-modal-image" src="" alt="capa da canção ampliada" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(7,14,23,0.98) 0%,rgba(7,14,23,0.84) 49%,rgba(7,14,23,0.12) 100%)"></div>
             <button id="ep-song-modal-close" type="button" onclick="closeEpSong(true)" aria-label="fechar detalhes" class="absolute top-3 right-3 z-20 bg-[#0D1927]/85 text-white border border-white/30 w-9 h-9 rounded-md flex items-center justify-center">✕</button>
+            <!-- coração costurado da faixa 08 de junhos: exibido só após clique na faixa -->
+            <div id="mom-cushion-scene" class="mom-cushion-scene" hidden>
+                <button id="mom-cushion-button" class="mom-cushion-button" type="button" aria-label="tocar áudio da mãe" aria-pressed="false" onclick="toggleMomCushion()">
+                    <img src="https://raw.githubusercontent.com/dellsoares/disco/a221dbe732fd39606f86a8bca1f35ff54b88671c/almofada.png" alt="coração de tecido azul costurado com uma lua dourada" width="320" height="327">
+                    <span id="mom-cushion-indicator" class="mom-cushion-indicator" aria-hidden="true">▶</span>
+                </button>
+                <span id="mom-cushion-live" class="sr-only" role="status" aria-live="polite"></span>
+            </div>
             <div class="absolute inset-0 flex flex-col justify-end p-5 sm:p-7 text-white min-h-0 pointer-events-none">
                 <div class="max-h-full overflow-y-auto ep-modal-scroll pointer-events-auto">
                     <span id="ep-song-modal-label" class="text-amber-200 text-xs tracking-widest font-semibold"></span>
@@ -1419,33 +1479,50 @@
             }
         }
 
-        // Toca o áudio inline na música 8
-        function playMomAudioInline(btn) {
-            const audio = document.getElementById('mom-audio');
-            const icon = btn.querySelector('.play-icon');
-            
-            if (!audio.paused) {
-                audio.pause();
-                audio.currentTime = 0;
-                icon.innerHTML = '♡';
-                btn.classList.add('animate-pulse');
-                btn.classList.remove('text-emerald-400');
-                btn.classList.add('text-amber-400');
-                return;
-            }
-            
-            audio.play().catch(e => console.log('Áudio bloqueado pelo navegador:', e));
-            icon.innerHTML = '🔊';
-            btn.classList.remove('animate-pulse', 'text-amber-400');
-            btn.classList.add('text-emerald-400');
-            
-            audio.onended = () => {
-                icon.innerHTML = '♡';
-                btn.classList.add('animate-pulse');
-                btn.classList.remove('text-emerald-400');
-                btn.classList.add('text-amber-400');
-            };
+        // áudio da mãe: só a faixa 08 de junhos abre o coração costurado.
+        const motherAudio = () => document.getElementById('mom-audio');
+        const motherScene = () => document.getElementById('mom-cushion-scene');
+        const motherButton = () => document.getElementById('mom-cushion-button');
+        function momCushionState(state) {
+            const btn=motherButton(); const text=document.getElementById('mom-cushion-live');
+            const indicator=document.getElementById('mom-cushion-indicator');
+            if(!btn)return;
+            const playing=state==='playing';
+            btn.classList.toggle('is-playing',playing);
+            btn.setAttribute('aria-pressed',String(playing));
+            btn.setAttribute('aria-label',playing?'pausar áudio da mãe':'tocar áudio da mãe');
+            if(indicator)indicator.textContent=playing?'❚❚':'▶';
+            if(text)text.textContent=playing?'áudio tocando':state==='ended'?'áudio terminado. pode ouvir de novo.':state==='error'?'não foi possível reproduzir o áudio.':'áudio pausado';
         }
+        function stopMomCushion(hide=true) {
+            const audio=motherAudio(),scene=motherScene();
+            if(audio){audio.pause();try{audio.currentTime=0;}catch(e){}}
+            momCushionState('idle');
+            if(scene&&hide)scene.hidden=true;
+        }
+        function startMomCushion(replay=false) {
+            const scene=motherScene(), audio=motherAudio();
+            if(!scene || !audio) return;
+            scene.hidden=false;
+            if(replay || audio.ended){try{audio.currentTime=0;}catch(e){}}
+            // Reproduce only after an actual user click (autoplay restrictions).
+            const p=audio.play();
+            if(p&&typeof p.catch==='function')p.catch(()=>momCushionState('error'));
+        }
+        function toggleMomCushion() {
+            const a=motherAudio(); if(!a)return;
+            if(a.paused){startMomCushion(a.ended);}else{a.pause();}
+        }
+        function exitMomCushion() {
+            stopMomCushion(true);
+            const b=document.getElementById('mom-replay-button'); if(b)b.focus({preventScroll:true});
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const audio=motherAudio(); if(!audio)return;
+            audio.addEventListener('playing',()=>momCushionState('playing'));
+            audio.addEventListener('pause',()=>{if(!audio.ended)momCushionState('idle');});
+            audio.addEventListener('ended',()=>momCushionState('ended'));
+        });
 
         // controle de visibilidade do botão do whatsapp baseado na rolagem
         let scrollTimeout;
@@ -1636,6 +1713,18 @@
                 'faixa ' + String(button.dataset.track).padStart(2, '0') + ' • ' + (button.dataset.ep === 'rodas' ? 'rodas-gigantes' : button.dataset.ep);
             document.getElementById('ep-song-modal-text').innerHTML =
                 document.getElementById('song-desc-' + button.dataset.ep + '-' + button.dataset.track).innerHTML;
+            // No botão da faixa 08, o coração aparece a 50% sobre a imagem e flutua;
+            // ao tocar, cresce para 100% e pulsa durante o áudio.
+            stopMomCushion(true);
+            if (lock && button.dataset.ep === 'junhos' && String(button.dataset.track) === '8') {
+                motherScene().hidden=false;
+                document.getElementById('ep-song-modal-text').insertAdjacentHTML('beforeend', `
+                  <div class="mom-song-actions">
+                    <span>toque no coração para ouvir ♡</span>
+                    <button id="mom-replay-button" type="button" onclick="startMomCushion(true)">↻ ouvir de novo</button>
+                    <button type="button" onclick="exitMomCushion()">✕ sair do áudio</button>
+                  </div>`);
+            }
                 
             modal.classList.remove('hidden');
             modal.classList.add('flex');
@@ -1669,12 +1758,8 @@
             const shouldRestoreFocus = epSongLocked && force;
             epSongLocked = false;
             
-            // Pausa o áudio da mãe se o modal for fechado
-            const audio = document.getElementById('mom-audio');
-            if (audio && !audio.paused) {
-                audio.pause();
-                audio.currentTime = 0;
-            }
+            // Fechar a faixa também encerra o áudio e esconde o coração.
+            stopMomCushion(true);
             
             const modal = document.getElementById('ep-song-modal');
             if (!modal) return;
@@ -1764,8 +1849,7 @@
             updateToroCarousel();
         }
     </script>
-
-<!-- souvenirs: comportamento -->
+<!-- souvenirs: seção injetada após o faq sem alterar as demais seções -->
 <script id="sv-inline-js">
 /* seção de souvenirs para o index atual | sem bibliotecas adicionais */
 (() => {
@@ -1803,11 +1887,12 @@
               <p>pra salvar, imprimir e levar um pedacinho da lua.</p>
               <a class="sv-link" href="${WALLPAPER}" target="_blank" rel="noopener noreferrer">papel de parede hd ↗</a>
               <a class="sv-link" href="${COLORING}" target="_blank" rel="noopener noreferrer" download="livro_para_colorir_wendell_soares.pdf">livro pra colorir ↗</a>
+              <a class="sv-link" href="${TAROT}" target="_blank" rel="noopener noreferrer">tarô lunar ↗</a>
               <div class="sv-divider" aria-hidden="true"></div>
               <h4 class="sv-small-title">cifras</h4>
-              <button class="sv-disabled" type="button" disabled aria-label="baixe aqui, em breve">baixe aqui · em breve</button>
-              <div class="sv-divider" aria-hidden="true"></div>
-              <a class="sv-link" href="${TAROT}" target="_blank" rel="noopener noreferrer">tarô lunar ↗</a>
+              <a class="sv-link" href="https://www.cifraclub.com.br/wendell-soares/" target="_blank" rel="noopener noreferrer">baixe aqui ↗</a>
+              <h4 class="sv-small-title">letras</h4>
+              <a class="sv-link" href="https://www.letras.mus.br/wendell-soares/" target="_blank" rel="noopener noreferrer">veja aqui ↗</a>
             </div>
           </article>
           <article class="sv-card" aria-labelledby="sv-jukebox-title">
