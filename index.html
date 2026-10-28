@@ -58,6 +58,7 @@
             text-transform: lowercase;
         }
 
+        /* Aplicar Nourd também aos controles nativos, sem interferir nos players externos. */
         button, input, select, textarea {
             font-family: 'Nourd', 'Plus Jakarta Sans', sans-serif;
         }
@@ -87,6 +88,15 @@
             display: flex;
             width: 200%;
             animation: marquee 28s linear infinite;
+        }
+
+        .song-line {
+            position: absolute;
+            left: 19px;
+            top: 24px;
+            bottom: 24px;
+            width: 2px;
+            background: rgba(0, 0, 0, 0.15);
         }
 
         @keyframes float-cushion {
@@ -149,7 +159,7 @@
 </head>
 <body class="bg-[#0D1927] min-h-screen antialiased selection:bg-amber-500/30 selection:text-amber-200 lowercase-all">
 
-    <!-- BOTÃO FLUTUANTE WHATSAPP -->
+    <!-- BOTÃO FLUTUANTE WHATSAPP (AMARELO) -->
     <a id="whatsapp-float" href="https://api.whatsapp.com/send?phone=5531983073854&text=Vim%20do%20site%20pra%20falar%20de%20m%C3%BAsica." target="_blank" rel="noopener noreferrer"
        class="fixed bottom-6 right-6 z-50 bg-amber-400 hover:bg-amber-300 text-[#0D1927] p-4 rounded-full shadow-[0_10px_25px_rgba(251,191,36,0.4)] border border-[#0D1927]/20 transition-all duration-300 flex items-center justify-center hover:scale-110 opacity-100 pointer-events-auto"
        title="falar no whatsapp">
@@ -189,6 +199,7 @@
                     <a href="#mais-cancoes" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">mais canções</a>
                     <a href="#por-dentro" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">por dentro dos ep's</a>
                     <a href="#sintonia" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">sintonia</a>
+                    <a href="#faq" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">perguntas</a>
                     <a href="#contato" onclick="toggleMenu()" class="text-white/85 hover:text-amber-300 py-1 transition-colors">redes e links</a>
                 </div>
             </div>
@@ -270,50 +281,52 @@
     </main>
 
     <!-- faixa contínua rodando (marquee) -->
-    <section class="relative w-full bg-[#A6B8B7] text-[#0D1927] py-4 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.3)] rotate-[-0.5deg] scale-[1.02] z-20 mt-6">
-        <div class="flex overflow-hidden whitespace-nowrap select-none">
-            <div class="animate-marquee flex items-center gap-12 sm:gap-16">
-                <!-- bloco 1 -->
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                    <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" stroke-linejoin="round"/></svg><span>luas</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
-                    <span>•</span><span>junhos</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                    <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M7 2v6M17 2v6M3 10h18M7 14h3M13 14h3M7 18h3"/></svg><span>junhos</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
-                    <span>•</span><span>rodas-gigantes</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                    <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="10" r="8"/><circle cx="12" cy="10" r="1.5"/><path d="M12 2v6.5M12 11.5v6.5M4 10h6.5M13.5 10H20M6.3 4.3l4.7 4.7M13 11l4.7 4.7M17.7 4.3L13 9M11 11l-4.7 4.7M9 18l-2 4M15 18l2 4M6 22h12"/></svg><span>rodas-gigantes</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
-                    <span>•</span><span>wendell soares</span>
-                </div>
-                <!-- bloco 2 -->
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                    <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" stroke-linejoin="round"/></svg><span>luas</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
-                    <span>•</span><span>junhos</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                    <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M7 2v6M17 2v6M3 10h18M7 14h3M13 14h3M7 18h3"/></svg><span>junhos</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
-                    <span>•</span><span>rodas-gigantes</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                    <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="10" r="8"/><circle cx="12" cy="10" r="1.5"/><path d="M12 2v6.5M12 11.5v6.5M4 10h6.5M13.5 10H20M6.3 4.3l4.7 4.7M13 11l4.7 4.7M17.7 4.3L13 9M11 11l-4.7 4.7M9 18l-2 4M15 18l2 4M6 22h12"/></svg><span>rodas-gigantes</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
-                    <span>•</span><span>wendell soares</span>
+    <div class="w-full overflow-hidden">
+        <section class="relative w-full bg-[#A6B8B7] text-[#0D1927] py-4 shadow-[0_10px_30px_rgba(0,0,0,0.3)] rotate-[-0.5deg] scale-[1.02] z-20 mt-6">
+            <div class="flex whitespace-nowrap select-none w-full">
+                <div class="animate-marquee flex items-center gap-12 sm:gap-16">
+                    <!-- bloco 1 -->
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" stroke-linejoin="round"/></svg><span>luas</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
+                        <span>•</span><span>junhos</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M7 2v6M17 2v6M3 10h18M7 14h3M13 14h3M7 18h3"/></svg><span>junhos</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
+                        <span>•</span><span>rodas-gigantes</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="10" r="8"/><circle cx="12" cy="10" r="1.5"/><path d="M12 2v6.5M12 11.5v6.5M4 10h6.5M13.5 10H20M6.3 4.3l4.7 4.7M13 11l4.7 4.7M17.7 4.3L13 9M11 11l-4.7 4.7M9 18l-2 4M15 18l2 4M6 22h12"/></svg><span>rodas-gigantes</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
+                        <span>•</span><span>wendell soares</span>
+                    </div>
+                    <!-- bloco 2 -->
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" stroke-linejoin="round"/></svg><span>luas</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
+                        <span>•</span><span>junhos</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M7 2v6M17 2v6M3 10h18M7 14h3M13 14h3M7 18h3"/></svg><span>junhos</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
+                        <span>•</span><span>rodas-gigantes</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="10" r="8"/><circle cx="12" cy="10" r="1.5"/><path d="M12 2v6.5M12 11.5v6.5M4 10h6.5M13.5 10H20M6.3 4.3l4.7 4.7M13 11l4.7 4.7M17.7 4.3L13 9M11 11l-4.7 4.7M9 18l-2 4M15 18l2 4M6 22h12"/></svg><span>rodas-gigantes</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
+                        <span>•</span><span>wendell soares</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <!-- seção 2: o ep em três atos -->
     <section id="eps" class="relative bg-cover bg-center py-16 sm:py-24 px-5 border-t border-white/10 overflow-hidden" style="background-image: url('https://raw.githubusercontent.com/dellsoares/disco/54c18d5a17350e5f5127de4fbe85ac217a7deb29/luas%20fundo.jpg');">
@@ -816,50 +829,52 @@
     </section>
 
     <!-- faixa contínua rodando (marquee) replicada -->
-    <section class="relative w-full bg-[#A6B8B7] text-[#0D1927] py-4 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.3)] rotate-[-0.5deg] scale-[1.02] z-20">
-        <div class="flex overflow-hidden whitespace-nowrap select-none">
-            <div class="animate-marquee flex items-center gap-12 sm:gap-16">
-                <!-- bloco 1 -->
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                    <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" stroke-linejoin="round"/></svg><span>luas</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
-                    <span>•</span><span>junhos</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                    <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M7 2v6M17 2v6M3 10h18M7 14h3M13 14h3M7 18h3"/></svg><span>junhos</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
-                    <span>•</span><span>rodas-gigantes</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                    <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="10" r="8"/><circle cx="12" cy="10" r="1.5"/><path d="M12 2v6.5M12 11.5v6.5M4 10h6.5M13.5 10H20M6.3 4.3l4.7 4.7M13 11l4.7 4.7M17.7 4.3L13 9M11 11l-4.7 4.7M9 18l-2 4M15 18l2 4M6 22h12"/></svg><span>rodas-gigantes</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
-                    <span>•</span><span>wendell soares</span>
-                </div>
-                <!-- bloco 2 -->
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                    <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" stroke-linejoin="round"/></svg><span>luas</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
-                    <span>•</span><span>junhos</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                    <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M7 2v6M17 2v6M3 10h18M7 14h3M13 14h3M7 18h3"/></svg><span>junhos</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
-                    <span>•</span><span>rodas-gigantes</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
-                    <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="10" r="8"/><circle cx="12" cy="10" r="1.5"/><path d="M12 2v6.5M12 11.5v6.5M4 10h6.5M13.5 10H20M6.3 4.3l4.7 4.7M13 11l4.7 4.7M17.7 4.3L13 9M11 11l-4.7 4.7M9 18l-2 4M15 18l2 4M6 22h12"/></svg><span>rodas-gigantes</span>
-                </div>
-                <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
-                    <span>•</span><span>wendell soares</span>
+    <div class="w-full overflow-hidden">
+        <section class="relative w-full bg-[#A6B8B7] text-[#0D1927] py-4 shadow-[0_10px_30px_rgba(0,0,0,0.3)] rotate-[-0.5deg] scale-[1.02] z-20">
+            <div class="flex whitespace-nowrap select-none w-full">
+                <div class="animate-marquee flex items-center gap-12 sm:gap-16">
+                    <!-- bloco 1 -->
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" stroke-linejoin="round"/></svg><span>luas</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
+                        <span>•</span><span>junhos</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M7 2v6M17 2v6M3 10h18M7 14h3M13 14h3M7 18h3"/></svg><span>junhos</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
+                        <span>•</span><span>rodas-gigantes</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="10" r="8"/><circle cx="12" cy="10" r="1.5"/><path d="M12 2v6.5M12 11.5v6.5M4 10h6.5M13.5 10H20M6.3 4.3l4.7 4.7M13 11l4.7 4.7M17.7 4.3L13 9M11 11l-4.7 4.7M9 18l-2 4M15 18l2 4M6 22h12"/></svg><span>rodas-gigantes</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
+                        <span>•</span><span>wendell soares</span>
+                    </div>
+                    <!-- bloco 2 -->
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" stroke-linejoin="round"/></svg><span>luas</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
+                        <span>•</span><span>junhos</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M7 2v6M17 2v6M3 10h18M7 14h3M13 14h3M7 18h3"/></svg><span>junhos</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
+                        <span>•</span><span>rodas-gigantes</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest">
+                        <svg aria-hidden="true" class="w-5 h-5 text-[#243E4A]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="10" r="8"/><circle cx="12" cy="10" r="1.5"/><path d="M12 2v6.5M12 11.5v6.5M4 10h6.5M13.5 10H20M6.3 4.3l4.7 4.7M13 11l4.7 4.7M17.7 4.3L13 9M11 11l-4.7 4.7M9 18l-2 4M15 18l2 4M6 22h12"/></svg><span>rodas-gigantes</span>
+                    </div>
+                    <div class="flex items-center gap-3 font-bold text-sm sm:text-base tracking-widest text-[#435A62]">
+                        <span>•</span><span>wendell soares</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <!-- NOVA SEÇÃO: TORÓ DE IDEIAS / COISAS QUE ESCREVO -->
     <section id="toro-de-ideias" class="relative bg-cover bg-center py-16 sm:py-24 px-5 border-t border-white/10 overflow-hidden" style="background-image: url('https://raw.githubusercontent.com/dellsoares/disco/54c18d5a17350e5f5127de4fbe85ac217a7deb29/luas%20fundo.jpg');">
@@ -872,7 +887,7 @@
                 </div>
                 <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1D2A33] mb-6 leading-tight">coisas que escrevo</h2>
                 <p class="text-base sm:text-lg text-[#1D2A33]/90 font-medium leading-relaxed">
-                    sem data, sem obrigação, você pode me ler no substack. por lá, falo sobre nietzsche e falo sobre (muito) nada. e já tem dois livros da trilogia Anamorismo disponíveis na Amazon. Curte audiolivro? Também tem.
+                    sem data, sem obrigação, você pode me ler no substack. por lá, com maior ou menor uso da poética, falo sobre nietzsche e falo sobre (muito) nada.
                 </p>
             </div>
 
@@ -919,6 +934,128 @@
                     <button type="button" id="toro-next" aria-label="próximo vídeo" onclick="moveToroCarousel(1)" class="w-11 h-11 flex items-center justify-center rounded-md bg-[#1D2A33] text-[#DECBA4] hover:bg-[#2B3D48] disabled:opacity-35 disabled:cursor-not-allowed transition-all">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 18l6-6-6-6"/></svg>
                     </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOVA SEÇÃO: FAQ -->
+    <section id="faq" class="relative bg-cover bg-center py-16 sm:py-24 px-5 border-t border-white/10 overflow-hidden" style="background-image: url('https://raw.githubusercontent.com/dellsoares/disco/b99ce53a52e4b273dae4bca443c67ea438e6ced6/papel%20de%20parede%20hd/o%20ex%C3%ADlio%20no%20espelho.jpg');">
+        <!-- Fundo escurecido -->
+        <div class="absolute inset-0 bg-[#0D1927]/85 pointer-events-none z-0 backdrop-blur-[2px]"></div>
+        
+        <div class="relative z-10 max-w-6xl mx-auto">
+            <div class="max-w-3xl mb-10 sm:mb-14">
+                <div class="inline-flex items-center gap-3 mb-4">
+                    <span class="h-[1px] w-8 bg-amber-400/60"></span>
+                    <span class="text-xs tracking-[0.25em] text-amber-300/80 font-medium">perguntas pouco frequentes</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 leading-tight">respondendo o que ninguém perguntou</h2>
+                <p class="text-base sm:text-lg text-slate-200/90 font-medium leading-relaxed">
+                    aqui, algumas dúvidas (não feitas) mas que eu gostaria que os outros soubessem.
+                </p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
+                <!-- Imagem da FAQ -->
+                <div class="w-full lg:w-1/3 flex justify-center lg:sticky lg:top-24">
+                    <img src="https://raw.githubusercontent.com/dellsoares/disco/main/faqdell.png" alt="faq wendell soares" class="w-full max-w-[250px] lg:max-w-full h-auto object-contain drop-shadow-2xl rounded-lg opacity-90">
+                </div>
+                
+                <!-- Accordion Menu -->
+                <div class="w-full lg:w-2/3 flex flex-col gap-3">
+                    
+                    <!-- Item 1 -->
+                    <div class="min-w-0">
+                        <button type="button" onclick="toggleAccordion(this)" class="group relative w-full flex items-center justify-between gap-3 px-4 py-4 rounded-lg shadow-md bg-[#1D2A33] border border-white/10 hover:border-amber-400/50 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left focus:outline-none">
+                            <span class="text-sm sm:text-base font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug pr-2">você pretende começar a tocar isso ao vivo?</span>
+                            <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-md bg-[#0D1927]/50 text-amber-400 font-bold border border-white/5 group-hover:bg-amber-400 group-hover:text-[#0D1927] transition-colors">
+                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-panel hidden px-5 py-4 mt-2 bg-[#070E17]/80 border border-white/5 rounded-lg text-sm sm:text-base text-slate-200/90 leading-relaxed">
+                            <p>já toco comigo, em casa. mas se diz tocar pros outros, sim. em breve (o breve, no caso, é quando meu irmão decidir que vai tocar tudo comigo).</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="min-w-0">
+                        <button type="button" onclick="toggleAccordion(this)" class="group relative w-full flex items-center justify-between gap-3 px-4 py-4 rounded-lg shadow-md bg-[#1D2A33] border border-white/10 hover:border-amber-400/50 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left focus:outline-none">
+                            <span class="text-sm sm:text-base font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug pr-2">quais são suas influências?</span>
+                            <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-md bg-[#0D1927]/50 text-amber-400 font-bold border border-white/5 group-hover:bg-amber-400 group-hover:text-[#0D1927] transition-colors">
+                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-panel hidden px-5 py-4 mt-2 bg-[#070E17]/80 border border-white/5 rounded-lg text-sm sm:text-base text-slate-200/90 leading-relaxed">
+                            <p>minha mãe, a joni mitchell, o phillip long, o ryan adams, o fagner e o nando reis no álbum letra a. nem sempre nessa ordem. na banda, inclui o gram, o los hermanos, o wallflowers, a alanis morissette, a rita lee.e o david bowie, antes de todo mundo porque deus é bowie o tempo todo.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 3 -->
+                    <div class="min-w-0">
+                        <button type="button" onclick="toggleAccordion(this)" class="group relative w-full flex items-center justify-between gap-3 px-4 py-4 rounded-lg shadow-md bg-[#1D2A33] border border-white/10 hover:border-amber-400/50 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left focus:outline-none">
+                            <span class="text-sm sm:text-base font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug pr-2">se pudesse escolher 3 canções pra apresentar seu trabalho, quais seriam?</span>
+                            <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-md bg-[#0D1927]/50 text-amber-400 font-bold border border-white/5 group-hover:bg-amber-400 group-hover:text-[#0D1927] transition-colors">
+                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-panel hidden px-5 py-4 mt-2 bg-[#070E17]/80 border border-white/5 rounded-lg text-sm sm:text-base text-slate-200/90 leading-relaxed">
+                            <p>um retalho, um remendo, um recorte (alfaiataria), atendendo a pedidos (a única regra) e o vazio também é janela. são as 3 que mais me orgulho de ter feito.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 4 -->
+                    <div class="min-w-0">
+                        <button type="button" onclick="toggleAccordion(this)" class="group relative w-full flex items-center justify-between gap-3 px-4 py-4 rounded-lg shadow-md bg-[#1D2A33] border border-white/10 hover:border-amber-400/50 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left focus:outline-none">
+                            <span class="text-sm sm:text-base font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug pr-2">quais discos ouviu e que acha que inspirou diretamente seu trabalho?</span>
+                            <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-md bg-[#0D1927]/50 text-amber-400 font-bold border border-white/5 group-hover:bg-amber-400 group-hover:text-[#0D1927] transition-colors">
+                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-panel hidden px-5 py-4 mt-2 bg-[#070E17]/80 border border-white/5 rounded-lg text-sm sm:text-base text-slate-200/90 leading-relaxed">
+                            <p>o blue da joni mitchell (claro), gold do ryan adams, manifesto do phillip long, ar do renato teixeira e almir sater, a letra a do nando reis, orfeu do thiago pethit, canções de apartamento do cícero, azul do zimbra e saca la morte de tu vida do esteban tavares.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 5 -->
+                    <div class="min-w-0">
+                        <button type="button" onclick="toggleAccordion(this)" class="group relative w-full flex items-center justify-between gap-3 px-4 py-4 rounded-lg shadow-md bg-[#1D2A33] border border-white/10 hover:border-amber-400/50 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left focus:outline-none">
+                            <span class="text-sm sm:text-base font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug pr-2">como você define o som que faz?</span>
+                            <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-md bg-[#0D1927]/50 text-amber-400 font-bold border border-white/5 group-hover:bg-amber-400 group-hover:text-[#0D1927] transition-colors">
+                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-panel hidden px-5 py-4 mt-2 bg-[#070E17]/80 border border-white/5 rounded-lg text-sm sm:text-base text-slate-200/90 leading-relaxed">
+                            <p>sozinho, é folk, mas quer saber? também é fuck. um grande foda-se pro que parece porque vai parecer um monte de trem e se as pessoas gostarem tá de boa.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 6 -->
+                    <div class="min-w-0">
+                        <button type="button" onclick="toggleAccordion(this)" class="group relative w-full flex items-center justify-between gap-3 px-4 py-4 rounded-lg shadow-md bg-[#1D2A33] border border-white/10 hover:border-amber-400/50 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left focus:outline-none">
+                            <span class="text-sm sm:text-base font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug pr-2">quem gostaria de ver gravando suas canções?</span>
+                            <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-md bg-[#0D1927]/50 text-amber-400 font-bold border border-white/5 group-hover:bg-amber-400 group-hover:text-[#0D1927] transition-colors">
+                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-panel hidden px-5 py-4 mt-2 bg-[#070E17]/80 border border-white/5 rounded-lg text-sm sm:text-base text-slate-200/90 leading-relaxed">
+                            <p>depende. de modo geral, tem coisa que eu arrisco dizer que ficaria lindo com paulinho moska, volver, phillip long, terminal guadalupe, volver, daparte, nenhum de nós ou samuel rosa. especificamente, eu acho que atendendo a pedidos teria uma urgência bonita com o chico chico, tem uma que chama a mesma pequena morte que eu fiz (sem ele saber) pro thiago pethit e eu daria todas as canções pro zimbra ou pro esteban cantar porque foram importantes pra elas existirem.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 7 -->
+                    <div class="min-w-0">
+                        <button type="button" onclick="toggleAccordion(this)" class="group relative w-full flex items-center justify-between gap-3 px-4 py-4 rounded-lg shadow-md bg-[#1D2A33] border border-white/10 hover:border-amber-400/50 hover:shadow-[0_10px_25px_rgba(29,42,51,0.5)] transition-all text-left focus:outline-none">
+                            <span class="text-sm sm:text-base font-semibold text-slate-100 group-hover:text-white transition-colors leading-snug pr-2">com quem gostaria de gravar junto?</span>
+                            <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-md bg-[#0D1927]/50 text-amber-400 font-bold border border-white/5 group-hover:bg-amber-400 group-hover:text-[#0D1927] transition-colors">
+                                <svg class="w-4 h-4 transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-panel hidden px-5 py-4 mt-2 bg-[#070E17]/80 border border-white/5 rounded-lg text-sm sm:text-base text-slate-200/90 leading-relaxed">
+                            <p>com gente possível, talentosa e que admiro. tem o acauã,o ció balbino, o zé luís e o igor breda.</p>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -1199,12 +1336,60 @@
             }
         }
 
+        // Script do botão de reprodução do audiolivro
+        function playAudiobook(btn, forcePause = false) {
+            const audio = document.getElementById('audiobook-player');
+            const playIcon = btn.querySelector('.play-icon-inner');
+            const bgSpan = btn.querySelector('.audiobook-btn-bg');
+            
+            // Pausar
+            if (!audio.paused || forcePause) {
+                audio.pause();
+                playIcon.innerHTML = `<path d="M8 5v14l11-7z"/>`;
+                playIcon.classList.add('translate-x-0.5');
+                bgSpan.classList.remove('bg-amber-500', 'text-[#0D1927]', 'animate-pulse');
+                bgSpan.classList.add('bg-[#0D1927]/75', 'text-white');
+            } 
+            // Dar Play
+            else {
+                audio.play().catch(e => console.log('Áudio bloqueado:', e));
+                playIcon.innerHTML = `<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>`; // Ícone de pause
+                playIcon.classList.remove('translate-x-0.5');
+                bgSpan.classList.remove('bg-[#0D1927]/75', 'text-white');
+                bgSpan.classList.add('bg-amber-500', 'text-[#0D1927]', 'animate-pulse');
+            }
+            
+            // Quando a música acabar de tocar
+            audio.onended = () => {
+                playIcon.innerHTML = `<path d="M8 5v14l11-7z"/>`;
+                playIcon.classList.add('translate-x-0.5');
+                bgSpan.classList.remove('bg-amber-500', 'text-[#0D1927]', 'animate-pulse');
+                bgSpan.classList.add('bg-[#0D1927]/75', 'text-white');
+            };
+        }
+
+        // FAQ Toggle
+        function toggleAccordion(btn) {
+            const panel = btn.nextElementSibling;
+            const icon = btn.querySelector('.accordion-icon');
+            const isClosed = panel.classList.contains('hidden');
+            
+            // Fecha todos
+            document.querySelectorAll('.accordion-panel').forEach(p => p.classList.add('hidden'));
+            document.querySelectorAll('.accordion-icon').forEach(i => i.classList.remove('rotate-180'));
+            
+            // Abre se estava fechado
+            if (isClosed) {
+                panel.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            }
+        }
+
         // Toca o áudio inline na música 8
         function playMomAudioInline(btn) {
             const audio = document.getElementById('mom-audio');
             const icon = btn.querySelector('.play-icon');
             
-            // Se já estiver tocando, a gente pausa (ação de toggle)
             if (!audio.paused) {
                 audio.pause();
                 audio.currentTime = 0;
@@ -1215,9 +1400,7 @@
                 return;
             }
             
-            // Se estiver pausado, dá o play
             audio.play().catch(e => console.log('Áudio bloqueado pelo navegador:', e));
-            
             icon.innerHTML = '🔊';
             btn.classList.remove('animate-pulse', 'text-amber-400');
             btn.classList.add('text-emerald-400');
@@ -1502,38 +1685,6 @@
             const modal = document.getElementById('image-modal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
-        }
-
-        // Script do botão de reprodução do audiolivro
-        function playAudiobook(btn, forcePause = false) {
-            const audio = document.getElementById('audiobook-player');
-            const playIcon = btn.querySelector('.play-icon-inner');
-            const bgSpan = btn.querySelector('.audiobook-btn-bg');
-            
-            // Pausar
-            if (!audio.paused || forcePause) {
-                audio.pause();
-                playIcon.innerHTML = `<path d="M8 5v14l11-7z"/>`;
-                playIcon.classList.add('translate-x-0.5');
-                bgSpan.classList.remove('bg-amber-500', 'text-[#0D1927]', 'animate-pulse');
-                bgSpan.classList.add('bg-[#0D1927]/75', 'text-white');
-            } 
-            // Dar Play
-            else {
-                audio.play().catch(e => console.log('Áudio bloqueado:', e));
-                playIcon.innerHTML = `<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>`; // Ícone de pause
-                playIcon.classList.remove('translate-x-0.5');
-                bgSpan.classList.remove('bg-[#0D1927]/75', 'text-white');
-                bgSpan.classList.add('bg-amber-500', 'text-[#0D1927]', 'animate-pulse');
-            }
-            
-            // Quando a música acabar de tocar
-            audio.onended = () => {
-                playIcon.innerHTML = `<path d="M8 5v14l11-7z"/>`;
-                playIcon.classList.add('translate-x-0.5');
-                bgSpan.classList.remove('bg-amber-500', 'text-[#0D1927]', 'animate-pulse');
-                bgSpan.classList.add('bg-[#0D1927]/75', 'text-white');
-            };
         }
 
         // Interações da nova seção "toró de ideias".
