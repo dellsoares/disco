@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#091927">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self' https:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>jukebox lunar | as tais canções pra lua</title>
+  <link rel="stylesheet" href="game.css">
+  <script src="catalogo.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <svg class="svg-library" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs><clipPath id="moonClip"><circle cx="50" cy="50" r="40"/></clipPath></defs>
+    <symbol id="moon-f" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="42" fill="#f4c984" stroke="#ffebbb" stroke-width="1.8"/>
+      <circle cx="29" cy="32" r="10" fill="#b7814a" opacity=".37"/><circle cx="65" cy="36" r="13" fill="#c18b50" opacity=".34"/>
+      <circle cx="42" cy="65" r="15" fill="#a57445" opacity=".25"/><circle cx="70" cy="69" r="6" fill="#fbdf9c" opacity=".7"/>
+      <circle cx="48" cy="22" r="4" fill="#fff1c6" opacity=".7"/><circle cx="22" cy="54" r="5" fill="#9f7345" opacity=".38"/>
+    </symbol>
+    <symbol id="moon-n" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="42" fill="#17283a" stroke="#d7ad70" stroke-width="2.5"/>
+      <circle cx="50" cy="50" r="35" fill="#0a1929" stroke="#304457" stroke-width="1"/>
+      <path d="M20 70Q43 90 75 66" stroke="#567087" opacity=".54" fill="none" stroke-width="2"/>
+      <circle cx="32" cy="27" r="2" fill="#bca06b" opacity=".58"/><circle cx="74" cy="52" r="1.5" fill="#bca06b" opacity=".44"/>
+    </symbol>
+    <symbol id="moon-c" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="42" fill="#12253b" stroke="#ddbc87" stroke-width="2"/>
+      <g clip-path="url(#moonClip)"><circle cx="50" cy="50" r="40" fill="#f3cb89"/><circle cx="26" cy="50" r="40" fill="#14273b"/></g>
+      <path d="M73 20Q90 47 73 78" fill="none" stroke="#fff2bf" stroke-width="2" opacity=".65"/>
+    </symbol>
+    <symbol id="moon-m" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="42" fill="#12253b" stroke="#ddbc87" stroke-width="2"/>
+      <g clip-path="url(#moonClip)"><circle cx="50" cy="50" r="40" fill="#f3cb89"/><circle cx="74" cy="50" r="40" fill="#14273b"/></g>
+      <path d="M27 20Q10 47 27 78" fill="none" stroke="#fff2bf" stroke-width="2" opacity=".65"/>
+    </symbol>
+  </svg>
+
+  <main class="game" id="gameRoot">
+    <header class="topline">
+      <div class="topline-label">✦ uma jukebox de outro mundo</div>
+      <button id="closeInside" type="button" class="icon-close" aria-label="fechar a jukebox">✕ <span>fechar</span></button>
+    </header>
+
+    <div id="gameContent">
+      <div class="hero">
+        <p class="kicker">edição lunar · vol. 01</p>
+        <h1>as tais canções <i>pra lua</i></h1>
+        <p class="hero-sub">deixe as fases escolherem a trilha sonora da sua noite.</p>
+        <div class="sky-moon" aria-hidden="true"></div>
+      </div>
+
+      <section class="cabinet" aria-labelledby="cabinetTitle">
+        <div class="cabinet-crown" aria-hidden="true"><span>✧</span> ☾ &nbsp; ✦ &nbsp; ● &nbsp; ✦ &nbsp; ☽ <span>✧</span></div>
+        <div class="cabinet-inner">
+          <div class="cabinet-title"><span class="cabinet-ornament">✦</span><h2 id="cabinetTitle">jukebox lunar</h2><span class="cabinet-ornament">✦</span></div>
+          <div class="reels-row">
+            <div class="reels" role="group" aria-label="três rolos de fases da lua">
+              <div class="reel-window" aria-label="rolo 1"><div class="reel-strip" id="reel0"></div></div>
+              <div class="reel-window" aria-label="rolo 2"><div class="reel-strip" id="reel1"></div></div>
+              <div class="reel-window" aria-label="rolo 3"><div class="reel-strip" id="reel2"></div></div>
+              <span class="payline" aria-hidden="true"></span>
+            </div>
+            <button class="lever" id="pullLever" type="button" aria-label="puxar a alavanca para sortear uma canção">
+              <span class="lever-tip" aria-hidden="true"></span>
+              <span class="lever-stem" aria-hidden="true"></span>
+              <span class="lever-socket" aria-hidden="true"></span>
+              <span class="lever-label" aria-hidden="true">puxe</span>
+            </button>
+          </div>
+          <div class="phase-legend" aria-label="fases disponíveis">
+            <span>● cheia</span><span>● nova</span><span>◐ crescente</span><span>◑ minguante</span>
+          </div>
+          <div class="cabinet-controls">
+            <button id="spinButton" type="button" class="spin-button"><span aria-hidden="true">✧</span> puxar a alavanca <span aria-hidden="true">✧</span></button>
+            <span id="eligibility" class="eligibility" aria-live="off">uma rodada a cada 15 minutos</span>
+          </div>
+        </div>
+        <div class="cabinet-base" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span></div>
+      </section>
+
+      <section class="notice" id="notice" aria-live="polite" aria-atomic="true" hidden>
+        <span class="notice-icon" aria-hidden="true">☾</span>
+        <p id="noticeText"></p>
+      </section>
+
+      <section id="resultCard" class="result" aria-live="polite" aria-labelledby="songTitle" hidden>
+        <div class="result-heading">✦ as luas escolheram ✦</div>
+        <div class="result-combination" id="combinationText"></div>
+        <h2 id="songTitle"></h2>
+        <p id="songArtist" class="song-artist" hidden></p>
+        <p id="songText" class="song-text"></p>
+        <button id="surpriseOpen" class="surprise-action" type="button" hidden>responder à surpresa</button>
+        <audio id="songPlayer" controls preload="none" hidden></audio>
+        <p id="audioPending" class="audio-pending">o áudio desta canção será adicionado em breve.</p>
+      </section>
+
+      <footer class="footer"><span>☾</span> 11 canções + 1 surpresa · 12 combinações possíveis <span>☽</span><small>seu resultado é preservado ao fechar a janela.</small></footer>
+    </div>
+
+    <div id="directNameOverlay" class="surprise-overlay" hidden>
+      <section class="surprise-dialog" role="dialog" aria-modal="true" aria-labelledby="directNameTitle">
+        <div class="surprise-symbol" aria-hidden="true">☾ ✦ ☽</div>
+        <h2 id="directNameTitle">digite seu nome para jogar</h2>
+        <form id="directNameForm" autocomplete="off">
+          <label for="directPlayerName">seu nome</label>
+          <input id="directPlayerName" type="text" maxlength="32" minlength="1" required autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" placeholder="digite aqui" />
+          <button type="submit" class="surprise-action">entrar na jukebox</button>
+        </form>
+      </section>
+    </div>
+
+    <div id="surpriseOverlay" class="surprise-overlay" hidden>
+      <section class="surprise-dialog" role="dialog" aria-modal="true" aria-labelledby="surpriseTitle" aria-describedby="surpriseQuestion">
+        <button class="surprise-close" id="surpriseClose" type="button" aria-label="fechar pergunta">×</button>
+        <div class="surprise-symbol" aria-hidden="true">☾ ✦ ☽</div>
+        <h2 id="surpriseTitle">responda certa e ganhe um bônus!</h2>
+        <p id="surpriseQuestion">quantos signos existem?</p>
+        <form id="surpriseForm" autocomplete="off">
+          <label for="surpriseInput">sua resposta (até 7 caracteres)</label>
+          <input id="surpriseInput" name="surprise" type="text" maxlength="7" minlength="1" required autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" enterkeyhint="done" placeholder="digite aqui" />
+          <button type="submit" class="surprise-action">responder</button>
+        </form>
+        <p class="surprise-feedback" id="surpriseFeedback" role="status" hidden></p>
+        <button type="button" class="surprise-action" id="surpriseContinue" hidden>ver meu bônus</button>
+      </section>
+    </div>
+
+    <section id="closedState" class="closed-state" hidden>
+      <div class="closed-moon">☾</div>
+      <h2>até a próxima lua.</h2>
+      <p>a jukebox foi fechada, mas você continua nesta página.</p>
+      <button type="button" id="reopenInside" class="spin-button">reabrir jukebox</button>
+    </section>
+  </main>
+</body>
+</html>

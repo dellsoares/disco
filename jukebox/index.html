@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071521">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>as tais canções pra lua | jukebox lunar</title>
+  <link rel="stylesheet" href="site.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <main class="site-shell">
+    <div class="stars" aria-hidden="true"></div>
+    <div class="eyebrow"><span class="mini-sparkle">✦</span> uma experiência musical interativa <span class="mini-sparkle">✦</span></div>
+    <div class="hero-orbit" aria-hidden="true"><div class="hero-moon"></div></div>
+    <section class="intro" aria-labelledby="hero-title">
+      <p class="overline">11 canções e 1 surpresa</p>
+      <h1 id="hero-title">as tais canções <em>pra lua</em></h1>
+      <p class="description">quatro fases. três janelas. doze destinos possíveis. puxe a alavanca e descubra qual lua escolheu você.</p>
+      <button class="launch" id="openGame" type="button"><span aria-hidden="true">☾</span> abrir a jukebox lunar <span aria-hidden="true">↗</span></button>
+      <p class="note" id="greeting">uma rodada a cada 15 minutos. sua escolha fica salva neste navegador.</p>
+      <a class="preview-link" href="teste.html">✦ abrir painel de teste: 12 respostas e 11 áudios</a>
+    </section>
+    <div class="horizon" aria-hidden="true"><span></span><span></span><span></span></div>
+  </main>
+
+  <div class="name-overlay" id="nameOverlay" role="presentation">
+    <section class="name-dialog" role="dialog" aria-modal="true" aria-labelledby="nameTitle" aria-describedby="nameDescription">
+      <div class="name-moon" aria-hidden="true">☾ ✦ ☽</div>
+      <h2 id="nameTitle">digite seu nome para jogar</h2>
+      <p id="nameDescription">como a lua pode chamar você?</p>
+      <form id="nameForm" autocomplete="off">
+        <label for="playerName">seu nome</label>
+        <input id="playerName" name="playerName" type="text" maxlength="32" minlength="1" required placeholder="digite aqui" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" />
+        <button type="submit" class="name-submit">entrar na jukebox</button>
+      </form>
+    </section>
+  </div>
+
+  <div class="overlay" id="gameOverlay" hidden>
+    <div class="overlay-backdrop" id="overlayBackdrop"></div>
+    <section class="overlay-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="overlay-header">
+        <span id="modalTitle">✦ jukebox lunar</span>
+        <button class="close-button" id="closeGame" type="button" aria-label="fechar jogo e permanecer nesta página">✕ <span>fechar</span></button>
+      </div>
+      <iframe id="gameFrame" title="jukebox lunar: caça-níquel das fases da lua" data-src="jogo.html" allow="autoplay" loading="eager"></iframe>
+    </section>
+  </div>
+</body>
+</html>
