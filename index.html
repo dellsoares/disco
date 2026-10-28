@@ -156,6 +156,54 @@
             .ep-song-modal .ep-song-popup { aspect-ratio: 4 / 5; }
         }
     </style>
+
+<!-- souvenirs: estilos -->
+<style id="sv-inline-css">
+/* souvenirs p'rocês | estilos isolados do site principal */
+#souvenirs { position:relative; isolation:isolate; min-width:0; background:#071521; color:#f6e9cd; padding:clamp(62px,8vw,110px) 18px; border-top:1px solid rgba(244,200,123,.19); overflow:hidden; font-family:'Nourd','Plus Jakarta Sans',system-ui,sans-serif; text-transform:lowercase; }
+#souvenirs *, .sv-modal * { box-sizing:border-box; }
+#souvenirs:before { content:""; position:absolute; inset:0; z-index:-2; background-image:linear-gradient(90deg,rgba(5,15,24,.9),rgba(5,15,24,.72),rgba(5,15,24,.88)), url('https://raw.githubusercontent.com/dellsoares/disco/f7ef7c3c0004af4bb4c18e657449491bfef5ff7b/luas%20fundo.jpg'); background-repeat:no-repeat; background-size:cover; background-position:center; }
+#souvenirs:after { content:""; position:absolute; z-index:-1; inset:0; pointer-events:none; background:radial-gradient(circle at 50% 0%,rgba(204,152,67,.10),transparent 42%),linear-gradient(180deg,transparent 86%,rgba(2,8,14,.7)); }
+#souvenirs .sv-wrap {max-width:1160px;margin:0 auto;}
+#souvenirs .sv-eyebrow {text-align:center;color:#d7b778;letter-spacing:.3em;font-size:11px;font-weight:700;margin:0 0 12px;}
+#souvenirs h2 {text-align:center;color:#fff4d8;font-size:clamp(35px,4.7vw,56px);font-weight:750;line-height:1.05;letter-spacing:-.025em;margin:0;}
+#souvenirs .sv-desc {text-align:center;color:#ddc8a2;font-size:15px;margin:14px 0 40px;}
+#souvenirs .sv-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:20px;}
+#souvenirs .sv-card {min-width:0;display:flex;flex-direction:column; background:linear-gradient(155deg,rgba(8,23,37,.93),rgba(14,31,44,.89));border:1px solid rgba(232,187,112,.35);border-radius:15px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.34);transition:transform .2s,border-color .2s;}
+#souvenirs .sv-card:hover {border-color:rgba(242,209,143,.58);transform:translateY(-3px);}
+#souvenirs .sv-card-body {padding:24px;display:flex;flex-direction:column;flex:1;gap:14px;min-width:0;}
+#souvenirs h3 {margin:0;color:#ffdf9c;font-size:21px;font-weight:750;line-height:1.18;}
+#souvenirs p {margin:0;line-height:1.55;color:#dacbb0;}
+#souvenirs .sv-small-title {margin:5px 0 0;color:#f2d38a;font-size:15px;font-weight:750;}
+#souvenirs .sv-link, #souvenirs .sv-cta, #souvenirs .sv-disabled {display:flex;align-items:center;justify-content:center;text-align:center;min-height:47px;width:100%;padding:11px 14px;border-radius:8px;font-family:inherit;font-size:12px;font-weight:800;letter-spacing:.035em;text-decoration:none;text-transform:lowercase;line-height:1.3;transition:filter .2s,transform .2s;}
+#souvenirs .sv-link {background:rgba(239,199,133,.10);border:1px solid rgba(235,190,124,.42);color:#ffdfa5;}
+#souvenirs .sv-link:hover, #souvenirs .sv-link:focus-visible {background:rgba(239,199,133,.22);}
+#souvenirs .sv-cta {border:1px solid #ffe1a8;background:linear-gradient(130deg,#ffe1a1,#cc914b);color:#1e1a15;cursor:pointer;box-shadow:0 5px 25px rgba(227,168,78,.24);}
+#souvenirs .sv-cta:hover {filter:brightness(1.12);transform:translateY(-2px);}
+#souvenirs .sv-disabled {cursor:not-allowed;color:#aab2b6;border:1px dashed rgba(211,215,210,.3);background:rgba(255,255,255,.035);}
+#souvenirs .sv-divider {height:1px;background:linear-gradient(90deg,transparent,#d6aa64,transparent);margin:12px 0 0;}
+#souvenirs .sv-cover {position:relative;aspect-ratio:3/4;min-height:0;width:100%;overflow:hidden;background:linear-gradient(145deg,#0d2636,#04121e);}
+#souvenirs .sv-cover img {display:block;width:100%;height:100%;object-fit:cover;object-position:center;}
+#souvenirs .sv-cover:after {content:"";position:absolute;inset:60% 0 0;pointer-events:none;background:linear-gradient(0deg,rgba(3,8,14,.77),transparent);}
+#souvenirs .sv-img-cta {position:absolute;z-index:2;left:50%;bottom:19px;transform:translateX(-50%);width:calc(100% - 56px);max-width:245px;min-height:49px;}
+#souvenirs .sv-img-cta:hover {transform:translate(-50%,-2px);}
+#souvenirs .sv-poster-note {position:absolute;z-index:2;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(5,17,25,.92);padding:10px 21px;color:#ffdb98;font-size:12px;font-weight:800;letter-spacing:.23em;border:1px solid rgba(243,205,143,.6);border-radius:99px;white-space:nowrap;}
+#souvenirs .sv-caption {font-size:13px;text-align:center;padding:0 8px 14px;}
+#souvenirs .sv-plain-head {padding-top:25px;}
+#souvenirs .sv-plain-head p {font-size:14px;}
+.sv-modal[hidden]{display:none!important;}
+.sv-modal {position:fixed;z-index:2147483600;inset:0;background:rgba(2,6,12,.9);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:12px;overflow:hidden;}
+.sv-window {display:flex;flex-direction:column;width:min(500px,100%);height:min(860px,calc(100dvh - 24px));max-height:calc(100dvh - 24px);border:1px solid rgba(239,192,109,.79);border-radius:14px;overflow:hidden;background:#071521;box-shadow:0 25px 95px #000e;}
+.sv-bar {min-height:48px;flex:0 0 48px;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:5px 11px 5px 18px;background:linear-gradient(90deg,#122e43,#071521);border-bottom:1px solid rgba(226,174,87,.5);font-family:system-ui,sans-serif;color:#f4d8a3;font-size:11px;font-weight:750;letter-spacing:.12em;text-transform:lowercase;}
+.sv-close {flex-shrink:0;background:rgba(255,255,255,.06);border:1px solid rgba(255,225,174,.55);border-radius:7px;padding:8px 12px;color:#fff3d4;cursor:pointer;font-family:inherit;font-size:12px;}
+.sv-close:hover,.sv-close:focus-visible {background:rgba(255,255,255,.18);}
+.sv-frame {width:100%;min-width:0;min-height:0;flex:1;display:block;border:0;background:#071521;overscroll-behavior:contain;}
+#souvenirs a:focus-visible,#souvenirs button:focus-visible,.sv-close:focus-visible{outline:3px solid #ffe2aa;outline-offset:3px;}
+@media(max-width:960px){#souvenirs .sv-grid{grid-template-columns:repeat(2,minmax(0,1fr));}#souvenirs .sv-card:last-child{grid-column:1/-1;max-width:450px;width:100%;justify-self:center;}}
+@media(max-width:640px){#souvenirs{padding:58px 15px;}#souvenirs .sv-grid{grid-template-columns:1fr;gap:20px;max-width:420px;margin:0 auto;}#souvenirs .sv-card:last-child{grid-column:auto;max-width:none;}#souvenirs .sv-desc{margin-bottom:27px;}#souvenirs .sv-card-body{padding:20px;}#souvenirs .sv-cover{max-height:520px;}.sv-modal{padding:0;}.sv-window{width:100%;max-width:none;height:100dvh;max-height:100dvh;border:0;border-radius:0;}.sv-bar{min-height:46px;flex-basis:46px;}}
+@media(prefers-reduced-motion:reduce){#souvenirs .sv-card,#souvenirs .sv-cta,#souvenirs .sv-link{transition:none;}}
+
+</style>
 </head>
 <body class="bg-[#0D1927] min-h-screen antialiased selection:bg-amber-500/30 selection:text-amber-200 lowercase-all">
 
@@ -757,23 +805,9 @@
             </div>
         </div>
         
-        <!-- ÁREA DE DOWNLOADS NO FINAL DA SEÇÃO DOS EPS -->
-        <div class="bg-[#0D1927] py-12 px-5 text-center relative z-20 shadow-[0_-15px_30px_rgba(13,25,39,0.8)] border-t border-white/5">
-            <p class="text-sm sm:text-base text-slate-200/90 font-medium mb-6">
-                gostou das artes? você pode baixá-las em 2 formatos
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-2xl mx-auto">
-                <a href="https://github.com/dellsoares/disco/tree/dda2013ea9deb8c803f6a8754b287462b041f5bb/papel%20de%20parede%20hd" target="_blank" rel="noopener noreferrer" class="bg-amber-400 hover:bg-amber-300 text-[#0D1927] px-8 py-3.5 rounded-md font-bold text-xs tracking-[0.2em] transition-all shadow-lg flex items-center justify-center gap-2 w-full sm:w-auto">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                    <span>papel de parede hd</span>
-                </a>
-                
-                <a href="https://raw.githubusercontent.com/dellsoares/disco/758c53ee4c72e98f85737788b9cbba6dd2e42581/livrocolorir.pdf" download="livro_para_colorir_wendell_soares.pdf" target="_blank" rel="noopener noreferrer" class="bg-amber-400 hover:bg-amber-300 text-[#0D1927] px-8 py-3.5 rounded-md font-bold text-xs tracking-[0.2em] transition-all shadow-lg flex items-center justify-center gap-2 w-full sm:w-auto">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                    <span>livro pra colorir</span>
-                </a>
-            </div>
-        </div>
+        
+        <!-- bloco antigo de downloads removido; agora está em souvenirs -->
+
     </section>
 
     <!-- Janela ampliada para textos das canções; sobreposição sem expandir a página -->
@@ -1730,6 +1764,127 @@
             updateToroCarousel();
         }
     </script>
+
+<!-- souvenirs: comportamento -->
+<script id="sv-inline-js">
+/* seção de souvenirs para o index atual | sem bibliotecas adicionais */
+(() => {
+  'use strict';
+  const SVG_COVER = 'https://raw.githubusercontent.com/dellsoares/disco/e000f7b718f5f689e1ccd05fd008a2e1fea0162b/jukebox/jukeboxlunar.webp';
+  const JUNHOS_COVER = 'https://raw.githubusercontent.com/dellsoares/disco/33f717bf2c83dfd72c9478a127a9ca723fbe02bb/cards/junhos.webp';
+  const WALLPAPER = 'https://github.com/dellsoares/disco/tree/dda2013ea9deb8c803f6a8754b287462b041f5bb/papel%20de%20parede%20hd';
+  const COLORING = 'https://raw.githubusercontent.com/dellsoares/disco/758c53ee4c72e98f85737788b9cbba6dd2e42581/livrocolorir.pdf';
+  const TAROT = 'https://github.com/dellsoares/disco/tree/33f717bf2c83dfd72c9478a127a9ca723fbe02bb/cards';
+  const JUKEBOX_URL = 'https://wendellsoares.com.br/jukebox/';
+  const fallbackSvg = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800"><rect width="600" height="800" fill="#061726"/><circle cx="300" cy="310" r="145" fill="#dbac64"/><text x="300" y="570" font-size="32" fill="#ffe9b3" text-anchor="middle">lua</text></svg>');
+
+  function init() {
+    const faq = document.getElementById('faq');
+    if (!faq || document.getElementById('souvenirs')) return;
+    // Remove exatamente o bloco de downloads antigo, não o conteúdo restante dos EPs.
+    const oldText = [...document.querySelectorAll('p')].find(p => p.textContent.toLocaleLowerCase('pt-BR').includes('gostou das artes? você pode baixá-las em 2 formatos'));
+    if (oldText) {
+      const block = oldText.parentElement;
+      if (block && block.querySelectorAll('a').length >= 2 && block.parentElement) block.remove();
+    }
+
+    const section = document.createElement('section');
+    section.id = 'souvenirs';
+    section.setAttribute('aria-labelledby','sv-title');
+    section.innerHTML = `
+      <div class="sv-wrap">
+        <p class="sv-eyebrow">✦ uns presentes do lado de cá ✦</p>
+        <h2 id="sv-title">souvenirs p'rocês</h2>
+        <p class="sv-desc">uns trem aí aleatórios</p>
+        <div class="sv-grid">
+          <article class="sv-card" aria-labelledby="sv-downloads-title">
+            <div class="sv-card-body sv-plain-head">
+              <h3 id="sv-downloads-title">gostou das imagens? só baixar</h3>
+              <p>pra salvar, imprimir e levar um pedacinho da lua.</p>
+              <a class="sv-link" href="${WALLPAPER}" target="_blank" rel="noopener noreferrer">papel de parede hd ↗</a>
+              <a class="sv-link" href="${COLORING}" target="_blank" rel="noopener noreferrer" download="livro_para_colorir_wendell_soares.pdf">livro pra colorir ↗</a>
+              <div class="sv-divider" aria-hidden="true"></div>
+              <h4 class="sv-small-title">cifras</h4>
+              <button class="sv-disabled" type="button" disabled aria-label="baixe aqui, em breve">baixe aqui · em breve</button>
+              <div class="sv-divider" aria-hidden="true"></div>
+              <a class="sv-link" href="${TAROT}" target="_blank" rel="noopener noreferrer">tarô lunar ↗</a>
+            </div>
+          </article>
+          <article class="sv-card" aria-labelledby="sv-jukebox-title">
+            <div class="sv-cover">
+              <img src="${SVG_COVER}" alt="jukebox lunar, máquina de músicas com fases da lua" loading="lazy" decoding="async">
+              <button class="sv-cta sv-img-cta" type="button" id="sv-open">☾ iniciar</button>
+            </div>
+            <div class="sv-card-body">
+              <h3 id="sv-jukebox-title">jukebox lunar</h3>
+              <p>puxe a manivela. a lua escolhe a canção.</p>
+            </div>
+          </article>
+          <article class="sv-card" aria-labelledby="sv-junhos-title">
+            <div class="sv-cover">
+              <img src="${JUNHOS_COVER}" alt="arte de junhos, com calendário" loading="lazy" decoding="async">
+            </div>
+            <div class="sv-card-body">
+              <h3 id="sv-junhos-title">junhos</h3>
+              <p>um novo capítulo está no calendário.</p>
+            </div>
+          </article>
+        </div>
+      </div>`;
+    faq.insertAdjacentElement('afterend',section);
+    section.querySelectorAll('img').forEach(img=>{img.addEventListener('error',()=>{img.src=fallbackSvg;},{once:true});});
+
+    const modal = document.createElement('div');
+    modal.id = 'sv-modal';
+    modal.className = 'sv-modal';
+    modal.hidden = true;
+    modal.innerHTML = '<div class="sv-window" role="dialog" aria-modal="true" aria-label="jukebox lunar"><div class="sv-bar"><span>☾ jukebox lunar</span><button class="sv-close" id="sv-close" type="button" aria-label="fechar jukebox">✕ fechar</button></div><iframe class="sv-frame" id="sv-iframe" title="jukebox lunar" loading="lazy" allow="autoplay" scrolling="no" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>';
+    document.body.appendChild(modal);
+    const frame=modal.querySelector('iframe');
+    const closeButton=modal.querySelector('#sv-close');
+    const launchButton=section.querySelector('#sv-open');
+    let focusBefore=null, overflowBefore='';
+    function openModal(){
+      focusBefore=document.activeElement;
+      overflowBefore=document.body.style.overflow;
+      document.body.style.overflow='hidden';
+      modal.hidden=false;
+      frame.src=JUKEBOX_URL;
+      closeButton.focus();
+    }
+    function closeModal(){
+      if(modal.hidden)return;
+      modal.hidden=true;
+      frame.src='about:blank'; // interrompe áudio e fecha também a jukebox interna
+      document.body.style.overflow=overflowBefore;
+      (focusBefore?.isConnected ? focusBefore : launchButton).focus();
+    }
+    launchButton.addEventListener('click',openModal);
+    closeButton.addEventListener('click',closeModal);
+    modal.addEventListener('click',(event)=>{if(event.target===modal)closeModal();});
+    document.addEventListener('keydown',(event)=>{
+      if(modal.hidden)return;
+      if(event.key==='Escape'){event.preventDefault();closeModal();}
+      if(event.key==='Tab'){
+        if(event.shiftKey && document.activeElement===closeButton){event.preventDefault();frame.focus();}
+        if(!event.shiftKey && document.activeElement===frame){event.preventDefault();closeButton.focus();}
+      }
+    });
+    // Adiciona atalho ao menu existente, sem alterar seus handlers globais.
+    const menuLinks = Array.from(document.querySelectorAll('a[href="#faq"]'));
+    const menuLink=menuLinks.find(a=>a.closest('header'));
+    if(menuLink && menuLink.parentElement && !menuLink.parentElement.querySelector('a[href="#souvenirs"]')){
+      const a=menuLink.cloneNode(true);
+      a.setAttribute('href','#souvenirs');
+      a.textContent='souvenirs p\'rocês';
+      menuLink.insertAdjacentElement('afterend',a);
+    }
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
+  else init();
+})();
+
+</script>
 </body>
 </html>
 ```eof
