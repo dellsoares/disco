@@ -1138,6 +1138,16 @@
                 </p>
             </div>
 
+            <div id="fim-timeline" aria-label="linha do tempo dos lançamentos">
+                <ol>
+                    <li class="tl-done"><span class="tl-date">22/10</span><span class="tl-dot" aria-hidden="true">✓</span><span class="tl-label">ep luas<small>no ar</small></span></li>
+                    <li><span class="tl-date">01/11</span><span class="tl-dot" aria-hidden="true"></span><span class="tl-label">ep junhos</span></li>
+                    <li><span class="tl-date">14/11</span><span class="tl-dot" aria-hidden="true"></span><span class="tl-label">ep rodas-gigantes</span></li>
+                    <li class="tl-gap"><span class="tl-date">&nbsp;</span><span class="tl-dot" aria-hidden="true"></span><span class="tl-label">surpresas pra manu e outros</span></li>
+                    <li class="tl-main"><span class="tl-date">24/12</span><span class="tl-dot" aria-hidden="true"></span><span class="tl-label">álbum alfaiataria</span></li>
+                </ol>
+            </div>
+
             <div id="fim-media">
                 <video src="https://raw.githubusercontent.com/dellsoares/disco/676f45912d3097c4e7fbe3aaa9b06017a06f0b01/alfaiataria%20spoiler.mp4" autoplay muted loop playsinline preload="metadata" aria-label="spoiler do disco alfaiataria"></video>
                 <img src="https://raw.githubusercontent.com/dellsoares/disco/13657b706de25fb840986635dbed4310a3d7a0b3/alfaiataria%20wendell%20soares.jpg" alt="alfaiataria wendell soares">
@@ -1867,6 +1877,21 @@
 #fim-media{display:flex;flex-wrap:nowrap;align-items:center;justify-content:center;gap:16px;width:min(1100px,calc(100vw - 40px));margin-left:calc(50% - min(550px,50vw - 20px));}
 #fim-media video,#fim-media img{width:auto;max-width:100%;min-width:0;flex:0 1 auto;height:clamp(240px,30vw,400px);}
 }
+</style>
+<style id="tl-style">
+#fim-timeline{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;padding:6px 0 10px;font-family:'Nourd','Plus Jakarta Sans',sans-serif;text-transform:lowercase;}
+#fim-timeline ol{list-style:none;margin:0 auto;padding:0;display:flex;align-items:flex-start;justify-content:space-between;min-width:620px;max-width:100%;position:relative;}
+#fim-timeline ol:before{content:'';position:absolute;left:6%;right:6%;top:41px;height:2px;background:linear-gradient(90deg,#dfba81,rgba(223,186,129,.45) 55%,rgba(223,186,129,.25));border-radius:2px;}
+#fim-timeline li{position:relative;flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:0 6px;scroll-snap-align:center;}
+#fim-timeline .tl-date{height:22px;display:flex;align-items:flex-end;font-size:13px;font-weight:700;letter-spacing:.06em;color:#f5dca6;}
+#fim-timeline .tl-dot{position:relative;z-index:1;width:22px;height:22px;border-radius:50%;background:#0D1927;border:2px solid #dfba81;display:flex;align-items:center;justify-content:center;font-size:12px;line-height:1;color:#0D1927;box-shadow:0 0 0 5px rgba(13,25,39,.9);}
+#fim-timeline li.tl-done .tl-dot{background:#dfba81;box-shadow:0 0 0 5px rgba(13,25,39,.9),0 0 18px rgba(223,186,129,.55);font-weight:900;}
+#fim-timeline li.tl-main .tl-dot{width:26px;height:26px;border-color:#f2c570;background:#f2c570;color:#0D1927;}
+#fim-timeline .tl-label{font-size:14px;font-weight:650;line-height:1.35;color:#eee4d0;}
+#fim-timeline .tl-label small{display:block;margin-top:2px;font-size:11px;font-weight:600;letter-spacing:.08em;color:#dfba81;}
+#fim-timeline li.tl-gap .tl-dot{width:12px;height:12px;margin:5px 0;background:#dfba81;border:0;box-shadow:0 0 0 5px rgba(13,25,39,.9);}
+#fim-timeline li.tl-gap .tl-label{font-size:12.5px;font-weight:550;font-style:italic;color:#dfcba8;max-width:150px;}
+#fim-timeline li.tl-gap .tl-date{visibility:hidden;}
 </style>
 <style id="rv-style">
 @media (prefers-reduced-motion:no-preference){
