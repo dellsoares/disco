@@ -537,9 +537,17 @@
                 </div>
             </div>
 
-            <!-- Playlist do YouTube substituindo os vídeos avulsos -->
-            <div class="mt-10 max-w-xl mx-auto aspect-video rounded-lg overflow-hidden border border-white/20 shadow-2xl bg-[#070E17]">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/videoseries?list=PLOnAFP3gZzKE&amp;si=iZQVn5ZgvO6Ou-T-" title="YouTube playlist player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" class="w-full h-full"></iframe>
+            <!-- Playlist do YouTube com capa personalizada -->
+            <div class="mt-10 max-w-xl mx-auto aspect-video rounded-lg overflow-hidden border border-white/20 shadow-2xl bg-[#070E17] relative">
+                <button type="button" aria-label="reproduzir playlist de videoclipes oficiais no YouTube" onclick="const player = document.getElementById('mais-cancoes-youtube-player'); player.classList.remove('hidden'); player.src = player.dataset.src; this.classList.add('hidden');" class="absolute inset-0 w-full h-full cursor-pointer group" style="padding:0; border:0; background:transparent;">
+                    <img src="https://raw.githubusercontent.com/dellsoares/disco/b9846730675b455a078510f97432f5cb4d0e384d/capa%20playlist%20videoclipes%20oficiais.jpg" alt="capa da playlist de videoclipes oficiais" class="w-full h-full object-cover object-center" loading="lazy">
+                    <span class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/35 transition-colors">
+                        <span class="w-16 h-16 rounded-full bg-[#0D1927]/85 border border-white/50 flex items-center justify-center text-white group-hover:bg-amber-400 group-hover:text-[#0D1927] transition-colors shadow-xl" aria-hidden="true">
+                            <svg class="w-7 h-7 ml-1 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                        </span>
+                    </span>
+                </button>
+                <iframe id="mais-cancoes-youtube-player" width="100%" height="100%" data-src="https://www.youtube.com/embed/videoseries?list=PLOnAFP3gZzKE&amp;si=iZQVn5ZgvO6Ou-T-&amp;autoplay=1" title="YouTube playlist player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" class="hidden w-full h-full"></iframe>
             </div>
         </div>
     </section>
