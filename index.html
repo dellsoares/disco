@@ -151,10 +151,10 @@
         .ep-song-modal.hover-preview #ep-song-modal-close { display: none; }
         .ep-song-modal:not(.hover-preview) { pointer-events: auto; }
         .ep-modal-scroll { scrollbar-width: thin; scrollbar-color: #a6b8b7 transparent; }
-        /* O modal acompanha a proporção 3:4 das capas dos EPs, inclusive em telas baixas. */
-        .ep-song-modal .ep-song-popup { width: min(100%, 430px, 63.75vh); aspect-ratio: 3 / 4; }
+        /* O modal acompanha a proporção quadrada das capas dos EPs. */
+        .ep-song-modal .ep-song-popup { width: min(100%, 430px, 85vh); aspect-ratio: 1 / 1; }
         @media (max-width: 420px) {
-            .ep-song-modal .ep-song-popup { aspect-ratio: 3 / 4; }
+            .ep-song-modal .ep-song-popup { aspect-ratio: 1 / 1; }
         }
         /* almofada do áudio de mãe: exclusiva da faixa junhos 08; nunca é pop-up automático */
         #mom-cushion-scene[hidden] { display: none !important; }
@@ -542,7 +542,7 @@
             <!-- Playlist do YouTube com capa personalizada -->
             <div class="mt-10 max-w-xl mx-auto aspect-video rounded-lg overflow-hidden border border-white/20 shadow-2xl bg-[#070E17] relative">
                 <button type="button" aria-label="reproduzir playlist de videoclipes oficiais no YouTube" onclick="const player = document.getElementById('mais-cancoes-youtube-player'); player.classList.remove('hidden'); player.src = player.dataset.src; this.classList.add('hidden');" class="absolute inset-0 w-full h-full cursor-pointer group" style="padding:0; border:0; background:transparent;">
-                    <img src="https://raw.githubusercontent.com/dellsoares/disco/b9846730675b455a078510f97432f5cb4d0e384d/capa%20playlist%20videoclipes%20oficiais.jpg" alt="capa da playlist de videoclipes oficiais" class="w-full h-full object-cover object-center" loading="lazy">
+                    <img src="https://raw.githubusercontent.com/dellsoares/disco/51d70af87633a3ab4f9d045662a24124b206d3c3/Videoclipes%20Oficiais%20na%20TV%20Vintage.png" alt="capa da playlist de videoclipes oficiais" class="w-full h-full object-cover object-center" loading="lazy">
                     <span class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/35 transition-colors">
                         <span class="w-16 h-16 rounded-full bg-[#0D1927]/85 border border-white/50 flex items-center justify-center text-white group-hover:bg-amber-400 group-hover:text-[#0D1927] transition-colors shadow-xl" aria-hidden="true">
                             <svg class="w-7 h-7 ml-1 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
@@ -573,7 +573,7 @@
             <div class="absolute inset-0 pointer-events-none bg-[#DECBA4]/85"></div>
             <div class="relative z-10 max-w-4xl mx-auto">
                 <div class="flex flex-col sm:flex-row items-center gap-6 sm:gap-10 mb-9">
-                    <img src="https://raw.githubusercontent.com/dellsoares/disco/2a30f03c5d23dd4dfa2b30be4fd37f9e84034e54/EP%20luas%20-%20Wendell%20Soares.png" alt="capa ep luas" class="w-40 sm:w-52 aspect-[3/4] object-contain rounded-lg shadow-xl border-2 border-white/40" loading="lazy">
+                    <img src="https://raw.githubusercontent.com/dellsoares/disco/2a30f03c5d23dd4dfa2b30be4fd37f9e84034e54/EP%20luas%20-%20Wendell%20Soares.png" alt="capa ep luas" class="w-40 sm:w-52 aspect-square object-contain rounded-lg shadow-xl border-2 border-white/40" loading="lazy">
                     <div class="w-full flex-1">
                         <span class="text-xs font-bold tracking-wider text-[#1D2A33]/85">parte i • luas</span>
                         <h3 class="text-3xl sm:text-4xl font-bold mt-2 mb-4">luas</h3>
@@ -653,7 +653,7 @@
             <div class="absolute inset-0 pointer-events-none bg-[#A5A881]/85"></div>
             <div class="relative z-10 max-w-4xl mx-auto">
                 <div class="flex flex-col sm:flex-row items-center gap-6 sm:gap-10 mb-9">
-                    <img src="https://raw.githubusercontent.com/dellsoares/disco/2a30f03c5d23dd4dfa2b30be4fd37f9e84034e54/Ep%20junhos%20-%20wendell%20soares.png" alt="capa ep junhos" class="w-40 sm:w-52 aspect-[3/4] object-contain rounded-lg shadow-xl border-2 border-white/40" loading="lazy">
+                    <img src="https://raw.githubusercontent.com/dellsoares/disco/2a30f03c5d23dd4dfa2b30be4fd37f9e84034e54/Ep%20junhos%20-%20wendell%20soares.png" alt="capa ep junhos" class="w-40 sm:w-52 aspect-square object-contain rounded-lg shadow-xl border-2 border-white/40" loading="lazy">
                     <div class="w-full flex-1">
                         <span class="text-xs font-bold tracking-wider text-[#1D2A33]/85">parte ii • junhos</span>
                         <h3 class="text-3xl sm:text-4xl font-bold mt-2 mb-4">junhos</h3>
@@ -747,7 +747,7 @@
             <div class="absolute inset-0 pointer-events-none bg-[#A6B8B7]/85"></div>
             <div class="relative z-10 max-w-4xl mx-auto">
                 <div class="flex flex-col sm:flex-row items-center gap-6 sm:gap-10 mb-9">
-                    <img src="https://raw.githubusercontent.com/dellsoares/disco/2a30f03c5d23dd4dfa2b30be4fd37f9e84034e54/ep%20rodas-gigantes%20-%20wendell%20soares.png" alt="capa ep rodas-gigantes" class="w-40 sm:w-52 aspect-[3/4] object-contain rounded-lg shadow-xl border-2 border-white/40" loading="lazy">
+                    <img src="https://raw.githubusercontent.com/dellsoares/disco/2a30f03c5d23dd4dfa2b30be4fd37f9e84034e54/ep%20rodas-gigantes%20-%20wendell%20soares.png" alt="capa ep rodas-gigantes" class="w-40 sm:w-52 aspect-square object-contain rounded-lg shadow-xl border-2 border-white/40" loading="lazy">
                     <div class="w-full flex-1">
                         <span class="text-xs font-bold tracking-wider text-[#1D2A33]/85">parte iii • rodas-gigantes</span>
                         <h3 class="text-3xl sm:text-4xl font-bold mt-2 mb-4">rodas-gigantes</h3>
@@ -844,7 +844,7 @@
 
     <!-- Janela ampliada para textos das canções; sobreposição sem expandir a página -->
     <div id="ep-song-modal" class="ep-song-modal fixed inset-0 z-[90] hidden items-center justify-center bg-[#070E17]/85 backdrop-blur-sm p-4 transition-opacity duration-300 opacity-0" onclick="if(event.target === this) closeEpSong(true)" role="dialog" aria-modal="false" aria-labelledby="ep-song-modal-title">
-        <div class="ep-song-popup relative w-full max-w-[430px] aspect-[3/4] max-h-[85vh] rounded-lg overflow-hidden shadow-2xl bg-[#0D1927] transition-transform duration-300 scale-95">
+        <div class="ep-song-popup relative w-full max-w-[430px] aspect-square max-h-[85vh] rounded-lg overflow-hidden shadow-2xl bg-[#0D1927] transition-transform duration-300 scale-95">
             <img id="ep-song-modal-image" src="" alt="capa do EP" class="absolute inset-0 w-full h-full object-contain">
             <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(7,14,23,0.98) 0%,rgba(7,14,23,0.84) 49%,rgba(7,14,23,0.12) 100%)"></div>
             <button id="ep-song-modal-close" type="button" onclick="closeEpSong(true)" aria-label="fechar detalhes" class="absolute top-3 right-3 z-20 bg-[#0D1927]/85 text-white border border-white/30 w-9 h-9 rounded-md flex items-center justify-center">✕</button>
