@@ -210,6 +210,76 @@
             #mom-cushion-button {animation:none;transform:scale(.5)}
             #mom-cushion-button.is-playing {animation:none;transform:scale(1)}
         }
+
+        /* Cards da seção sintonia: frente e verso com giro 3D */
+        #sintonia .sintonia-flip-card {
+            display: block;
+            position: relative;
+            width: 100%;
+            min-width: 0;
+            aspect-ratio: 4 / 6;
+            padding: 0;
+            border: 0;
+            border-radius: 12px;
+            overflow: visible;
+            background: transparent;
+            color: inherit;
+            cursor: pointer;
+            text-align: left;
+            perspective: 1400px;
+            -webkit-tap-highlight-color: transparent;
+            box-shadow: 0 20px 35px rgba(0,0,0,.34);
+        }
+        #sintonia .sintonia-flip-inner {
+            display: block;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            transform-style: preserve-3d;
+            transition: transform .85s cubic-bezier(.2,.72,.2,1);
+        }
+        #sintonia .sintonia-flip-face {
+            display: block;
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: inherit;
+            background: #0D1927;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        #sintonia .sintonia-flip-face img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        #sintonia .sintonia-flip-back {
+            transform: rotateY(180deg);
+        }
+        #sintonia .sintonia-flip-card.is-flipped .sintonia-flip-inner,
+        #sintonia .sintonia-flip-card:focus-visible .sintonia-flip-inner {
+            transform: rotateY(180deg);
+        }
+        #sintonia .sintonia-flip-card:focus-visible {
+            outline: 3px solid #f4d08b;
+            outline-offset: 4px;
+        }
+        @media (hover: hover) and (pointer: fine) {
+            #sintonia .sintonia-flip-card:hover .sintonia-flip-inner {
+                transform: rotateY(180deg);
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #sintonia .sintonia-flip-inner {
+                transition: none;
+            }
+        }
     </style>
 <!-- souvenirs: estilos isolados da nova seção -->
 <style id="sv-inline-css">
@@ -375,7 +445,7 @@
                         <p>não. eu não sabia. e foi com essa descoberta (que eu preferia não saber, ao menos não como descobri) que resolvi tirar ideias, melodias e demos dos arquivos e dar alguma vida a canções.</p>
                         <p class="text-white font-medium">justamente quando o cheiro que tudo exalava era o contrário disso.</p>
                         <p>de tudo feito, vi ressurgir a velha vontade de ter uma banda.</p>
-                        <p>e enquanto a semente germina - no seu tempo e do seu jeito - eu e minha pressa de tudo - pôs no mundo <strong><strong>o disco solo antes do disco de banda</strong></strong>.</p>
+                        <p>e enquanto a semente germina -no seu tempo e do seu jeito - eu e minha pressa de tudo pusemos no mundo <strong><strong>o disco solo antes do disco de banda</strong></strong>.</p>
                     </div>
                 </div>
             </div>
@@ -884,20 +954,41 @@
             </div>
 
             <div class="sintonia-track">
-                <!-- Card Wendell -->
-                <div class="sintonia-item relative w-full aspect-[4/6] rounded-xl overflow-hidden shadow-2xl border border-white/15 bg-[#0D1927] group">
-                    <img src="https://raw.githubusercontent.com/dellsoares/disco/main/dell.jpg" alt="wendell soares" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                
-                <!-- Card Batata Jr -->
-                <div class="sintonia-item relative w-full aspect-[4/6] rounded-xl overflow-hidden shadow-2xl border border-white/15 bg-[#0D1927] group">
-                    <img src="https://raw.githubusercontent.com/dellsoares/disco/main/batata.jpg" alt="batata jr" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                
-                <!-- Card Levi Almeida -->
-                <div class="sintonia-item relative w-full aspect-[4/6] rounded-xl overflow-hidden shadow-2xl border border-white/15 bg-[#0D1927] group">
-                    <img src="https://raw.githubusercontent.com/dellsoares/disco/main/levi.jpg" alt="levi almeida" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
+                <!-- Card Wendell: frente e verso -->
+                <button type="button" class="sintonia-item sintonia-flip-card" aria-label="wendell soares: virar card para ler o texto" aria-pressed="false">
+                    <span class="sintonia-flip-inner">
+                        <span class="sintonia-flip-face sintonia-flip-front">
+                            <img src="https://raw.githubusercontent.com/dellsoares/disco/262617a1abdf999342fbc2386ccfa47c401df8bf/wendell1.jpg" alt="wendell soares, frente do card" loading="lazy">
+                        </span>
+                        <span class="sintonia-flip-face sintonia-flip-back">
+                            <img src="https://raw.githubusercontent.com/dellsoares/disco/262617a1abdf999342fbc2386ccfa47c401df8bf/texto%20wendell.jpg" alt="texto de apresentação de wendell soares" loading="lazy">
+                        </span>
+                    </span>
+                </button>
+
+                <!-- Card Batata Jr: frente e verso -->
+                <button type="button" class="sintonia-item sintonia-flip-card" aria-label="batata jr.: virar card para ler o texto" aria-pressed="false">
+                    <span class="sintonia-flip-inner">
+                        <span class="sintonia-flip-face sintonia-flip-front">
+                            <img src="https://raw.githubusercontent.com/dellsoares/disco/262617a1abdf999342fbc2386ccfa47c401df8bf/batata1.jpg" alt="batata jr., frente do card" loading="lazy">
+                        </span>
+                        <span class="sintonia-flip-face sintonia-flip-back">
+                            <img src="https://raw.githubusercontent.com/dellsoares/disco/262617a1abdf999342fbc2386ccfa47c401df8bf/texto%20batatalevi.jpg" alt="texto de apresentação de batata jr." loading="lazy">
+                        </span>
+                    </span>
+                </button>
+
+                <!-- Card Levi Almeida: frente e verso -->
+                <button type="button" class="sintonia-item sintonia-flip-card" aria-label="levi almeida: virar card para ler o texto" aria-pressed="false">
+                    <span class="sintonia-flip-inner">
+                        <span class="sintonia-flip-face sintonia-flip-front">
+                            <img src="https://raw.githubusercontent.com/dellsoares/disco/262617a1abdf999342fbc2386ccfa47c401df8bf/levi1guitarra%20batata.jpg" alt="levi almeida, frente do card" loading="lazy">
+                        </span>
+                        <span class="sintonia-flip-face sintonia-flip-back">
+                            <img src="https://raw.githubusercontent.com/dellsoares/disco/262617a1abdf999342fbc2386ccfa47c401df8bf/texto%20levi%20levi.jpg" alt="texto de apresentação de levi almeida" loading="lazy">
+                        </span>
+                    </span>
+                </button>
             </div>
         </div>
     </section>
@@ -2034,4 +2125,16 @@
   if (document.readyState === 'complete') run(); else window.addEventListener('load', run, { once: true });
 })();
 </script>
-</body></html>
+
+<script id="sintonia-flip-actions">
+(() => {
+    'use strict';
+    document.querySelectorAll('#sintonia .sintonia-flip-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const flipped = card.classList.toggle('is-flipped');
+            card.setAttribute('aria-pressed', String(flipped));
+        });
+    });
+})();
+</script>
+\n</body></html>
