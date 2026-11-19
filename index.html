@@ -706,10 +706,11 @@
             <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">por dentro dos ep's</h2>
         </div>
         <div class="max-w-4xl mx-auto px-4 sm:px-5 relative z-10 -mb-[1px] w-full">
-            <div role="tablist" aria-label="escolha um ep" class="ep-tabs grid grid-cols-3 gap-2">
-                <button id="tab-luas" role="tab" aria-controls="panel-luas" aria-selected="true" tabindex="0" onclick="switchEpTab('luas')" type="button" class="ep-tab is-active text-xs sm:text-sm font-semibold px-2 py-3 border-x border-t border-b-0 border-white/20 rounded-t-xl rounded-b-none transition-colors" style="--ep-tab-color:#DECBA4">luas</button>
-                <button id="tab-junhos" role="tab" aria-controls="panel-junhos" aria-selected="false" tabindex="-1" onclick="switchEpTab('junhos')" type="button" class="ep-tab text-xs sm:text-sm font-semibold px-2 py-3 border-x border-t border-b-0 border-white/20 rounded-t-xl rounded-b-none transition-colors" style="--ep-tab-color:#A5A881">junhos</button>
-                <button id="tab-rodas" role="tab" aria-controls="panel-rodas" aria-selected="false" tabindex="-1" onclick="switchEpTab('rodas')" type="button" class="ep-tab text-xs sm:text-sm font-semibold px-2 py-3 border-x border-t border-b-0 border-white/20 rounded-t-xl rounded-b-none transition-colors" style="--ep-tab-color:#A6B8B7">rodas-gigantes</button>
+            <div role="tablist" aria-label="escolha um ep ou arquivo" class="ep-tabs grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <button id="tab-luas" role="tab" aria-controls="panel-luas" aria-selected="true" tabindex="0" onclick="switchEpTab('luas')" type="button" class="ep-tab is-active min-w-0 text-[11px] sm:text-sm font-semibold px-1 sm:px-2 py-2.5 sm:py-3 border-x border-t border-b-0 border-white/20 rounded-t-xl rounded-b-none transition-colors" style="--ep-tab-color:#DECBA4">luas</button>
+                <button id="tab-junhos" role="tab" aria-controls="panel-junhos" aria-selected="false" tabindex="-1" onclick="switchEpTab('junhos')" type="button" class="ep-tab min-w-0 text-[11px] sm:text-sm font-semibold px-1 sm:px-2 py-2.5 sm:py-3 border-x border-t border-b-0 border-white/20 rounded-t-xl rounded-b-none transition-colors" style="--ep-tab-color:#A5A881">junhos</button>
+                <button id="tab-rodas" role="tab" aria-controls="panel-rodas" aria-selected="false" tabindex="-1" onclick="switchEpTab('rodas')" type="button" class="ep-tab min-w-0 text-[11px] sm:text-sm font-semibold px-1 sm:px-2 py-2.5 sm:py-3 border-x border-t border-b-0 border-white/20 rounded-t-xl rounded-b-none transition-colors" style="--ep-tab-color:#A6B8B7">rodas-gigantes</button>
+                <button id="tab-percolados" role="tab" aria-controls="panel-percolados" aria-selected="false" tabindex="-1" onclick="switchEpTab('percolados')" type="button" class="ep-tab min-w-0 text-[11px] sm:text-sm font-semibold px-1 sm:px-2 py-2.5 sm:py-3 border-x border-t border-b-0 border-white/20 rounded-t-xl rounded-b-none transition-colors" style="--ep-tab-color:#A48C7C">percolados</button>
             </div>
         </div>
         
@@ -976,6 +977,84 @@
                     </div>
                     
                     <p class="mt-5 text-xs font-medium text-[#1D2A33]/75 text-center">passe o mouse ou toque na faixa para ler sobre a canção</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- percolados: arquivos bônus em formato de leitura rápida -->
+        <div id="panel-percolados" role="tabpanel" aria-labelledby="tab-percolados" class="ep-panel relative bg-cover bg-center text-[#382D26] py-8 sm:py-12 px-5 hidden" style="background-image:url('https://raw.githubusercontent.com/dellsoares/disco/42615d07cfb5223f749ca045f67ee13eb5353a6a/percolados.webp')">
+            <div class="absolute inset-0 pointer-events-none bg-[#D9C6B3]/90"></div>
+            <div class="relative z-10 max-w-4xl mx-auto">
+                <div class="flex flex-col sm:flex-row items-center gap-6 sm:gap-10 mb-9">
+                    <img src="https://raw.githubusercontent.com/dellsoares/disco/42615d07cfb5223f749ca045f67ee13eb5353a6a/percolados.webp" alt="capa percolados" width="800" height="800" class="w-40 sm:w-52 aspect-square object-contain rounded-lg shadow-xl border-2 border-white/40" loading="lazy" decoding="async">
+                    <div class="w-full flex-1">
+                        <span class="text-xs font-bold tracking-wider text-[#382D26]/85">ep bônus • percolados</span>
+                        <h3 class="text-3xl sm:text-4xl font-bold mt-2 mb-4">percolados</h3>
+                        <p class="text-base md:text-lg leading-relaxed text-[#382D26]/90 font-medium"><strong>percolado</strong> é o subproduto líquido e altamente concentrado que sobra quando os resíduos se decompõem. aqui, um espaço devidamente isolado para evitar que continuem contaminando no meu <strong>lençol freático emocional.</strong></p>
+                    </div>
+                </div>
+                <div class="border-t border-[#382D26]/20 pt-5">
+                    <h4 class="font-semibold text-xs tracking-widest mb-4">arquivos • explore os textos</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 auto-rows-fr">
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#302722] border border-[#A48C7C]/30 hover:border-[#A48C7C] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.35)] transition-all text-left" data-ep="percolados" data-track="1" data-title="Intro do tio para explicar o básico aos de sabedoria tímida" data-image="https://raw.githubusercontent.com/dellsoares/disco/42615d07cfb5223f749ca045f67ee13eb5353a6a/percolados.webp" aria-label="arquivo 1: Intro do tio para explicar o básico aos de sabedoria tímida" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A48C7C]/15 text-[#D8C1AE] font-bold text-xs tracking-widest border border-[#A48C7C]/25 group-hover:bg-[#A48C7C] group-hover:text-[#302722] transition-colors">01</span>
+                                <span class="text-sm font-semibold text-[#F2E7DE] group-hover:text-white transition-colors leading-snug">Intro do tio para explicar o básico aos de sabedoria tímida</span>
+                            </button>
+                            <template id="song-desc-percolados-1"><p>ou é isso ou é desenhar. mas como esse outro talento artístico eu costumo dispensar aos bons, vai como aviso mesmo. e um toque de ironia bem sutil.</p></template>
+                        </div>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#302722] border border-[#A48C7C]/30 hover:border-[#A48C7C] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.35)] transition-all text-left" data-ep="percolados" data-track="2" data-title="amorzinho de vovó" data-image="https://raw.githubusercontent.com/dellsoares/disco/42615d07cfb5223f749ca045f67ee13eb5353a6a/percolados.webp" aria-label="arquivo 2: amorzinho de vovó" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A48C7C]/15 text-[#D8C1AE] font-bold text-xs tracking-widest border border-[#A48C7C]/25 group-hover:bg-[#A48C7C] group-hover:text-[#302722] transition-colors">02</span>
+                                <span class="text-sm font-semibold text-[#F2E7DE] group-hover:text-white transition-colors leading-snug">amorzinho de vovó</span>
+                            </button>
+                            <template id="song-desc-percolados-2"><p>tem coisa que deve ser de sangue. no caso, de pai e mãe, que sempre tiveram um comportamento um tanto imoral quanto a dinheiro. se não for isso, a netinha querida (e seu protótipo de esposo) tem um talento único porém vergonhoso. aqui começa, que o deus dela o perdoe, porque o tio tá sem paciência pra isso.</p></template>
+                        </div>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#302722] border border-[#A48C7C]/30 hover:border-[#A48C7C] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.35)] transition-all text-left" data-ep="percolados" data-track="3" data-title="cuidado de latrina" data-image="https://raw.githubusercontent.com/dellsoares/disco/42615d07cfb5223f749ca045f67ee13eb5353a6a/percolados.webp" aria-label="arquivo 3: cuidado de latrina" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A48C7C]/15 text-[#D8C1AE] font-bold text-xs tracking-widest border border-[#A48C7C]/25 group-hover:bg-[#A48C7C] group-hover:text-[#302722] transition-colors">03</span>
+                                <span class="text-sm font-semibold text-[#F2E7DE] group-hover:text-white transition-colors leading-snug">cuidado de latrina</span>
+                            </button>
+                            <template id="song-desc-percolados-3"><p>pra ela, um orgulho. pra ele, o filho problemático. talvez porque foi quem teve ciência desde as adolescência das infinitas atitudes imorais, deploráveis e - veja só - desembocando no desrespeito e ilegalidade. peguei leve, acreditem. ainda irão entender o porquê.</p></template>
+                        </div>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#302722] border border-[#A48C7C]/30 hover:border-[#A48C7C] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.35)] transition-all text-left" data-ep="percolados" data-track="4" data-title="má-drinha, o azedume" data-image="https://raw.githubusercontent.com/dellsoares/disco/42615d07cfb5223f749ca045f67ee13eb5353a6a/percolados.webp" aria-label="arquivo 4: má-drinha, o azedume" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A48C7C]/15 text-[#D8C1AE] font-bold text-xs tracking-widest border border-[#A48C7C]/25 group-hover:bg-[#A48C7C] group-hover:text-[#302722] transition-colors">04</span>
+                                <span class="text-sm font-semibold text-[#F2E7DE] group-hover:text-white transition-colors leading-snug">má-drinha, o azedume</span>
+                            </button>
+                            <template id="song-desc-percolados-4"><p>dona maria definiu bem “sumir do nosso convívio, foi um livramento”. isso, após 4 décadas suportando a inveja, empáfia e arrogância em sua essência.vai lá, pergunta alguém da família o quanto gosta e pede pra ser sincero.</p></template>
+                        </div>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#302722] border border-[#A48C7C]/30 hover:border-[#A48C7C] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.35)] transition-all text-left" data-ep="percolados" data-track="5" data-title="o carteiro póstumo que despacha mentira" data-image="https://raw.githubusercontent.com/dellsoares/disco/42615d07cfb5223f749ca045f67ee13eb5353a6a/percolados.webp" aria-label="arquivo 5: o carteiro póstumo que despacha mentira" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A48C7C]/15 text-[#D8C1AE] font-bold text-xs tracking-widest border border-[#A48C7C]/25 group-hover:bg-[#A48C7C] group-hover:text-[#302722] transition-colors">05</span>
+                                <span class="text-sm font-semibold text-[#F2E7DE] group-hover:text-white transition-colors leading-snug">o carteiro póstumo que despacha mentira</span>
+                            </button>
+                            <template id="song-desc-percolados-5"><p>são tantos níveis de erro mas, em resumo, essa vai pra quem me mandou mensagem no dia do velório da minha mãe e quis que eu acreditasse que, após anos dizendo tudo direto pra mim, foi só morrer que ela achou alguém pra mandar o recado. ah tá.</p></template>
+                        </div>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#302722] border border-[#A48C7C]/30 hover:border-[#A48C7C] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.35)] transition-all text-left" data-ep="percolados" data-track="6" data-title="anti-oração" data-image="https://raw.githubusercontent.com/dellsoares/disco/42615d07cfb5223f749ca045f67ee13eb5353a6a/percolados.webp" aria-label="arquivo 6: anti-oração" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A48C7C]/15 text-[#D8C1AE] font-bold text-xs tracking-widest border border-[#A48C7C]/25 group-hover:bg-[#A48C7C] group-hover:text-[#302722] transition-colors">06</span>
+                                <span class="text-sm font-semibold text-[#F2E7DE] group-hover:text-white transition-colors leading-snug">anti-oração</span>
+                            </button>
+                            <template id="song-desc-percolados-6"><p>desde que minha fé se tornou reativa, eu percebi que o problema nunca foi deus em si e, sim, o deus dos outros, que sempre me soa horroroso e adaptável demais.</p></template>
+                        </div>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#302722] border border-[#A48C7C]/30 hover:border-[#A48C7C] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.35)] transition-all text-left" data-ep="percolados" data-track="7" data-title="minha eterna quarentena" data-image="https://raw.githubusercontent.com/dellsoares/disco/42615d07cfb5223f749ca045f67ee13eb5353a6a/percolados.webp" aria-label="arquivo 7: minha eterna quarentena" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A48C7C]/15 text-[#D8C1AE] font-bold text-xs tracking-widest border border-[#A48C7C]/25 group-hover:bg-[#A48C7C] group-hover:text-[#302722] transition-colors">07</span>
+                                <span class="text-sm font-semibold text-[#F2E7DE] group-hover:text-white transition-colors leading-snug">minha eterna quarentena</span>
+                            </button>
+                            <template id="song-desc-percolados-7"><p>eu fui feliz na quarentena. sem precisar conviver direto com ninguém, exceto meus gatos. voltaria pra ela sem reclamar.</p></template>
+                        </div>
+                        <div class="min-w-0 h-full">
+                            <button type="button" class="group relative w-full h-full flex items-center gap-3 px-4 py-3.5 rounded-lg shadow-md bg-[#302722] border border-[#A48C7C]/30 hover:border-[#A48C7C] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(29,42,51,0.35)] transition-all text-left" data-ep="percolados" data-track="8" data-title="depois que acaba a champanhe" data-image="https://raw.githubusercontent.com/dellsoares/disco/42615d07cfb5223f749ca045f67ee13eb5353a6a/percolados.webp" aria-label="arquivo 8: depois que acaba a champanhe" onmouseenter="hoverEpSong(this)" onmouseleave="leaveEpSong(this)" onclick="clickEpSong(this)">
+                                <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md bg-[#A48C7C]/15 text-[#D8C1AE] font-bold text-xs tracking-widest border border-[#A48C7C]/25 group-hover:bg-[#A48C7C] group-hover:text-[#302722] transition-colors">08</span>
+                                <span class="text-sm font-semibold text-[#F2E7DE] group-hover:text-white transition-colors leading-snug">depois que acaba a champanhe</span>
+                            </button>
+                            <template id="song-desc-percolados-8"><p>a casa, quando estava cheia e eu, servindo boa bebida, era só festa. mas na menopausa, os mais presentes sumiram. e se não for por ele, será por mim: para sempre.</p></template>
+                        </div>
+                    </div>
+                    <p class="mt-5 text-xs font-medium text-[#382D26]/75 text-center">passe o mouse ou toque no arquivo para ler o texto</p>
                 </div>
             </div>
         </div>
@@ -1773,7 +1852,7 @@
         // Por dentro dos EPs: abas e miniaturas que revelam os textos em pop-up.
         function switchEpTab(ep) {
             closeEpSong(true);
-            for (const key of ['luas', 'junhos', 'rodas']) {
+            for (const key of ['luas', 'junhos', 'rodas', 'percolados']) {
                 const selected = key === ep;
                 const panel = document.getElementById('panel-' + key);
                 const tab = document.getElementById('tab-' + key);
@@ -1800,7 +1879,7 @@
             document.getElementById('ep-song-modal-image').src = button.dataset.image;
             document.getElementById('ep-song-modal-title').textContent = button.dataset.title;
             document.getElementById('ep-song-modal-label').textContent =
-                'faixa ' + String(button.dataset.track).padStart(2, '0') + ' • ' + (button.dataset.ep === 'rodas' ? 'rodas-gigantes' : button.dataset.ep);
+                (button.dataset.ep === 'percolados' ? 'arquivo ' : 'faixa ') + String(button.dataset.track).padStart(2, '0') + ' • ' + (button.dataset.ep === 'rodas' ? 'rodas-gigantes' : button.dataset.ep);
             document.getElementById('ep-song-modal-text').innerHTML =
                 document.getElementById('song-desc-' + button.dataset.ep + '-' + button.dataset.track).innerHTML;
             // No botão da faixa 08, o coração aparece a 50% sobre a imagem e flutua;
@@ -1873,9 +1952,9 @@
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') closeEpSong(true);
             if ((event.key === 'ArrowLeft' || event.key === 'ArrowRight') && document.activeElement?.getAttribute('role') === 'tab') {
-                const ids = ['luas','junhos','rodas'];
+                const ids = ['luas','junhos','rodas','percolados'];
                 const current = ids.indexOf(document.activeElement.id.replace('tab-',''));
-                const next = ids[(current + (event.key === 'ArrowRight' ? 1 : 2)) % 3];
+                const next = ids[(current + (event.key === 'ArrowRight' ? 1 : ids.length - 1)) % ids.length];
                 switchEpTab(next);
                 document.getElementById('tab-' + next).focus();
                 event.preventDefault();
